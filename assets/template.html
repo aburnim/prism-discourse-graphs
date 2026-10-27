@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prism: __TITLE_SHORT__ graph</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#f1f0f1; --panel:rgba(255,255,255,.86); --panel-solid:#fff; --ink:#1b1d26; --muted:#5d5f6e; --line:#dcd9e3; --soft:#f2eff9;
+  --brand:#9863ff; --brand-2:#7c4dff; --brand-deep:#5b34d6; --brand-soft:#b9a3f0; --cut:#f1f0f1;
+  --q:#b26a00; --c:#7c4dff; --e:#0e7c6b; --s:#3f51d8; --p:#5d6275; --r:#c2367a;
+  --sup:#0e7c6b; --opp:#d43c3c; --add:#8f8ca0; --grd:#3f51d8; --fol:#9a97aa; --req:#c2367a;
+  --sans:"Inter Tight","Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+  --mono:"JetBrains Mono","IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --page:linear-gradient(180deg,#f1f0f1 0%,#ebe8ee 40%,#d9cfea 100%);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#161821; --panel:rgba(29,31,43,.88); --panel-solid:#1d1f2b; --ink:#ecebf3; --muted:#a3a4b8; --line:#2f3242; --soft:#242636;
+    --brand:#a07bff; --brand-2:#8c5cff; --brand-deep:#6a45e0; --brand-soft:#c7b4ff; --cut:#161821;
+    --q:#e8a64a; --c:#a07bff; --e:#3fc4a8; --s:#7d8cff; --p:#a3a8bd; --r:#f07ab0;
+    --sup:#3fc4a8; --opp:#f07070; --add:#7a7b90; --grd:#7d8cff; --fol:#6f7186; --req:#f07ab0;
+    --page:radial-gradient(1200px 500px at 85% -5%,rgba(110,80,230,.35),transparent 60%),radial-gradient(1000px 500px at 5% 105%,rgba(90,70,220,.30),transparent 60%),#161821;
+  }
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;background:var(--page);background-attachment:fixed;color:var(--ink);font:15px/1.5 var(--sans)}
+a{color:var(--brand-2)}
+.mono{font-family:var(--mono)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;max-width:1500px;margin:0 auto;padding:22px 24px 0}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.brand svg{width:34px;height:34px}
+.brand span{font-size:30px;font-weight:400;letter-spacing:-.02em}
+.links{display:flex;flex-wrap:wrap;align-items:center;gap:4px;padding:6px;border:1px solid var(--line);border-radius:12px;background:var(--panel);backdrop-filter:blur(10px);box-shadow:0 6px 24px rgba(40,30,80,.08)}
+.links a,.links button{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:10px 12px;border:0;border-radius:8px;background:none;color:var(--ink);text-decoration:none;cursor:pointer}
+.links a:hover,.links button:hover{background:var(--soft)}
+.links .primary{color:#fff;background:linear-gradient(135deg,var(--brand),var(--brand-deep));padding:10px 16px}
+.links .primary:hover{background:linear-gradient(135deg,var(--brand-2),var(--brand-deep))}
+header{padding:36px 24px 8px;max-width:1500px;margin:0 auto}
+.eyebrow{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--brand-2);margin:0 0 10px}
+h1{font-size:clamp(34px,5vw,56px);line-height:1.04;font-weight:500;margin:0 0 14px;letter-spacing:-.035em}
+h1 .grad{background:linear-gradient(90deg,var(--brand-2),var(--brand-soft));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);margin:0 0 14px;max-width:1100px}
+.sub em{color:var(--ink);font-style:normal;font-weight:500}
+.sub .mono{font-size:12.5px}
+.note{font:12.5px/1.5 var(--mono);color:var(--muted);background:var(--panel);border:1px solid var(--brand);border-radius:8px;padding:9px 12px;margin:0 0 14px}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.btn{display:inline-flex;align-items:center;gap:6px;font:500 12px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:11px 16px;border-radius:8px;text-decoration:none;color:#fff;background:linear-gradient(135deg,var(--brand),var(--brand-deep));border:1px solid transparent}
+.btn:hover{background:linear-gradient(135deg,var(--brand-2),var(--brand-deep))}
+.btn .v{text-transform:none;letter-spacing:0;opacity:.9}
+.btn.ghost{color:var(--brand-2);background:none;border-color:var(--brand);padding:6px 10px;font-size:11px;vertical-align:middle;margin-left:6px}
+.btn.ghost:hover{background:var(--soft)}
+.how{font-size:14.5px;margin:0 0 10px;max-width:1100px}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font:11.5px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:6px 0 4px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend svg{width:28px;height:8px}
+.wrap{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:16px;max-width:1500px;margin:0 auto;padding:10px 24px 32px}
+.scroller{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;backdrop-filter:blur(10px)}
+.graph{position:relative;min-width:1000px;padding:14px 10px 16px}
+.graph svg.edges{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.cols{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));column-gap:36px}
+.col h2,.col h3{font:500 11.5px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);display:flex;gap:7px;align-items:center}
+.col h2{margin:4px 2px 12px}
+.col h3{margin:22px 2px 12px}
+.col h2 i{width:9px;height:9px;border-radius:2px;display:inline-block}
+.n{display:block;width:100%;text-align:left;font:12.5px/1.38 var(--sans);color:var(--ink);background:var(--panel-solid);
+   border:1px solid var(--line);border-left:4px solid var(--k);border-radius:8px;padding:8px 10px;margin:0 0 10px;cursor:pointer;transition:opacity .15s,box-shadow .15s}
+.n:hover{box-shadow:0 4px 16px rgba(60,40,140,.14)}
+.n:focus-visible{outline:2px solid var(--k);outline-offset:2px}
+.n.sel{box-shadow:0 0 0 2px var(--k),0 6px 20px rgba(60,40,140,.18)}
+.n .tag{display:inline-block;font:600 10px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--opp);margin-bottom:3px}
+.n.opposed{border-style:dashed;border-left-style:solid}
+.cites{margin:-6px 0 12px;padding:9px 10px;background:var(--soft);border:1px solid var(--line);border-left:4px solid var(--k);border-radius:0 0 8px 8px;font-size:11.5px;line-height:1.4}
+.cites .ct{font:500 10px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--brand-2);margin-bottom:5px}
+.cites .cl{margin:0 0 6px}
+.cites .cq{margin:0 0 6px;font-style:italic}
+.cites a{font-family:var(--mono);font-size:10.5px;word-break:break-all}
+.dim .n:not(.on){opacity:.28}
+path.edge{fill:none;stroke-width:1.4;opacity:.42;transition:opacity .15s}
+.dim path.edge{opacity:.06}
+.dim path.edge.on{opacity:.95;stroke-width:2}
+.hov path.edge.hl{opacity:.95;stroke-width:2}
+aside{position:sticky;top:12px;align-self:start;background:var(--panel);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:14px;padding:18px;max-height:calc(100vh - 24px);overflow:auto}
+aside .empty{color:var(--muted);font-size:14px}
+aside .chip{display:inline-block;font:500 10.5px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:#fff;background:var(--k);border-radius:6px;padding:4px 8px}
+aside h2{font-size:19px;line-height:1.3;font-weight:500;letter-spacing:-.015em;margin:10px 0 8px}
+aside p{margin:0 0 12px;font-size:14px}
+aside h4{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:16px 0 7px}
+aside ul{margin:0;padding:0;list-style:none}
+aside li{margin:0 0 6px}
+aside li button{font:13px/1.4 var(--sans);text-align:left;background:none;border:0;padding:0 0 0 10px;border-left:3px solid var(--k);color:var(--ink);cursor:pointer}
+aside li button:hover{color:var(--brand-2)}
+aside figure{margin:0 0 12px}
+aside figure img{width:100%;border:1px solid var(--line);border-radius:8px;background:#fff}
+aside figcaption{font-size:12px;color:var(--muted)}
+aside .warn{font-size:13px;color:var(--opp);font-weight:600}
+aside .id{font:11px var(--mono);color:var(--muted);word-break:break-all}
+.att{font-size:12.5px;color:var(--muted)}
+q{font-style:italic}
+aside blockquote{margin:0 0 12px;padding:9px 12px;border-left:3px solid var(--brand);background:var(--soft);border-radius:0 8px 8px 0;font-size:14px;font-style:italic}
+aside blockquote cite{display:block;font-style:normal;font-size:12px;color:var(--muted);margin-top:4px}
+aside .loc{font-size:13px;margin:0 0 12px}
+aside .doi{font-size:12.5px}
+aside .doi a{font-family:var(--mono);font-size:11.5px;word-break:break-all}
+.refs{max-width:1500px;margin:0 auto;padding:0 24px 24px}
+.refs h2{font-size:22px;font-weight:500;letter-spacing:-.02em;margin:22px 0 4px}
+.refs ol{padding-left:0;list-style:none;margin:10px 0;columns:2 520px;column-gap:32px}
+.refs li{break-inside:avoid;margin:0 0 12px;font-size:13px}
+.refs li .num{display:inline-block;min-width:30px;font-family:var(--mono);font-size:12px;color:var(--brand-2)}
+.refs li a.d{font-family:var(--mono);font-size:11.5px;word-break:break-all}
+.refs li .by{display:block;padding-left:30px;font-size:12px;color:var(--muted)}
+.refs li .by button{font:inherit;background:none;border:0;padding:0;color:var(--brand-2);cursor:pointer;text-decoration:underline}
+.refs ul{font-size:13px;padding-left:18px}
+footer{max-width:1500px;margin:0 auto;padding:0 24px 36px;font-size:12px;color:var(--muted)}
+@media (max-width:1000px){.wrap{grid-template-columns:1fr}aside{position:static;max-height:none}}
+@media (max-width:600px){.top,header,.wrap,.refs,footer{padding-left:16px;padding-right:16px}}
+</style>
+</head>
+<body>
+<div class="top">
+  <a class="brand" href="https://prismscience.org" target="_blank" rel="noopener" aria-label="Prism">
+    <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" fill="var(--brand)"/><polygon points="96,6 96,68 29.7,68" fill="var(--cut)"/><polygon points="4,68 29.7,68 4,92" fill="var(--cut)"/></svg>
+    <span>Prism</span>
+  </a>
+  <nav class="links">
+__NAVLINKS__
+    <a href="https://github.com/MIRA-science/schema" target="_blank" rel="noopener">MIRA schema</a>
+    <button id="clear" type="button">Clear</button>
+    <button id="dl" class="primary" type="button">Download JSON-LD &#8599;</button>
+  </nav>
+</div>
+<header>
+  <p class="eyebrow">Prism research output &middot; MIRA discourse graph</p>
+  <h1>__TITLE_SHORT__ as a <span class="grad">MIRA discourse graph</span></h1>
+  <p class="sub">__SUBLINE__</p>
+  __DOIBTNS__
+  <p class="note">__NOTE__ __NNODES__ nodes, __NEDGES__ relations, serialized against the MIRA schema (JSON-LD, embedded in this file).</p>
+  <p class="how"><strong>How to read:</strong> Start with a Question. Claims answer it. Evidence supports or opposes each Claim and points to the figure it comes from. Each piece of Evidence comes from a Study, and each Study follows Protocols. Requests are open work. Click any box to trace its full chain, see where it sits in the paper, and get DOIs for the works it cites.</p>
+  <p class="how">In MIRA, a Claim is defined as: <q>__SQ__</q> <a class="btn ghost" href="https://mira.science" target="_blank" rel="noopener">MIRA schema: more info &#8599;</a></p>
+  <div class="legend" id="legend"></div>
+</header>
+
+<div class="wrap">
+  <div class="scroller"><div class="graph" id="graph"><svg class="edges" id="edges" aria-hidden="true"></svg><div class="cols" id="cols"></div></div></div>
+  <aside id="panel" aria-live="polite"><p class="empty">Select a box to see its description, figures, sources and connections.</p></aside>
+</div>
+<section class="refs" id="refs">
+  <div id="refsec"><h2>References</h2>
+  <ol id="reflist"></ol></div>
+  <h2>Other resources</h2>
+  <ul id="reslist">
+__RESOURCES__
+  </ul>
+</section>
+
+<script type="application/json" id="cfg">/*__CFG__*/</script>
+<script type="application/ld+json" id="mira">
+/*__JSONLD__*/
+</script>
+<script>
+(function(){
+  const doc = JSON.parse(document.getElementById('mira').textContent);
+  const CFG = JSON.parse(document.getElementById('cfg').textContent);
+  const G = doc['@graph'];
+  const TYPES = ['Question','Claim','Evidence','Study','Protocol','Request'];
+  const COLOR = {Question:'--q',Claim:'--c',Evidence:'--e',Study:'--s',Protocol:'--p',Request:'--r'};
+  const COL = {Question:0,Request:0,Claim:1,Evidence:2,Study:3,Protocol:4};
+  const REL = {
+    supports:{v:'--sup',dash:'',out:'Supports',inn:'Supported by'},
+    opposes:{v:'--opp',dash:'5 4',out:'Opposes',inn:'Opposed by'},
+    addresses:{v:'--add',dash:'',out:'Answers question',inn:'Answered by claim'},
+    is_grounded_in:{v:'--grd',dash:'2 3',out:'Comes from study',inn:'Produced evidence'},
+    follows:{v:'--fol',dash:'1 3',out:'Follows protocol',inn:'Used by study'},
+    request_target:{v:'--req',dash:'6 3',out:'Targets claim',inn:'Open requests'}
+  };
+  const types = t => [].concat(t||[]);
+  const byId = {}; G.forEach(o => byId[o['@id']] = o);
+  const nodes = [], edges = [];
+  G.forEach(o => {
+    const t = types(o['@type']);
+    const k = TYPES.find(x => t.includes('mira:'+x));
+    if (k) nodes.push({id:o['@id'], type:k, o});
+    else if (o.source && o.destination){
+      const r = Object.keys(REL).find(x => t.includes('mira:'+x));
+      if (r) edges.push({r, s:o.source, d:o.destination});
+    }
+  });
+  const N = {}; nodes.forEach(n => N[n.id] = n);
+  const label = n => n.o.title.replace(/^[A-Z]{3}\s*-\s*/,'');
+  const desc = n => (n.o.description && n.o.description.content) || '';
+  const isQuote = o => types(o['@type']).includes('Item') && o.isContainedBy && /#quote-/.test(o['@id']);
+  const isPdb = o => /10\.2210\/pdb/.test(o['@id']);
+  const refNum = o => { const m = /^Reference (\d+)/.exec(o.bibliographicCitation||''); return m ? +m[1] : 0; };
+  const isOpposed = id => edges.some(e=>e.d===id&&e.r==='opposes') && !edges.some(e=>e.d===id&&e.r==='supports');
+
+  // legend
+  const lg = document.getElementById('legend');
+  Object.entries(REL).forEach(([k,v]) => {
+    lg.insertAdjacentHTML('beforeend', `<span><svg viewBox="0 0 28 8"><line x1="0" y1="4" x2="28" y2="4" stroke="var(${v.v})" stroke-width="2" stroke-dasharray="${v.dash}"/></svg>${k.replace(/_/g,' ')}</span>`);
+  });
+
+  // columns
+  const colsEl = document.getElementById('cols');
+  const heads = [['Question','Questions'],['Claim','Claims'],['Evidence','Evidence'],['Study','Studies'],['Protocol','Protocols']];
+  const cols = heads.map(([t,h]) => {
+    const d = document.createElement('div'); d.className='col';
+    d.innerHTML = `<h2><i style="background:var(${COLOR[t]})"></i>${h}</h2>`;
+    colsEl.appendChild(d); return d;
+  });
+  const els = {};
+  function addNode(n){
+    const b = document.createElement('button'); b.type='button'; b.className='n'; b.style.setProperty('--k',`var(${COLOR[n.type]})`);
+    if (n.type==='Claim' && isOpposed(n.id)){ b.classList.add('opposed'); b.innerHTML = '<span class="tag">Tested hypothesis: opposed by evidence</span><br>'; }
+    b.appendChild(document.createTextNode(label(n)));
+    b.addEventListener('click', () => select(n.id));
+    b.addEventListener('mouseenter', () => hover(n.id, true));
+    b.addEventListener('mouseleave', () => hover(n.id, false));
+    els[n.id] = b; cols[COL[n.type]].appendChild(b);
+  }
+  nodes.filter(n=>n.type!=='Request').forEach(addNode);
+  const reqs = nodes.filter(n=>n.type==='Request');
+  if (reqs.length){ cols[0].insertAdjacentHTML('beforeend', `<h3><i style="width:9px;height:9px;border-radius:2px;display:inline-block;background:var(--r)"></i>Open requests</h3>`); reqs.forEach(addNode); }
+
+  // edges
+  const svg = document.getElementById('edges'), graph = document.getElementById('graph');
+  const NS = 'http://www.w3.org/2000/svg';
+  svg.innerHTML = '<defs>' + Object.entries(REL).map(([k,v]) =>
+    `<marker id="m-${k}" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L8,4 L0,8 z" fill="var(${v.v})"/></marker>`).join('') + '</defs>';
+  edges.forEach(e => {
+    const p = document.createElementNS(NS,'path'); p.setAttribute('class','edge');
+    p.setAttribute('stroke', `var(${REL[e.r].v})`); if (REL[e.r].dash) p.setAttribute('stroke-dasharray', REL[e.r].dash);
+    p.setAttribute('marker-end', `url(#m-${e.r})`); e.el = p; svg.appendChild(p);
+  });
+  function draw(){
+    const g = graph.getBoundingClientRect();
+    edges.forEach(e => {
+      const a = els[e.s].getBoundingClientRect(), b = els[e.d].getBoundingClientRect();
+      const ltr = a.left < b.left;
+      const x1 = (ltr ? a.right : a.left) - g.left, y1 = a.top + a.height/2 - g.top;
+      const x2 = (ltr ? b.left - 2 : b.right + 2) - g.left, y2 = b.top + b.height/2 - g.top;
+      const dx = (x2 - x1) * 0.5;
+      e.el.setAttribute('d', `M${x1},${y1} C${x1+dx},${y1} ${x2-dx},${y2} ${x2},${y2}`);
+    });
+  }
+  new ResizeObserver(draw).observe(graph);
+  window.addEventListener('resize', draw);
+
+  // chain tracing: walk left from the node toward questions, and right toward protocols
+  const nb = id => edges.filter(e=>e.s===id||e.d===id).map(e=>e.s===id?e.d:e.s);
+  function walk(start, dir){
+    const seen = new Set([start]), q = [start];
+    while (q.length){ const c = q.shift();
+      nb(c).forEach(x => { if (!seen.has(x) && Math.sign(COL[N[x].type]-COL[N[c].type])===dir){ seen.add(x); q.push(x); } }); }
+    return seen;
+  }
+  let current = null;
+  function select(id){
+    current = id;
+    const on = new Set([...walk(id,-1), ...walk(id,1)]);
+    graph.classList.add('dim');
+    Object.entries(els).forEach(([k,b]) => { b.classList.toggle('on', on.has(k)); b.classList.toggle('sel', k===id); });
+    edges.forEach(e => e.el.classList.toggle('on', on.has(e.s) && on.has(e.d) && (e.s===id||e.d===id||Math.abs(COL[N[e.s].type]-COL[N[e.d].type])===1)));
+    show(id);
+    showCites(id);
+  }
+  // citation card shown directly under the clicked node
+  function showCites(id){
+    document.querySelectorAll('.cites').forEach(x => x.remove());
+    const n = N[id], d = document.createElement('div');
+    d.className = 'cites'; d.style.setProperty('--k', `var(${COLOR[n.type]})`);
+    const refs = [].concat(n.o.references||[]).map(r => byId[r]).filter(Boolean);
+    const src = CFG.sources[CFG.nodeSource[id]] || {};
+    const main = [src.short || '', src.url || '', src.label || src.url || ''];
+    const loc = CFG.loc[id] || '';
+    let h = `<div class="ct">Citations</div><div class="cl"><b>${esc(main[0])}</b>, ${esc(loc)}<br><a href="${main[1]}" target="_blank" rel="noopener">${esc(main[2])}</a></div>`;
+    refs.filter(isQuote).forEach(q => { h += `<div class="cq">"${esc(q.content)}"</div>`; });
+    refs.filter(r => types(r['@type']).includes('SourceDocument')).forEach(w => {
+      const short = w.title;
+      h += `<div class="cl">${refNum(w) ? `[${refNum(w)}] ` : ''}${esc(short)}<br><a href="${esc(w['@id'])}" target="_blank" rel="noopener">${esc(w.identifier)}</a></div>`;
+    });
+    const pdbs = refs.filter(isPdb);
+    if (pdbs.length) h += `<div class="cl">PDB: ` + pdbs.map(p => `<a href="${esc(p['@id'])}" target="_blank" rel="noopener" title="${esc(p.identifier)}">${esc(p.title.replace('PDB entry ',''))}</a>`).join(' ') + '</div>';
+    d.innerHTML = h;
+    els[id].after(d);
+    requestAnimationFrame(draw);
+  }
+  function clear(){
+    document.querySelectorAll('.cites').forEach(x => x.remove()); requestAnimationFrame(draw);
+    current = null; graph.classList.remove('dim');
+    Object.values(els).forEach(b => b.classList.remove('on','sel'));
+    edges.forEach(e => e.el.classList.remove('on'));
+    document.getElementById('panel').innerHTML = '<p class="empty">Select a box to see its description, figures, sources and connections.</p>';
+  }
+  function hover(id, onFlag){
+    if (current) return;
+    graph.classList.toggle('hov', onFlag);
+    edges.forEach(e => e.el.classList.toggle('hl', onFlag && (e.s===id||e.d===id)));
+  }
+  document.getElementById('clear').addEventListener('click', clear);
+  document.addEventListener('keydown', ev => { if (ev.key==='Escape') clear(); });
+
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  function show(id){
+    const n = N[id], P = document.getElementById('panel');
+    P.style.setProperty('--k', `var(${COLOR[n.type]})`);
+    let h = `<span class="chip">${n.type}</span><h2>${esc(label(n))}</h2><p>${esc(desc(n))}</p>`;
+    if (n.type==='Claim' && isOpposed(id)) h += `<p class="warn">Every linked piece of evidence opposes this claim.</p>`;
+    if (n.o.bibliographicCitation) h += `<h4>Where this comes from</h4><p class="loc">${esc(n.o.bibliographicCitation)}</p>`;
+    const refs = [].concat(n.o.references||[]).map(r => byId[r]).filter(Boolean);
+    refs.filter(isQuote).forEach(q => {
+      const src = byId[q.isContainedBy] || {};
+      h += `<h4>Quote</h4><blockquote>"${esc(q.content)}"<cite>${esc(q.title)}. <a href="${esc(q.isContainedBy)}" target="_blank" rel="noopener">${esc(src.identifier || q.isContainedBy)}</a></cite></blockquote>`;
+    });
+    const works = refs.filter(r => types(r['@type']).includes('SourceDocument'));
+    if (works.length) h += '<h4>Cited works (DOI)</h4><ul>' + works.map(w =>
+      `<li class="doi">${refNum(w) ? `[${refNum(w)}] ` : ''}${esc(w.title)}<br><a href="${esc(w['@id'])}" target="_blank" rel="noopener">${esc(w.identifier)}</a></li>`).join('') + '</ul>';
+    const pdbs = refs.filter(isPdb);
+    if (pdbs.length) h += `<h4>PDB entries (DOI)</h4><p class="doi">` + pdbs.map(p =>
+      `<a href="${esc(p['@id'])}" target="_blank" rel="noopener">${esc(p.title.replace('PDB entry ',''))}</a>`).join(' &middot; ') + '</p>';
+    const groups = {};
+    edges.forEach(e => {
+      if (e.s===id) (groups[REL[e.r].out] ||= []).push(e.d);
+      if (e.d===id) (groups[REL[e.r].inn] ||= []).push(e.s);
+    });
+    Object.entries(groups).forEach(([g, ids]) => {
+      h += `<h4>${g}</h4><ul>` + ids.map(x => `<li><button type="button" data-id="${esc(x)}" style="--k:var(${COLOR[N[x].type]})">${esc(label(N[x]))}</button></li>`).join('') + '</ul>';
+    });
+    const figs = [].concat(n.o.observationBase||[]);
+    if (figs.length){
+      h += '<h4>Observation base (figures)</h4>';
+      figs.forEach(f => { const it = byId[f] || {};
+        h += `<figure><a href="${esc(f)}" target="_blank" rel="noopener"><img src="${esc(f)}" alt="${esc(it.content||'Figure')}" loading="lazy" onerror="this.remove()"></a><figcaption>${esc(it.content||'')} <a href="${esc(f)}" target="_blank" rel="noopener">Open</a></figcaption></figure>`; });
+    }
+    const src = [].concat(n.o.sourceDocument||[]);
+    if (src.length){
+      h += '<h4>Source documents</h4><ul>' + src.map(s => { const d = byId[s]||{};
+        return `<li class="doi">${esc(d.title||s)}<br><a href="${esc(s)}" target="_blank" rel="noopener">${esc(d.identifier||s)}</a></li>`; }).join('') + '</ul>';
+    }
+    h += `<h4>Node id</h4><p class="id">${esc(id)}</p>`;
+    P.innerHTML = h;
+    P.querySelectorAll('li button').forEach(b => b.addEventListener('click', () => { select(b.dataset.id); els[b.dataset.id].scrollIntoView({block:'nearest',inline:'nearest'}); }));
+  }
+
+  // works-cited and PDB lists, built from the graph
+  const citedBy = {};
+  nodes.forEach(n => [].concat(n.o.references||[]).forEach(r => (citedBy[r] ||= []).push(n.id)));
+  const goto = id => { select(id); els[id].scrollIntoView({block:'center',inline:'nearest',behavior:'smooth'}); };
+  const allWorks = G.filter(o => types(o['@type']).includes('SourceDocument') && refNum(o)).sort((a,b) => refNum(a)-refNum(b));
+  const ol = document.getElementById('reflist');
+  allWorks.forEach(w => {
+    const li = document.createElement('li');
+    li.innerHTML = `<span class="num">${refNum(w)}.</span>${esc(w.title)}. <a class="d" href="${esc(w['@id'])}" target="_blank" rel="noopener">${esc(w.identifier)}</a><span class="by">Cited by: </span>`;
+    const by = li.querySelector('.by');
+    (citedBy[w['@id']]||[]).forEach((id,i) => {
+      if (i) by.appendChild(document.createTextNode(', '));
+      const b = document.createElement('button'); b.type='button'; b.textContent = N[id].type+' '+id.split(':').pop().toUpperCase();
+      b.title = label(N[id]); b.addEventListener('click', () => goto(id)); by.appendChild(b);
+    });
+    ol.appendChild(li);
+  });
+  if (!allWorks.length) document.getElementById('refsec').remove();
+
+  document.getElementById('dl').addEventListener('click', () => {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(doc,null,2)], {type:'application/ld+json'}));
+    a.download = CFG.slug + '-mira-graph.jsonld'; a.click(); URL.revokeObjectURL(a.href);
+  });
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Discourse graphs for Prism</title>
+<meta name="description" content="Prism research papers mapped as MIRA discourse graphs: questions, claims, evidence, studies and protocols, each linked to its source.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --navy:#0e1530; --navy-2:#141c3d; --ink-on-dark:#eceaf6; --muted-on-dark:#a9acc8; --brand:#9863ff; --brand-soft:#c7b4ff;
+  --card:#f6f6f9; --card-line:#dedde3; --ink:#1b1d26; --muted:#5d5f6e; --chip:#ebebf1; --rule:#dedde3; --black:#0d1017;
+  --sans:"Inter Tight","Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+  --mono:"JetBrains Mono","IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{background:var(--navy)}
+body{margin:0;min-height:100vh;color:var(--ink-on-dark);font:16px/1.5 var(--sans);
+  background:radial-gradient(1100px 520px at 88% -8%,rgba(120,90,240,.38),transparent 62%),
+             radial-gradient(900px 480px at 0% 108%,rgba(70,90,230,.32),transparent 60%),
+             linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1240px;margin:0 auto;padding:24px 24px 0}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink-on-dark);text-decoration:none}
+.brand svg{width:34px;height:34px}
+.brand span{font-size:30px;letter-spacing:-.02em}
+.toplink{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-on-dark);text-decoration:none;
+  padding:10px 14px;border:1px solid rgba(255,255,255,.16);border-radius:10px;background:rgba(255,255,255,.04)}
+.toplink:hover{background:rgba(255,255,255,.1)}
+header{max-width:1240px;margin:0 auto;padding:72px 24px 40px}
+.eyebrow{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--brand-soft);margin:0 0 14px}
+h1{font-size:clamp(40px,6.4vw,76px);line-height:1.02;font-weight:500;letter-spacing:-.04em;margin:0 0 18px}
+h1 .grad{background:linear-gradient(90deg,var(--brand),var(--brand-soft));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:18px;color:var(--muted-on-dark);max-width:720px;margin:0}
+main{max-width:1240px;margin:0 auto;padding:0 24px 72px}
+.count{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted-on-dark);margin:0 0 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,380px),1fr));gap:24px}
+.card{display:flex;flex-direction:column;min-height:440px;padding:26px 28px 26px;background:var(--card);border:1px solid var(--card-line);
+  border-radius:22px;color:var(--ink);text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.card:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.chip{font:500 13px var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:7px 12px;border-radius:6px;background:var(--chip);color:var(--ink)}
+.chip.white{background:#fff}
+.date{font:400 14px var(--mono);letter-spacing:.06em;color:var(--muted)}
+.rule{border:0;border-top:1px solid var(--rule);margin:18px 0 22px}
+.card h2{font-size:30px;line-height:1.12;font-weight:500;letter-spacing:-.025em;margin:0 0 14px}
+.card p{font-size:17px;line-height:1.5;color:var(--muted);margin:0 0 10px}
+.card .meta{font:12px/1.5 var(--mono);color:var(--muted);margin:0}
+.spacer{flex:1;min-height:20px}
+.go{width:48px;height:48px;border-radius:10px;background:var(--black);color:#fff;display:grid;place-items:center;transition:background .15s}
+.card:hover .go{background:var(--brand)}
+.go svg{width:18px;height:18px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips .chip{font-size:11.5px;padding:6px 9px}
+footer{max-width:1240px;margin:0 auto;padding:0 24px 40px;font-size:13px;color:var(--muted-on-dark)}
+footer a{color:var(--brand-soft)}
+@media (max-width:600px){.top,header,main,footer{padding-left:16px;padding-right:16px}header{padding-top:48px}.card{min-height:0}}
+</style>
+</head>
+<body>
+<div class="top">
+  <a class="brand" href="https://prismscience.org" target="_blank" rel="noopener" aria-label="Prism">
+    <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" fill="#9863ff"/><polygon points="96,6 96,68 29.7,68" fill="#0e1530"/><polygon points="4,68 29.7,68 4,92" fill="#0e1530"/></svg>
+    <span>Prism</span>
+  </a>
+  <a class="toplink" href="https://mira.science" target="_blank" rel="noopener">About MIRA &#8599;</a>
+</div>
+<header>
+  <p class="eyebrow">Prism research outputs</p>
+  <h1><span class="grad">Discourse graphs</span> for Prism</h1>
+  <p class="lede">Each paper is mapped as a MIRA discourse graph: the questions it asks, the claims it makes, and the evidence, studies and protocols behind them, with every node cited back to its source.</p>
+</header>
+<main>
+  <p class="count">1 paper</p>
+  <div class="grid">
+    <a class="card" href="graphs/sampleworks/index.html" aria-label="Open the sampleworks discourse graph">
+      <div class="row"><span class="chip">Resource</span><span class="date">06.08.26</span></div>
+      <hr class="rule">
+      <h2>sampleworks</h2>
+      <p>A modular framework for steering structure predictors with experimental data. Guided by density maps, Boltz-2, Protenix and RF3 fit better but still favor conformations from their training data.</p>
+      <p class="meta">Chrispens et al. 2026 &middot; The Stacks &middot; doi:10.82153/jkxj-tw08</p>
+      <div class="spacer"></div>
+      <div class="row"><div class="chips"><span class="chip white">MIRA graph</span><span class="chip white">38 nodes</span></div><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+    </a>
+  </div>
+</main>
+<footer>Graphs follow the <a href="https://github.com/MIRA-science/schema" target="_blank" rel="noopener">MIRA schema</a>. Each graph page includes its JSON-LD for download.</footer>
+</body>
+</html>

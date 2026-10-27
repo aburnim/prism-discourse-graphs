@@ -1,0 +1,2607 @@
+{
+ "@context": [
+  "https://mira-science.github.io/schema/mira.jsonld",
+  {
+   "sw": "https://prismscience.org/mira/sampleworks#",
+   "Study": "mira:Study",
+   "Item": "sioc:Item",
+   "dct": "http://purl.org/dc/terms/",
+   "references": {
+    "@id": "dct:references",
+    "@type": "@id"
+   },
+   "bibliographicCitation": "dct:bibliographicCitation",
+   "identifier": "dct:identifier"
+  }
+ ],
+ "@graph": [
+  {
+   "@id": "sw:creator",
+   "@type": "UserAccount",
+   "accountName": "Andy Burnim"
+  },
+  {
+   "@id": "sw:schema-Question",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Question"
+   ],
+   "label": "Question",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:schema-Claim",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Claim"
+   ],
+   "label": "Claim",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:schema-Evidence",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Evidence"
+   ],
+   "label": "Evidence",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:schema-Study",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Study"
+   ],
+   "label": "Study",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:schema-Protocol",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Protocol"
+   ],
+   "label": "Protocol",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:schema-Request",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Request"
+   ],
+   "label": "Request",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:areldef-addresses",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:addresses",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "sw:areldef-addresses"
+    }
+   ],
+   "label": "addresses",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:reldef-addresses",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "sw:schema-Claim",
+   "range": "sw:schema-Question",
+   "subClassOf": [
+    "sw:areldef-addresses"
+   ],
+   "label": "addresses",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:areldef-supports",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:supports",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "sw:areldef-supports"
+    }
+   ],
+   "label": "supports",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:reldef-supports",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "sw:schema-Evidence",
+   "range": "sw:schema-Claim",
+   "subClassOf": [
+    "sw:areldef-supports"
+   ],
+   "label": "supports",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:areldef-opposes",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:opposes",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "sw:areldef-opposes"
+    }
+   ],
+   "label": "opposes",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:reldef-opposes",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "sw:schema-Evidence",
+   "range": "sw:schema-Claim",
+   "subClassOf": [
+    "sw:areldef-opposes"
+   ],
+   "label": "opposes",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:areldef-is_grounded_in",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:is_grounded_in",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "sw:areldef-is_grounded_in"
+    }
+   ],
+   "label": "is_grounded_in",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:reldef-is_grounded_in",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "sw:schema-Evidence",
+   "range": "sw:schema-Study",
+   "subClassOf": [
+    "sw:areldef-is_grounded_in"
+   ],
+   "label": "is_grounded_in",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:areldef-follows",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:follows",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "sw:areldef-follows"
+    }
+   ],
+   "label": "follows",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:reldef-follows",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "sw:schema-Study",
+   "range": "sw:schema-Protocol",
+   "subClassOf": [
+    "sw:areldef-follows"
+   ],
+   "label": "follows",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:areldef-request_target",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:request_target",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "sw:areldef-request_target"
+    }
+   ],
+   "label": "request_target",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:reldef-request_target",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "sw:schema-Request",
+   "range": "sw:schema-Claim",
+   "subClassOf": [
+    "sw:areldef-request_target"
+   ],
+   "label": "request_target",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "https://doi.org/10.82153/jkxj-tw08",
+   "@type": "SourceDocument",
+   "title": "sampleworks: A Modular Platform for Experimentally Guided Biomolecular Ensemble Generation",
+   "bibliographicCitation": "Chrispens K, Collins MD, Mai D, Wankowicz SA, Fraser JS, van den Bedem H (2026). The Stacks.",
+   "identifier": "doi:10.82153/jkxj-tw08",
+   "describesActivity": [
+    "sw:s0",
+    "sw:s1",
+    "sw:s2",
+    "sw:s3",
+    "sw:s4"
+   ]
+  },
+  {
+   "@id": "https://github.com/prism-science/sampleworks",
+   "@type": "SourceDocument",
+   "title": "prism-science/sampleworks (GitHub repository, formerly diff-use/sampleworks)"
+  },
+  {
+   "@id": "https://doi.org/10.1038/s41586-024-07487-w",
+   "@type": "SourceDocument",
+   "title": "Abramson J et al. (2024) Accurate structure prediction of biomolecular interactions with AlphaFold 3",
+   "identifier": "doi:10.1038/s41586-024-07487-w",
+   "bibliographicCitation": "Reference 2 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1101/2025.01.08.631967",
+   "@type": "SourceDocument",
+   "title": "Chen X et al. (2025) Protenix: Advancing Structure Prediction Through a Comprehensive AlphaFold3 Reproduction",
+   "identifier": "doi:10.1101/2025.01.08.631967",
+   "bibliographicCitation": "Reference 3 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1101/2025.06.14.659707",
+   "@type": "SourceDocument",
+   "title": "Passaro S et al. (2025) Boltz-2: Towards Accurate and Efficient Binding Affinity Prediction",
+   "identifier": "doi:10.1101/2025.06.14.659707",
+   "bibliographicCitation": "Reference 4 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1002/pro.4001",
+   "@type": "SourceDocument",
+   "title": "Riley BT et al. (2020) qFit 3: Protein and ligand multiconformer modeling for X-ray and cryo-EM maps",
+   "identifier": "doi:10.1002/pro.4001",
+   "bibliographicCitation": "Reference 11 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1038/s41467-024-51801-z",
+   "@type": "SourceDocument",
+   "title": "Chakravarty D et al. (2024) AlphaFold predictions of fold-switched conformations are driven by structure memorization",
+   "identifier": "doi:10.1038/s41467-024-51801-z",
+   "bibliographicCitation": "Reference 17 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1126/science.adv9817",
+   "@type": "SourceDocument",
+   "title": "Lewis S et al. (2025) Scalable emulation of protein equilibrium ensembles with generative deep learning (BioEmu)",
+   "identifier": "doi:10.1126/science.adv9817",
+   "bibliographicCitation": "Reference 18 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.48550/arxiv.2406.04239",
+   "@type": "SourceDocument",
+   "title": "Levy A et al. (2024) Solving Inverse Problems in Protein Space Using Diffusion-Based Priors",
+   "identifier": "doi:10.48550/arxiv.2406.04239",
+   "bibliographicCitation": "Reference 25 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.48550/arxiv.2506.04490",
+   "@type": "SourceDocument",
+   "title": "Raghu R et al. (2025) Multiscale guidance of protein structure prediction with heterogeneous cryo-EM data (CryoBoltz)",
+   "identifier": "doi:10.48550/arxiv.2506.04490",
+   "bibliographicCitation": "Reference 26 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.48550/arxiv.2602.05285",
+   "@type": "SourceDocument",
+   "title": "Li M et al. (2026) Robust Inference-Time Steering of Protein Diffusion Models via Embedding Optimization",
+   "identifier": "doi:10.48550/arxiv.2602.05285",
+   "bibliographicCitation": "Reference 27 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1038/s41592-026-03047-4",
+   "@type": "SourceDocument",
+   "title": "Fadini A et al. (2026) AlphaFold as a prior: experimental structure determination conditioned on a pretrained neural network (ROCKET)",
+   "identifier": "doi:10.1038/s41592-026-03047-4",
+   "bibliographicCitation": "Reference 28 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.48550/arxiv.2502.09372",
+   "@type": "SourceDocument",
+   "title": "Maddipatla A et al. (2025) Inverse problems with experiment-guided AlphaFold",
+   "identifier": "doi:10.48550/arxiv.2502.09372",
+   "bibliographicCitation": "Reference 29 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.48550/arxiv.2602.24007",
+   "@type": "SourceDocument",
+   "title": "Maddipatla A et al. (2026) Inference-time optimization for experiment-grounded protein ensemble generation",
+   "identifier": "doi:10.48550/arxiv.2602.24007",
+   "bibliographicCitation": "Reference 30 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.48550/arxiv.2605.15564",
+   "@type": "SourceDocument",
+   "title": "Kim M et al. (2026) CrystalBoltz: End-to-End Protein Structure Determination via Experiment-Guided Diffusion",
+   "identifier": "doi:10.48550/arxiv.2605.15564",
+   "bibliographicCitation": "Reference 31 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1101/2025.01.12.632630",
+   "@type": "SourceDocument",
+   "title": "Li M, Dalton K, Hekstra D (2025) SFCalculator: connecting deep generative models and crystallography",
+   "identifier": "doi:10.1101/2025.01.12.632630",
+   "bibliographicCitation": "Reference 37 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1101/2025.08.14.670328",
+   "@type": "SourceDocument",
+   "title": "Corley N et al. (2025) Accelerating Biomolecular Modeling with AtomWorks and RF3",
+   "identifier": "doi:10.1101/2025.08.14.670328",
+   "bibliographicCitation": "Reference 43 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.48550/arxiv.2209.14687",
+   "@type": "SourceDocument",
+   "title": "Chung H et al. (2022) Diffusion Posterior Sampling for General Noisy Inverse Problems",
+   "identifier": "doi:10.48550/arxiv.2209.14687",
+   "bibliographicCitation": "Reference 44 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.48550/arxiv.2501.06848",
+   "@type": "SourceDocument",
+   "title": "Singhal R et al. (2025) A General Framework for Inference-time Scaling and Steering of Diffusion Models",
+   "identifier": "doi:10.48550/arxiv.2501.06848",
+   "bibliographicCitation": "Reference 45 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1101/2024.11.19.624167",
+   "@type": "SourceDocument",
+   "title": "Wohlwend J et al. (2024) Boltz-1: Democratizing Biomolecular Interaction Modeling",
+   "identifier": "doi:10.1101/2024.11.19.624167",
+   "bibliographicCitation": "Reference 46 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1016/j.sbi.2014.07.005",
+   "@type": "SourceDocument",
+   "title": "Woldeyes RA, Sivak DA, Fraser JS (2014) E pluribus unum, no more: from one crystal, many conformations",
+   "identifier": "doi:10.1016/j.sbi.2014.07.005",
+   "bibliographicCitation": "Reference 47 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s2052252524005098",
+   "@type": "SourceDocument",
+   "title": "Wankowicz SA, Fraser JS (2024) Comprehensive encoding of conformational and compositional protein structural ensembles through the mmCIF data structure",
+   "identifier": "doi:10.1107/s2052252524005098",
+   "bibliographicCitation": "Reference 48 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.64898/2026.02.05.703733",
+   "@type": "SourceDocument",
+   "title": "Zhang Y et al. (2026) Protenix-v1: Toward High-Accuracy Open-Source Biomolecular Structure Prediction",
+   "identifier": "doi:10.64898/2026.02.05.703733",
+   "bibliographicCitation": "Reference 49 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1016/j.str.2022.08.004",
+   "@type": "SourceDocument",
+   "title": "Shao C et al. (2022) Assessing PDB macromolecular crystal structure confidence at the individual amino acid residue level",
+   "identifier": "doi:10.1016/j.str.2022.08.004",
+   "bibliographicCitation": "Reference 50 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s2059798318002541",
+   "@type": "SourceDocument",
+   "title": "Smart OS et al. (2018) Validation of ligands in macromolecular structures determined by X-ray crystallography",
+   "identifier": "doi:10.1107/s2059798318002541",
+   "bibliographicCitation": "Reference 51 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.7554/elife.36307",
+   "@type": "SourceDocument",
+   "title": "Keedy DA et al. (2018) An expanded allosteric network in PTP1B by multitemperature crystallography, fragment screening, and covalent tethering",
+   "identifier": "doi:10.7554/elife.36307",
+   "bibliographicCitation": "Reference 52 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s2059798317003667",
+   "@type": "SourceDocument",
+   "title": "Polyakov KM et al. (2017) Structural study of the X-ray-induced enzymatic reduction of molecular oxygen to water by Steccherinum murashkinskyi laccase",
+   "identifier": "doi:10.1107/s2059798317003667",
+   "bibliographicCitation": "Reference 53 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1016/j.str.2024.05.010",
+   "@type": "SourceDocument",
+   "title": "Mehlman T, Ginn HM, Keedy DA (2024) An expanded trove of fragment-bound structures for the allosteric enzyme PTP1B",
+   "identifier": "doi:10.1016/j.str.2024.05.010",
+   "bibliographicCitation": "Reference 54 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1038/s41467-025-59233-z",
+   "@type": "SourceDocument",
+   "title": "Erlanson DA et al. (2025) Where and how to house big data on small fragments",
+   "identifier": "doi:10.1038/s41467-025-59233-z",
+   "bibliographicCitation": "Reference 57 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1002/pro.4391",
+   "@type": "SourceDocument",
+   "title": "Weiss MS et al. (2022) Of problems and opportunities: How to treat and how to not treat crystallographic fragment screening data",
+   "identifier": "doi:10.1002/pro.4391",
+   "bibliographicCitation": "Reference 58 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1101/2025.09.18.676967",
+   "@type": "SourceDocument",
+   "title": "Butcher J et al. (2025) De novo Design of All-atom Biomolecular Interactions with RFdiffusion3",
+   "identifier": "doi:10.1101/2025.09.18.676967",
+   "bibliographicCitation": "Reference 59 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1101/2025.08.18.670959",
+   "@type": "SourceDocument",
+   "title": "Lu T et al. (2025) Conditional Protein Structure Generation with Protpardelle-1c",
+   "identifier": "doi:10.1101/2025.08.18.670959",
+   "bibliographicCitation": "Reference 60 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s0108767307041207",
+   "@type": "SourceDocument",
+   "title": "International Tables for Crystallography, Vols. A-G, complete online set (2007)",
+   "identifier": "doi:10.1107/s0108767307041207",
+   "bibliographicCitation": "Reference 61 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1002/pro.3330",
+   "@type": "SourceDocument",
+   "title": "Williams CJ et al. (2017) MolProbity: More and better reference data for improved all-atom structure validation",
+   "identifier": "doi:10.1002/pro.3330",
+   "bibliographicCitation": "Reference 62 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s2059798319011471",
+   "@type": "SourceDocument",
+   "title": "Liebschner D et al. (2019) Macromolecular structure determination using X-rays, neutrons and electrons: recent developments in Phenix",
+   "identifier": "doi:10.1107/s2059798319011471",
+   "bibliographicCitation": "Reference 63 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1093/bioinformatics/btt473",
+   "@type": "SourceDocument",
+   "title": "Mariani V et al. (2013) lDDT: a local superposition-free score for comparing protein structures and models",
+   "identifier": "doi:10.1093/bioinformatics/btt473",
+   "bibliographicCitation": "Reference 64 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1016/0377-0427%2887%2990125-7",
+   "@type": "SourceDocument",
+   "title": "Rousseeuw PJ (1987) Silhouettes: A graphical aid to the interpretation and validation of cluster analysis",
+   "identifier": "doi:10.1016/0377-0427(87)90125-7",
+   "bibliographicCitation": "Reference 65 in Chrispens et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.5281/zenodo.20584989",
+   "@type": "SourceDocument",
+   "title": "sampleworks code and data archive (Zenodo record 20584989)",
+   "identifier": "doi:10.5281/zenodo.20584989"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb8vpw/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 8VPW",
+   "identifier": "doi:10.2210/pdb8vpw/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb8vq1/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 8VQ1",
+   "identifier": "doi:10.2210/pdb8vq1/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb8z76/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 8Z76",
+   "identifier": "doi:10.2210/pdb8z76/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb9bn8/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 9BN8",
+   "identifier": "doi:10.2210/pdb9bn8/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb2i6h/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 2I6H",
+   "identifier": "doi:10.2210/pdb2i6h/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb2igt/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 2IGT",
+   "identifier": "doi:10.2210/pdb2igt/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb2e7z/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 2E7Z",
+   "identifier": "doi:10.2210/pdb2e7z/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb2p97/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 2P97",
+   "identifier": "doi:10.2210/pdb2p97/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb2qcv/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 2QCV",
+   "identifier": "doi:10.2210/pdb2qcv/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb3hyn/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 3HYN",
+   "identifier": "doi:10.2210/pdb3hyn/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb3i7m/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 3I7M",
+   "identifier": "doi:10.2210/pdb3i7m/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb3iac/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 3IAC",
+   "identifier": "doi:10.2210/pdb3iac/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb6rp1/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 6RP1",
+   "identifier": "doi:10.2210/pdb6rp1/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb3dt2/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 3DT2",
+   "identifier": "doi:10.2210/pdb3dt2/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb4gmu/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 4GMU",
+   "identifier": "doi:10.2210/pdb4gmu/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb7avg/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 7AVG",
+   "identifier": "doi:10.2210/pdb7avg/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb7p6m/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 7P6M",
+   "identifier": "doi:10.2210/pdb7p6m/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb5mhx/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 5MHX",
+   "identifier": "doi:10.2210/pdb5mhx/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb2xlw/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 2XLW",
+   "identifier": "doi:10.2210/pdb2xlw/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb2yl0/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 2YL0",
+   "identifier": "doi:10.2210/pdb2yl0/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb5i09/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 5I09",
+   "identifier": "doi:10.2210/pdb5i09/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb7z0e/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 7Z0E",
+   "identifier": "doi:10.2210/pdb7z0e/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb2bwd/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 2BWD",
+   "identifier": "doi:10.2210/pdb2bwd/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb7frd/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 7FRD",
+   "identifier": "doi:10.2210/pdb7frd/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb5rbr/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 5RBR",
+   "identifier": "doi:10.2210/pdb5rbr/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb2a26/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 2A26",
+   "identifier": "doi:10.2210/pdb2a26/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb5imv/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 5IMV",
+   "identifier": "doi:10.2210/pdb5imv/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb3hvv/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 3HVV",
+   "identifier": "doi:10.2210/pdb3hvv/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb3l4p/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 3L4P",
+   "identifier": "doi:10.2210/pdb3l4p/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb3t94/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 3T94",
+   "identifier": "doi:10.2210/pdb3t94/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb5a71/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 5A71",
+   "identifier": "doi:10.2210/pdb5a71/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb5mc8/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 5MC8",
+   "identifier": "doi:10.2210/pdb5mc8/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb6b8x/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 6B8X",
+   "identifier": "doi:10.2210/pdb6b8x/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb6dur/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 6DUR",
+   "identifier": "doi:10.2210/pdb6dur/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb6ni5/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 6NI5",
+   "identifier": "doi:10.2210/pdb6ni5/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb6ni6/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 6NI6",
+   "identifier": "doi:10.2210/pdb6ni6/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb6yvm/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 6YVM",
+   "identifier": "doi:10.2210/pdb6yvm/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb1vme/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 1VME",
+   "identifier": "doi:10.2210/pdb1vme/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb5sop/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 5SOP",
+   "identifier": "doi:10.2210/pdb5sop/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb4ole/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 4OLE",
+   "identifier": "doi:10.2210/pdb4ole/pdb"
+  },
+  {
+   "@id": "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_3506addc_04a9153631a4",
+   "@type": "Item",
+   "format": "image/png",
+   "content": "Figure 1. The four sampleworks building blocks and how a predictor is steered toward experimental data at inference time.",
+   "isContainedBy": "https://thestacks.org/publications/sampleworks-release"
+  },
+  {
+   "@id": "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_b29d518b_ae9526714d72",
+   "@type": "Item",
+   "format": "image/png",
+   "content": "Figure 2. Unguided baseline ensembles: metric definitions, RSCC and clustering score distributions, and the PTP1B (6B8X) and laccase (5MHX) examples.",
+   "isContainedBy": "https://thestacks.org/publications/sampleworks-release"
+  },
+  {
+   "@id": "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_d22d8031_f68447734841",
+   "@type": "Item",
+   "format": "image/png",
+   "content": "Figure 3. Density guidance: guidance strength sweep (fit vs geometry), per-segment RSCC and clustering score gains, and minimum RMSD to each altloc.",
+   "isContainedBy": "https://thestacks.org/publications/sampleworks-release"
+  },
+  {
+   "@id": "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_dfd2c8bc_f68447734841",
+   "@type": "Item",
+   "format": "image/png",
+   "content": "Figure 4. Fraction of each ensemble near altloc B plotted against the training-cluster fraction near B, baseline and guided.",
+   "isContainedBy": "https://thestacks.org/publications/sampleworks-release"
+  },
+  {
+   "@id": "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_45931a34_1953549e1155",
+   "@type": "Item",
+   "format": "image/png",
+   "content": "Figure 5. Per-predictor differences: PTP1B and laccase guided ensembles, and residual RSCC and clustering score plots.",
+   "isContainedBy": "https://thestacks.org/publications/sampleworks-release"
+  },
+  {
+   "@id": "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_ef86e38e_f2b75d5b38b4",
+   "@type": "Item",
+   "format": "image/png",
+   "content": "Supplementary Figure 3. Mac1 (5SOP) open-loop altloc B is not predicted by any model.",
+   "isContainedBy": "https://thestacks.org/publications/sampleworks-release"
+  },
+  {
+   "@id": "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_9969e5e5_5e1936e837f7",
+   "@type": "Item",
+   "format": "image/png",
+   "content": "Supplementary Figure 4. A histidine ring distorts more as guidance strength increases.",
+   "isContainedBy": "https://thestacks.org/publications/sampleworks-release"
+  },
+  {
+   "@id": "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_520f9808_f68447734841",
+   "@type": "Item",
+   "format": "image/png",
+   "content": "Supplementary Figure 7. RF3 with chiral features set to zero keeps the same sensitivity to guidance strength.",
+   "isContainedBy": "https://thestacks.org/publications/sampleworks-release"
+  },
+  {
+   "@id": "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_d09976cc_124d1aed8580",
+   "@type": "Item",
+   "format": "image/png",
+   "content": "Supplementary Figure 8a. 2QCV: guided ensembles sample more broadly but do not reach the deposited altlocs.",
+   "isContainedBy": "https://thestacks.org/publications/sampleworks-release"
+  },
+  {
+   "@id": "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_ca1f4580_c7740f6263ab",
+   "@type": "Item",
+   "format": "image/png",
+   "content": "Supplementary Figure 8b. 4OLE: same pattern as 2QCV.",
+   "isContainedBy": "https://thestacks.org/publications/sampleworks-release"
+  },
+  {
+   "@id": "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_548a6060_ae9f71cfdf83",
+   "@type": "Item",
+   "format": "image/png",
+   "content": "Supplementary Figure 9. 6NI6: baseline rotamers are close and guidance sharpens them, except RF3, whose baseline helix is shifted.",
+   "isContainedBy": "https://thestacks.org/publications/sampleworks-release"
+  },
+  {
+   "@id": "https://doi.org/10.82153/jkxj-tw08#quote-c2",
+   "@type": "Item",
+   "format": "text/plain",
+   "content": "predicted baseline ensembles were strongly biased toward whichever conformation dominates the training set",
+   "isContainedBy": "https://doi.org/10.82153/jkxj-tw08",
+   "title": "Chrispens et al. 2026, Purpose"
+  },
+  {
+   "@id": "https://github.com/prism-science/sampleworks#quote-r5",
+   "@type": "Item",
+   "format": "text/plain",
+   "content": "smaller models which may be more steerable",
+   "isContainedBy": "https://github.com/prism-science/sampleworks",
+   "title": "sampleworks README, contributions wanted"
+  },
+  {
+   "@id": "sw:q3",
+   "@type": [
+    "sw:schema-Question",
+    "mira:Question"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "QUE - How can structure predictors, guidance methods and loss functions be compared on equal terms?",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Each published guidance method is built for one predictor and tested on its own small set of examples, so results cannot be compared."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Introduction, paragraphs 5-6",
+   "references": [
+    "https://doi.org/10.48550/arxiv.2406.04239",
+    "https://doi.org/10.48550/arxiv.2506.04490",
+    "https://doi.org/10.48550/arxiv.2602.05285",
+    "https://doi.org/10.1038/s41592-026-03047-4",
+    "https://doi.org/10.48550/arxiv.2502.09372",
+    "https://doi.org/10.48550/arxiv.2602.24007",
+    "https://doi.org/10.48550/arxiv.2605.15564"
+   ]
+  },
+  {
+   "@id": "sw:q1",
+   "@type": [
+    "sw:schema-Question",
+    "mira:Question"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "QUE - Can structure predictors recover experimentally supported alternative conformations when guided by density maps?",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Tested on 791 altloc segments from 40 high-resolution X-ray PDB entries, guided by simulated, noise-free maps."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Purpose; Results: 'A dataset of 40 PDB entries with 791 alternative location segments'",
+   "references": [
+    "https://doi.org/10.1016/j.sbi.2014.07.005",
+    "https://doi.org/10.1107/s2052252524005098"
+   ]
+  },
+  {
+   "@id": "sw:q4",
+   "@type": [
+    "sw:schema-Question",
+    "mira:Question"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "QUE - What guidance strength improves fit to density without breaking model geometry?",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Stronger guidance pulls harder toward the map but can push atoms into chemically impossible positions."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: 'Guidance with density maps improves conformational sampling...', Figure 3B",
+   "references": [
+    "https://doi.org/10.48550/arxiv.2602.05285",
+    "https://doi.org/10.48550/arxiv.2502.09372"
+   ]
+  },
+  {
+   "@id": "sw:q2",
+   "@type": [
+    "sw:schema-Question",
+    "mira:Question"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "QUE - Have structure predictors learned physical energy landscapes, or do they memorize training conformations?",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Altlocs are removed from all current training sets. They are physically plausible but absent from training data, which makes them a test of memorization."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Introduction, final paragraphs; Results: dataset section",
+   "references": [
+    "https://doi.org/10.1038/s41586-024-07487-w",
+    "https://doi.org/10.1038/s41467-024-51801-z",
+    "https://doi.org/10.64898/2026.02.05.703733"
+   ]
+  },
+  {
+   "@id": "sw:c1",
+   "@type": [
+    "sw:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - A framework with four swappable parts (ModelWrappers, LossFunctions, Samplers, Scalers) lets predictors and guidance methods be compared on the same data",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Adding a predictor only requires a featurize method and a step method. Any differentiable loss can be plugged in."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: 'sampleworks is a plug-and-play platform...', Figure 1",
+   "references": [
+    "https://doi.org/10.1101/2025.01.08.631967",
+    "https://doi.org/10.1101/2025.06.14.659707",
+    "https://doi.org/10.48550/arxiv.2406.04239",
+    "https://doi.org/10.48550/arxiv.2502.09372",
+    "https://doi.org/10.1101/2025.08.14.670328",
+    "https://doi.org/10.48550/arxiv.2209.14687",
+    "https://doi.org/10.48550/arxiv.2501.06848",
+    "https://doi.org/10.1101/2024.11.19.624167"
+   ]
+  },
+  {
+   "@id": "sw:c2",
+   "@type": [
+    "sw:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Without guidance, predicted ensembles collapse toward one conformation",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Across 8 random seeds per target, predictors rarely produce both deposited altlocs."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Purpose; Results: 'Without guidance, structure predictors are strongly biased...', Figure 2",
+   "references": [
+    "https://doi.org/10.82153/jkxj-tw08#quote-c2"
+   ]
+  },
+  {
+   "@id": "sw:c3",
+   "@type": [
+    "sw:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Density guidance improves fit to the map for every predictor tested",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Fit is measured by real-space correlation coefficient (RSCC) between the predicted-ensemble map and the target map."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: density guidance section, Figure 3; Discussion, paragraph 2",
+   "references": [
+    "https://doi.org/10.48550/arxiv.2506.04490",
+    "https://doi.org/10.1038/s41592-026-03047-4",
+    "https://doi.org/10.48550/arxiv.2502.09372",
+    "https://doi.org/10.48550/arxiv.2605.15564"
+   ]
+  },
+  {
+   "@id": "sw:c4",
+   "@type": [
+    "sw:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Guidance does not reliably recover both deposited conformations",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Better fit can come from fitting one altloc more closely, or from new conformations that are not the deposited ones."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: density guidance section, Figure 3D-E"
+  },
+  {
+   "@id": "sw:c6",
+   "@type": [
+    "sw:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Predictors respond differently to the same guidance on the same protein",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Differences often mirror each predictor's baseline behavior and training data."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: 'Inconsistent gains across structure predictors...', Figure 5",
+   "references": [
+    "https://doi.org/10.1101/2025.08.14.670328"
+   ]
+  },
+  {
+   "@id": "sw:c7",
+   "@type": [
+    "sw:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Too much guidance degrades geometry and, past a point, also worsens fit",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The authors suggest very large steps along the density gradient destabilize the sampling trajectory."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: density guidance section, Figure 3B; Supplementary Figure 4",
+   "references": [
+    "https://doi.org/10.48550/arxiv.2602.05285",
+    "https://doi.org/10.48550/arxiv.2502.09372"
+   ]
+  },
+  {
+   "@id": "sw:c5",
+   "@type": [
+    "sw:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Guided ensembles still follow the conformation mix found in the training set",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Guidance reduces this bias but does not remove it. The authors describe this as memorization."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: 'Guided structure predictors reflect memorization of the training set', Figure 4",
+   "references": [
+    "https://doi.org/10.1038/s41467-024-51801-z",
+    "https://doi.org/10.7554/elife.36307"
+   ]
+  },
+  {
+   "@id": "sw:c8",
+   "@type": [
+    "sw:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Predictors have learned enough physics to sample near-isoenergetic alternative states",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The hypothesis the benchmark was designed to test. Equal-occupancy altlocs are close in energy, so a physics-aware model should sample both, especially when guided. The evidence opposes it."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Introduction, final two paragraphs; Discussion, paragraph 2",
+   "references": [
+    "https://doi.org/10.1038/s41467-024-51801-z",
+    "https://doi.org/10.1126/science.adv9817"
+   ]
+  },
+  {
+   "@id": "sw:e1",
+   "@type": [
+    "sw:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Boltz-2, Protenix and RosettaFold3 run through one ModelWrapper API with shared losses and scalers",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Current scalers: diffusion posterior sampling and Feynman-Kac steering. The repo README now also lists latent optimization and reciprocal-space losses."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: first section, Figure 1; repository README",
+   "references": [
+    "https://doi.org/10.1101/2025.01.08.631967",
+    "https://doi.org/10.1101/2025.06.14.659707",
+    "https://doi.org/10.1101/2025.08.14.670328"
+   ],
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_3506addc_04a9153631a4"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/jkxj-tw08",
+    "https://github.com/prism-science/sampleworks"
+   ],
+   "observationOriginActivity": "sw:s0"
+  },
+  {
+   "@id": "sw:e2",
+   "@type": [
+    "sw:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Unguided: 45.4% of segments reach RSCC 0.8, 15.1% reach 0.9, and 1.6% reach clustering score 0.5",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Clustering score above 0.5 means both deposited altlocs are covered. Many 0.8 hits come from altlocs that sit close together, so one state fits well enough."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: baseline section, Figure 2C",
+   "references": [
+    "https://doi.org/10.1016/j.str.2022.08.004",
+    "https://doi.org/10.1107/s2059798318002541"
+   ],
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_b29d518b_ae9526714d72"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/jkxj-tw08"
+   ],
+   "observationOriginActivity": "sw:s1"
+  },
+  {
+   "@id": "sw:e3",
+   "@type": [
+    "sw:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - PTP1B (6B8X) and laccase (5MHX): no predictor samples both altlocs across 8 unguided seeds",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Both are functional loops with near-equal deposited occupancy. For the laccase, no predictor produces altloc B at all."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: baseline section, Figure 2D-E",
+   "references": [
+    "https://doi.org/10.7554/elife.36307",
+    "https://doi.org/10.1107/s2059798317003667",
+    "https://doi.org/10.2210/pdb6b8x/pdb",
+    "https://doi.org/10.2210/pdb5mhx/pdb"
+   ],
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_b29d518b_ae9526714d72"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/jkxj-tw08"
+   ],
+   "observationOriginActivity": "sw:s1"
+  },
+  {
+   "@id": "sw:e5",
+   "@type": [
+    "sw:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - At low guidance strength, 96.0% of segments reach RSCC 0.8, but only 10.9% reach clustering score 0.5",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Fit to the map rises sharply. Coverage of both altlocs rises much less."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: density guidance section, paragraph 2, Figure 3B",
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_d22d8031_f68447734841"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/jkxj-tw08"
+   ],
+   "observationOriginActivity": "sw:s2"
+  },
+  {
+   "@id": "sw:e8",
+   "@type": [
+    "sw:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - 5SOP improves fit only by fitting altloc A better; 2QCV and 4OLE stay far from both altlocs after guidance",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Measured by minimum RMSD from the guided ensemble to each deposited altloc. In 2QCV and 4OLE the ensembles spread out but land on other conformations."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: density guidance section, final paragraphs, Figure 3E; Supplementary Figures 3, 8a, 8b",
+   "references": [
+    "https://doi.org/10.2210/pdb5sop/pdb",
+    "https://doi.org/10.2210/pdb2qcv/pdb",
+    "https://doi.org/10.2210/pdb4ole/pdb"
+   ],
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_d22d8031_f68447734841",
+    "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_ef86e38e_f2b75d5b38b4",
+    "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_d09976cc_124d1aed8580",
+    "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_ca1f4580_c7740f6263ab"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/jkxj-tw08"
+   ],
+   "observationOriginActivity": "sw:s3"
+  },
+  {
+   "@id": "sw:e11",
+   "@type": [
+    "sw:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - RF3 cannot recover 6NI5 and 6NI6 because its baseline helix is shifted away from the deposited backbone",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Where the baseline already contains rotamers close to the deposited ones, guidance sharpens them. Where it does not, guidance cannot fix it without breaking geometry."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: final section, paragraph 2; Supplementary Figure 9",
+   "references": [
+    "https://doi.org/10.2210/pdb6ni5/pdb",
+    "https://doi.org/10.2210/pdb6ni6/pdb"
+   ],
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_548a6060_ae9f71cfdf83"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/jkxj-tw08"
+   ],
+   "observationOriginActivity": "sw:s3"
+  },
+  {
+   "@id": "sw:e7",
+   "@type": [
+    "sw:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - The selected guidance strength is 0.1 for Boltz-2 and Protenix but 0.01 for RF3",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Selection rule: largest RSCC gain before the geometry penalty passes 10. RF3 at 0.1 produced many more stereochemical violations. Setting RF3 chiral features to zero did not change this."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: density guidance section, paragraph 3, Figure 3B; Supplementary Figure 7",
+   "references": [
+    "https://doi.org/10.48550/arxiv.2502.09372",
+    "https://doi.org/10.1101/2025.08.14.670328"
+   ],
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_d22d8031_f68447734841",
+    "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_520f9808_f68447734841"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/jkxj-tw08"
+   ],
+   "observationOriginActivity": "sw:s2"
+  },
+  {
+   "@id": "sw:e10",
+   "@type": [
+    "sw:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - For laccase (5MHX), only Boltz-2 with MD conditioning places a guided ensemble member in altloc B",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "A single member of the 8-member ensemble overlaps altloc B. All other predictors miss it."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: final section, paragraph 1, Figure 5B",
+   "references": [
+    "https://doi.org/10.1101/2025.06.14.659707",
+    "https://doi.org/10.2210/pdb5mhx/pdb"
+   ],
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_45931a34_1953549e1155"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/jkxj-tw08"
+   ],
+   "observationOriginActivity": "sw:s3"
+  },
+  {
+   "@id": "sw:e6",
+   "@type": [
+    "sw:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - At guidance strength 0.35 and 0.5, clashes and bond outliers appear in nearly every residue and fit to the map drops",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Geometry loss was expected. The drop in fit was not."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: density guidance section, paragraph 2; Supplementary Figure 4",
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_d22d8031_f68447734841",
+    "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_9969e5e5_5e1936e837f7"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/jkxj-tw08"
+   ],
+   "observationOriginActivity": "sw:s2"
+  },
+  {
+   "@id": "sw:e4",
+   "@type": [
+    "sw:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - In PTP1B, unguided Boltz-2 (X-ray mode) favors altloc B, and 65.5% (167 of 255) of its training cluster is closer to B",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Many PTP1B fragment-screening structures show the open (B) state. With MD conditioning, Boltz-2 shifts back toward altloc A."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: baseline section, final paragraphs, Figure 2D",
+   "references": [
+    "https://doi.org/10.1101/2025.06.14.659707",
+    "https://doi.org/10.7554/elife.36307",
+    "https://doi.org/10.1016/j.str.2024.05.010",
+    "https://doi.org/10.2210/pdb6b8x/pdb"
+   ],
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_b29d518b_ae9526714d72"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/jkxj-tw08"
+   ],
+   "observationOriginActivity": "sw:s4"
+  },
+  {
+   "@id": "sw:e9",
+   "@type": [
+    "sw:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - The fraction of each ensemble near altloc B tracks the training-cluster fraction, before and after guidance",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Perfect guidance would give a flat line at 0.5. Guided lines are flatter than baseline but still slope upward. Boltz-2 MD has the flattest slope."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: memorization section, Figure 4B",
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/pngtest/media_dfd2c8bc_f68447734841"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/jkxj-tw08"
+   ],
+   "observationOriginActivity": "sw:s4"
+  },
+  {
+   "@id": "sw:s0",
+   "@type": [
+    "sw:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - Design and implement the sampleworks framework",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Open-source Python framework with a design document in the repository. MIT license."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: first section; Methods, opening; design document in the repository",
+   "references": [
+    "https://doi.org/10.5281/zenodo.20584989",
+    "https://doi.org/10.1101/2025.08.14.670328"
+   ]
+  },
+  {
+   "@id": "sw:s1",
+   "@type": [
+    "sw:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - Unguided baseline benchmark: 8 seeds per target on 791 altloc segments from 40 PDB entries",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Predictors: Boltz-2 (X-ray and MD conditioning), Protenix, RF3. Each ensemble compared to the synthetic map and to the deposited altloc coordinates."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: baseline section; Methods: Models, Dataset"
+  },
+  {
+   "@id": "sw:s2",
+   "@type": [
+    "sw:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - Guidance strength sweep from 0.0 to 0.5 for each predictor",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Trades off RSCC gain against a geometry penalty to pick one strength per predictor."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: density guidance section, paragraphs 2-3; Methods: Guidance"
+  },
+  {
+   "@id": "sw:s3",
+   "@type": [
+    "sw:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - Density-guided benchmark at the selected guidance strength",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Same targets and maps as the baseline. Compares RSCC, clustering score and minimum RMSD to each altloc."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: density guidance and final sections; Methods: Guidance"
+  },
+  {
+   "@id": "sw:s4",
+   "@type": [
+    "sw:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - Training-cluster composition analysis",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "For each altloc segment, counts structures in the 40% sequence-identity training cluster that are closer to altloc A or to altloc B."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Results: memorization section, paragraph 2"
+  },
+  {
+   "@id": "sw:p5",
+   "@type": [
+    "sw:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - Predictor setup: Boltz-2 (X-ray and MD modes), Protenix, RF3; 200 steps; ensemble of 8",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Default featurization. Boltz-2 uses 3 recycles, the others 10. gamma_min set to 0.2 instead of 1.0. Occupancies sum to 1 across the ensemble, B-factors fixed at 20."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Methods: Models (model table)",
+   "references": [
+    "https://doi.org/10.1038/s41586-024-07487-w",
+    "https://doi.org/10.1101/2025.01.08.631967",
+    "https://doi.org/10.1101/2025.06.14.659707",
+    "https://doi.org/10.1101/2025.08.14.670328",
+    "https://doi.org/10.1101/2024.11.19.624167"
+   ]
+  },
+  {
+   "@id": "sw:p1",
+   "@type": [
+    "sw:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - Dataset curation: 40 X-ray entries, altloc segments only, ligands and solvent removed, one chain",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "37 of 40 at 1.5 A or better. Segments: 724 multi-residue backbone, 66 side chain only, 1 whole domain. Ligand-driven cases removed, except 5SOP."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Methods: Dataset; Dataset processing (all 40 entries listed)",
+   "references": [
+    "https://doi.org/10.1016/j.sbi.2014.07.005",
+    "https://doi.org/10.1107/s2052252524005098"
+   ]
+  },
+  {
+   "@id": "sw:p2",
+   "@type": [
+    "sw:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - Synthetic density maps: 1 A resolution, B-factor 20, equal occupancy of altlocs A and B",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Five-Gaussian scattering approximation per atom, computed with a custom CUDA kernel exposed as a PyTorch extension."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Methods: Synthetic density calculation; Dataset processing",
+   "references": [
+    "https://doi.org/10.1002/pro.4001",
+    "https://doi.org/10.1107/s0108767307041207"
+   ]
+  },
+  {
+   "@id": "sw:p3",
+   "@type": [
+    "sw:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - Diffusion guidance: noise input to step 120 of 200, L2 density loss, normalized gradient times strength",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Loss is computed on denoised coordinates and backpropagated through the model to the noised coordinates. Coordinates are aligned to the input before each loss step."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Methods: Guidance",
+   "references": [
+    "https://doi.org/10.48550/arxiv.2406.04239",
+    "https://doi.org/10.48550/arxiv.2502.09372",
+    "https://doi.org/10.48550/arxiv.2209.14687"
+   ]
+  },
+  {
+   "@id": "sw:p4",
+   "@type": [
+    "sw:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - Ensemble evaluation: RSCC, lDDT clustering score, geometry penalty",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "RSCC within 2 A of the 3-residue sub-segment where altlocs differ most. Clustering score assigns each member to its nearest altloc by lDDT and scales by occupancy balance. Geometry penalty combines clashscore and bond length and angle outliers."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Methods: Evaluation Metrics (geometry, RSCC, lDDT clustering)",
+   "references": [
+    "https://doi.org/10.1016/j.str.2022.08.004",
+    "https://doi.org/10.1107/s2059798318002541",
+    "https://doi.org/10.1002/pro.3330",
+    "https://doi.org/10.1107/s2059798319011471",
+    "https://doi.org/10.1093/bioinformatics/btt473",
+    "https://doi.org/10.1016/0377-0427%2887%2990125-7"
+   ]
+  },
+  {
+   "@id": "sw:r5",
+   "@type": [
+    "sw:schema-Request",
+    "mira:Request"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "REQ - Contribute ModelWrappers for more predictors, especially smaller, more steerable models",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Named as a wanted contribution in the repo README."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "sampleworks README, github.com/prism-science/sampleworks. Repository README, contributions section",
+   "references": [
+    "https://github.com/prism-science/sampleworks#quote-r5"
+   ]
+  },
+  {
+   "@id": "sw:r4",
+   "@type": [
+    "sw:schema-Request",
+    "mira:Request"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "REQ - Guide with real experimental data and other data types, not only simulated real-space maps",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The README asks for fast differentiable modules for other data types. It now lists structure-factor and diffuse-plus-Bragg losses."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "sampleworks README, github.com/prism-science/sampleworks. Repository README, Losses section; Discussion",
+   "references": [
+    "https://doi.org/10.48550/arxiv.2605.15564",
+    "https://doi.org/10.1101/2025.01.12.632630"
+   ]
+  },
+  {
+   "@id": "sw:r1",
+   "@type": [
+    "sw:schema-Request",
+    "mira:Request"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "REQ - Test latent-space optimization systematically across predictors",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The authors expect it may cross density-free intermediates that coordinate guidance cannot. The README now lists a latent_opt guidance type for Protenix, RF3 and Boltz-1."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Discussion, final paragraph; repository README, Latent optimization section",
+   "references": [
+    "https://doi.org/10.48550/arxiv.2602.05285",
+    "https://doi.org/10.48550/arxiv.2602.24007"
+   ]
+  },
+  {
+   "@id": "sw:r2",
+   "@type": [
+    "sw:schema-Request",
+    "mira:Request"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "REQ - Extend the benchmark to ligands, multiple chains and partially occupied fragments",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Named as a high-priority future direction. Needs a way to handle compositional as well as conformational heterogeneity."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Discussion, paragraph 4",
+   "references": [
+    "https://doi.org/10.1107/s2052252524005098",
+    "https://doi.org/10.1038/s41467-025-59233-z",
+    "https://doi.org/10.1002/pro.4391"
+   ]
+  },
+  {
+   "@id": "sw:r3",
+   "@type": [
+    "sw:schema-Request",
+    "mira:Request"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "REQ - Test smaller generative models (for example RFdiffusion3, Protpardelle-1c) for better guidability",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Proposed as a way to reduce memorization. In the supplement, Protenix-mini and -tiny were not more guidable than Protenix."
+   },
+   "creator": "sw:creator",
+   "bibliographicCitation": "Chrispens et al. 2026, doi:10.82153/jkxj-tw08. Discussion, final paragraph; Supplementary Figure 2",
+   "references": [
+    "https://doi.org/10.1101/2025.09.18.676967",
+    "https://doi.org/10.1101/2025.08.18.670959"
+   ]
+  },
+  {
+   "@id": "sw:rel-addresses-c1-q3",
+   "@type": [
+    "sw:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:c1",
+   "destination": "sw:q3",
+   "title": "[[CLM - A framework with four swappable parts (ModelWrappers, LossFunctions, Samplers, Scalers) lets predictors and guidance methods be compared on the same data]] -addresses-> [[QUE - How can structure predictors, guidance methods and loss functions be compared on equal terms?]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-addresses-c2-q1",
+   "@type": [
+    "sw:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:c2",
+   "destination": "sw:q1",
+   "title": "[[CLM - Without guidance, predicted ensembles collapse toward one conformation]] -addresses-> [[QUE - Can structure predictors recover experimentally supported alternative conformations when guided by density maps?]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-addresses-c3-q1",
+   "@type": [
+    "sw:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:c3",
+   "destination": "sw:q1",
+   "title": "[[CLM - Density guidance improves fit to the map for every predictor tested]] -addresses-> [[QUE - Can structure predictors recover experimentally supported alternative conformations when guided by density maps?]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-addresses-c4-q1",
+   "@type": [
+    "sw:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:c4",
+   "destination": "sw:q1",
+   "title": "[[CLM - Guidance does not reliably recover both deposited conformations]] -addresses-> [[QUE - Can structure predictors recover experimentally supported alternative conformations when guided by density maps?]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-addresses-c6-q1",
+   "@type": [
+    "sw:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:c6",
+   "destination": "sw:q1",
+   "title": "[[CLM - Predictors respond differently to the same guidance on the same protein]] -addresses-> [[QUE - Can structure predictors recover experimentally supported alternative conformations when guided by density maps?]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-addresses-c6-q4",
+   "@type": [
+    "sw:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:c6",
+   "destination": "sw:q4",
+   "title": "[[CLM - Predictors respond differently to the same guidance on the same protein]] -addresses-> [[QUE - What guidance strength improves fit to density without breaking model geometry?]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-addresses-c7-q4",
+   "@type": [
+    "sw:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:c7",
+   "destination": "sw:q4",
+   "title": "[[CLM - Too much guidance degrades geometry and, past a point, also worsens fit]] -addresses-> [[QUE - What guidance strength improves fit to density without breaking model geometry?]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-addresses-c5-q2",
+   "@type": [
+    "sw:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:c5",
+   "destination": "sw:q2",
+   "title": "[[CLM - Guided ensembles still follow the conformation mix found in the training set]] -addresses-> [[QUE - Have structure predictors learned physical energy landscapes, or do they memorize training conformations?]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-addresses-c8-q2",
+   "@type": [
+    "sw:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:c8",
+   "destination": "sw:q2",
+   "title": "[[CLM - Predictors have learned enough physics to sample near-isoenergetic alternative states]] -addresses-> [[QUE - Have structure predictors learned physical energy landscapes, or do they memorize training conformations?]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-supports-e1-c1",
+   "@type": [
+    "sw:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e1",
+   "destination": "sw:c1",
+   "title": "[[EVD - Boltz-2, Protenix and RosettaFold3 run through one ModelWrapper API with shared losses and scalers]] -supports-> [[CLM - A framework with four swappable parts (ModelWrappers, LossFunctions, Samplers, Scalers) lets predictors and guidance methods be compared on the same data]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-supports-e2-c2",
+   "@type": [
+    "sw:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e2",
+   "destination": "sw:c2",
+   "title": "[[EVD - Unguided: 45.4% of segments reach RSCC 0.8, 15.1% reach 0.9, and 1.6% reach clustering score 0.5]] -supports-> [[CLM - Without guidance, predicted ensembles collapse toward one conformation]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-opposes-e2-c8",
+   "@type": [
+    "sw:areldef-opposes",
+    "mira:opposes"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e2",
+   "destination": "sw:c8",
+   "title": "[[EVD - Unguided: 45.4% of segments reach RSCC 0.8, 15.1% reach 0.9, and 1.6% reach clustering score 0.5]] -opposes-> [[CLM - Predictors have learned enough physics to sample near-isoenergetic alternative states]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-supports-e3-c2",
+   "@type": [
+    "sw:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e3",
+   "destination": "sw:c2",
+   "title": "[[EVD - PTP1B (6B8X) and laccase (5MHX): no predictor samples both altlocs across 8 unguided seeds]] -supports-> [[CLM - Without guidance, predicted ensembles collapse toward one conformation]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-opposes-e3-c8",
+   "@type": [
+    "sw:areldef-opposes",
+    "mira:opposes"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e3",
+   "destination": "sw:c8",
+   "title": "[[EVD - PTP1B (6B8X) and laccase (5MHX): no predictor samples both altlocs across 8 unguided seeds]] -opposes-> [[CLM - Predictors have learned enough physics to sample near-isoenergetic alternative states]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-supports-e5-c3",
+   "@type": [
+    "sw:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e5",
+   "destination": "sw:c3",
+   "title": "[[EVD - At low guidance strength, 96.0% of segments reach RSCC 0.8, but only 10.9% reach clustering score 0.5]] -supports-> [[CLM - Density guidance improves fit to the map for every predictor tested]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-supports-e5-c4",
+   "@type": [
+    "sw:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e5",
+   "destination": "sw:c4",
+   "title": "[[EVD - At low guidance strength, 96.0% of segments reach RSCC 0.8, but only 10.9% reach clustering score 0.5]] -supports-> [[CLM - Guidance does not reliably recover both deposited conformations]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-supports-e8-c4",
+   "@type": [
+    "sw:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e8",
+   "destination": "sw:c4",
+   "title": "[[EVD - 5SOP improves fit only by fitting altloc A better; 2QCV and 4OLE stay far from both altlocs after guidance]] -supports-> [[CLM - Guidance does not reliably recover both deposited conformations]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-opposes-e8-c8",
+   "@type": [
+    "sw:areldef-opposes",
+    "mira:opposes"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e8",
+   "destination": "sw:c8",
+   "title": "[[EVD - 5SOP improves fit only by fitting altloc A better; 2QCV and 4OLE stay far from both altlocs after guidance]] -opposes-> [[CLM - Predictors have learned enough physics to sample near-isoenergetic alternative states]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-supports-e11-c6",
+   "@type": [
+    "sw:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e11",
+   "destination": "sw:c6",
+   "title": "[[EVD - RF3 cannot recover 6NI5 and 6NI6 because its baseline helix is shifted away from the deposited backbone]] -supports-> [[CLM - Predictors respond differently to the same guidance on the same protein]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-supports-e11-c4",
+   "@type": [
+    "sw:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e11",
+   "destination": "sw:c4",
+   "title": "[[EVD - RF3 cannot recover 6NI5 and 6NI6 because its baseline helix is shifted away from the deposited backbone]] -supports-> [[CLM - Guidance does not reliably recover both deposited conformations]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-supports-e7-c6",
+   "@type": [
+    "sw:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e7",
+   "destination": "sw:c6",
+   "title": "[[EVD - The selected guidance strength is 0.1 for Boltz-2 and Protenix but 0.01 for RF3]] -supports-> [[CLM - Predictors respond differently to the same guidance on the same protein]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-supports-e10-c6",
+   "@type": [
+    "sw:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e10",
+   "destination": "sw:c6",
+   "title": "[[EVD - For laccase (5MHX), only Boltz-2 with MD conditioning places a guided ensemble member in altloc B]] -supports-> [[CLM - Predictors respond differently to the same guidance on the same protein]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-supports-e6-c7",
+   "@type": [
+    "sw:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e6",
+   "destination": "sw:c7",
+   "title": "[[EVD - At guidance strength 0.35 and 0.5, clashes and bond outliers appear in nearly every residue and fit to the map drops]] -supports-> [[CLM - Too much guidance degrades geometry and, past a point, also worsens fit]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-supports-e4-c5",
+   "@type": [
+    "sw:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e4",
+   "destination": "sw:c5",
+   "title": "[[EVD - In PTP1B, unguided Boltz-2 (X-ray mode) favors altloc B, and 65.5% (167 of 255) of its training cluster is closer to B]] -supports-> [[CLM - Guided ensembles still follow the conformation mix found in the training set]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-supports-e4-c6",
+   "@type": [
+    "sw:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e4",
+   "destination": "sw:c6",
+   "title": "[[EVD - In PTP1B, unguided Boltz-2 (X-ray mode) favors altloc B, and 65.5% (167 of 255) of its training cluster is closer to B]] -supports-> [[CLM - Predictors respond differently to the same guidance on the same protein]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-supports-e9-c5",
+   "@type": [
+    "sw:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e9",
+   "destination": "sw:c5",
+   "title": "[[EVD - The fraction of each ensemble near altloc B tracks the training-cluster fraction, before and after guidance]] -supports-> [[CLM - Guided ensembles still follow the conformation mix found in the training set]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-supports-e9-c6",
+   "@type": [
+    "sw:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e9",
+   "destination": "sw:c6",
+   "title": "[[EVD - The fraction of each ensemble near altloc B tracks the training-cluster fraction, before and after guidance]] -supports-> [[CLM - Predictors respond differently to the same guidance on the same protein]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-opposes-e9-c8",
+   "@type": [
+    "sw:areldef-opposes",
+    "mira:opposes"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e9",
+   "destination": "sw:c8",
+   "title": "[[EVD - The fraction of each ensemble near altloc B tracks the training-cluster fraction, before and after guidance]] -opposes-> [[CLM - Predictors have learned enough physics to sample near-isoenergetic alternative states]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-follows-s1-p5",
+   "@type": [
+    "sw:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:s1",
+   "destination": "sw:p5",
+   "title": "[[STU - Unguided baseline benchmark: 8 seeds per target on 791 altloc segments from 40 PDB entries]] -follows-> [[PRO - Predictor setup: Boltz-2 (X-ray and MD modes), Protenix, RF3; 200 steps; ensemble of 8]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-follows-s1-p1",
+   "@type": [
+    "sw:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:s1",
+   "destination": "sw:p1",
+   "title": "[[STU - Unguided baseline benchmark: 8 seeds per target on 791 altloc segments from 40 PDB entries]] -follows-> [[PRO - Dataset curation: 40 X-ray entries, altloc segments only, ligands and solvent removed, one chain]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-follows-s1-p2",
+   "@type": [
+    "sw:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:s1",
+   "destination": "sw:p2",
+   "title": "[[STU - Unguided baseline benchmark: 8 seeds per target on 791 altloc segments from 40 PDB entries]] -follows-> [[PRO - Synthetic density maps: 1 A resolution, B-factor 20, equal occupancy of altlocs A and B]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-follows-s1-p4",
+   "@type": [
+    "sw:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:s1",
+   "destination": "sw:p4",
+   "title": "[[STU - Unguided baseline benchmark: 8 seeds per target on 791 altloc segments from 40 PDB entries]] -follows-> [[PRO - Ensemble evaluation: RSCC, lDDT clustering score, geometry penalty]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-follows-s2-p5",
+   "@type": [
+    "sw:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:s2",
+   "destination": "sw:p5",
+   "title": "[[STU - Guidance strength sweep from 0.0 to 0.5 for each predictor]] -follows-> [[PRO - Predictor setup: Boltz-2 (X-ray and MD modes), Protenix, RF3; 200 steps; ensemble of 8]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-follows-s2-p1",
+   "@type": [
+    "sw:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:s2",
+   "destination": "sw:p1",
+   "title": "[[STU - Guidance strength sweep from 0.0 to 0.5 for each predictor]] -follows-> [[PRO - Dataset curation: 40 X-ray entries, altloc segments only, ligands and solvent removed, one chain]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-follows-s2-p2",
+   "@type": [
+    "sw:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:s2",
+   "destination": "sw:p2",
+   "title": "[[STU - Guidance strength sweep from 0.0 to 0.5 for each predictor]] -follows-> [[PRO - Synthetic density maps: 1 A resolution, B-factor 20, equal occupancy of altlocs A and B]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-follows-s2-p3",
+   "@type": [
+    "sw:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:s2",
+   "destination": "sw:p3",
+   "title": "[[STU - Guidance strength sweep from 0.0 to 0.5 for each predictor]] -follows-> [[PRO - Diffusion guidance: noise input to step 120 of 200, L2 density loss, normalized gradient times strength]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-follows-s2-p4",
+   "@type": [
+    "sw:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:s2",
+   "destination": "sw:p4",
+   "title": "[[STU - Guidance strength sweep from 0.0 to 0.5 for each predictor]] -follows-> [[PRO - Ensemble evaluation: RSCC, lDDT clustering score, geometry penalty]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-follows-s3-p5",
+   "@type": [
+    "sw:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:s3",
+   "destination": "sw:p5",
+   "title": "[[STU - Density-guided benchmark at the selected guidance strength]] -follows-> [[PRO - Predictor setup: Boltz-2 (X-ray and MD modes), Protenix, RF3; 200 steps; ensemble of 8]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-follows-s3-p1",
+   "@type": [
+    "sw:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:s3",
+   "destination": "sw:p1",
+   "title": "[[STU - Density-guided benchmark at the selected guidance strength]] -follows-> [[PRO - Dataset curation: 40 X-ray entries, altloc segments only, ligands and solvent removed, one chain]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-follows-s3-p2",
+   "@type": [
+    "sw:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:s3",
+   "destination": "sw:p2",
+   "title": "[[STU - Density-guided benchmark at the selected guidance strength]] -follows-> [[PRO - Synthetic density maps: 1 A resolution, B-factor 20, equal occupancy of altlocs A and B]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-follows-s3-p3",
+   "@type": [
+    "sw:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:s3",
+   "destination": "sw:p3",
+   "title": "[[STU - Density-guided benchmark at the selected guidance strength]] -follows-> [[PRO - Diffusion guidance: noise input to step 120 of 200, L2 density loss, normalized gradient times strength]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-follows-s3-p4",
+   "@type": [
+    "sw:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:s3",
+   "destination": "sw:p4",
+   "title": "[[STU - Density-guided benchmark at the selected guidance strength]] -follows-> [[PRO - Ensemble evaluation: RSCC, lDDT clustering score, geometry penalty]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-follows-s4-p1",
+   "@type": [
+    "sw:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:s4",
+   "destination": "sw:p1",
+   "title": "[[STU - Training-cluster composition analysis]] -follows-> [[PRO - Dataset curation: 40 X-ray entries, altloc segments only, ligands and solvent removed, one chain]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-follows-s4-p4",
+   "@type": [
+    "sw:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:s4",
+   "destination": "sw:p4",
+   "title": "[[STU - Training-cluster composition analysis]] -follows-> [[PRO - Ensemble evaluation: RSCC, lDDT clustering score, geometry penalty]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-request_target-r5-c1",
+   "@type": [
+    "sw:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:r5",
+   "destination": "sw:c1",
+   "title": "[[REQ - Contribute ModelWrappers for more predictors, especially smaller, more steerable models]] -request_target-> [[CLM - A framework with four swappable parts (ModelWrappers, LossFunctions, Samplers, Scalers) lets predictors and guidance methods be compared on the same data]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-request_target-r4-c3",
+   "@type": [
+    "sw:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:r4",
+   "destination": "sw:c3",
+   "title": "[[REQ - Guide with real experimental data and other data types, not only simulated real-space maps]] -request_target-> [[CLM - Density guidance improves fit to the map for every predictor tested]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-request_target-r1-c4",
+   "@type": [
+    "sw:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:r1",
+   "destination": "sw:c4",
+   "title": "[[REQ - Test latent-space optimization systematically across predictors]] -request_target-> [[CLM - Guidance does not reliably recover both deposited conformations]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-request_target-r2-c4",
+   "@type": [
+    "sw:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:r2",
+   "destination": "sw:c4",
+   "title": "[[REQ - Extend the benchmark to ligands, multiple chains and partially occupied fragments]] -request_target-> [[CLM - Guidance does not reliably recover both deposited conformations]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-request_target-r2-c5",
+   "@type": [
+    "sw:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:r2",
+   "destination": "sw:c5",
+   "title": "[[REQ - Extend the benchmark to ligands, multiple chains and partially occupied fragments]] -request_target-> [[CLM - Guided ensembles still follow the conformation mix found in the training set]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-request_target-r3-c5",
+   "@type": [
+    "sw:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:r3",
+   "destination": "sw:c5",
+   "title": "[[REQ - Test smaller generative models (for example RFdiffusion3, Protpardelle-1c) for better guidability]] -request_target-> [[CLM - Guided ensembles still follow the conformation mix found in the training set]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-request_target-r3-c6",
+   "@type": [
+    "sw:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:r3",
+   "destination": "sw:c6",
+   "title": "[[REQ - Test smaller generative models (for example RFdiffusion3, Protpardelle-1c) for better guidability]] -request_target-> [[CLM - Predictors respond differently to the same guidance on the same protein]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-is_grounded_in-e9-s3",
+   "@type": [
+    "sw:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e9",
+   "destination": "sw:s3",
+   "title": "[[EVD - The fraction of each ensemble near altloc B tracks the training-cluster fraction, before and after guidance]] -is_grounded_in-> [[STU - Density-guided benchmark at the selected guidance strength]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-is_grounded_in-e1-s0",
+   "@type": [
+    "sw:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e1",
+   "destination": "sw:s0",
+   "title": "[[EVD - Boltz-2, Protenix and RosettaFold3 run through one ModelWrapper API with shared losses and scalers]] -is_grounded_in-> [[STU - Design and implement the sampleworks framework]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-is_grounded_in-e2-s1",
+   "@type": [
+    "sw:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e2",
+   "destination": "sw:s1",
+   "title": "[[EVD - Unguided: 45.4% of segments reach RSCC 0.8, 15.1% reach 0.9, and 1.6% reach clustering score 0.5]] -is_grounded_in-> [[STU - Unguided baseline benchmark: 8 seeds per target on 791 altloc segments from 40 PDB entries]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-is_grounded_in-e3-s1",
+   "@type": [
+    "sw:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e3",
+   "destination": "sw:s1",
+   "title": "[[EVD - PTP1B (6B8X) and laccase (5MHX): no predictor samples both altlocs across 8 unguided seeds]] -is_grounded_in-> [[STU - Unguided baseline benchmark: 8 seeds per target on 791 altloc segments from 40 PDB entries]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-is_grounded_in-e5-s2",
+   "@type": [
+    "sw:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e5",
+   "destination": "sw:s2",
+   "title": "[[EVD - At low guidance strength, 96.0% of segments reach RSCC 0.8, but only 10.9% reach clustering score 0.5]] -is_grounded_in-> [[STU - Guidance strength sweep from 0.0 to 0.5 for each predictor]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-is_grounded_in-e8-s3",
+   "@type": [
+    "sw:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e8",
+   "destination": "sw:s3",
+   "title": "[[EVD - 5SOP improves fit only by fitting altloc A better; 2QCV and 4OLE stay far from both altlocs after guidance]] -is_grounded_in-> [[STU - Density-guided benchmark at the selected guidance strength]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-is_grounded_in-e11-s3",
+   "@type": [
+    "sw:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e11",
+   "destination": "sw:s3",
+   "title": "[[EVD - RF3 cannot recover 6NI5 and 6NI6 because its baseline helix is shifted away from the deposited backbone]] -is_grounded_in-> [[STU - Density-guided benchmark at the selected guidance strength]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-is_grounded_in-e7-s2",
+   "@type": [
+    "sw:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e7",
+   "destination": "sw:s2",
+   "title": "[[EVD - The selected guidance strength is 0.1 for Boltz-2 and Protenix but 0.01 for RF3]] -is_grounded_in-> [[STU - Guidance strength sweep from 0.0 to 0.5 for each predictor]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-is_grounded_in-e10-s3",
+   "@type": [
+    "sw:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e10",
+   "destination": "sw:s3",
+   "title": "[[EVD - For laccase (5MHX), only Boltz-2 with MD conditioning places a guided ensemble member in altloc B]] -is_grounded_in-> [[STU - Density-guided benchmark at the selected guidance strength]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-is_grounded_in-e6-s2",
+   "@type": [
+    "sw:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e6",
+   "destination": "sw:s2",
+   "title": "[[EVD - At guidance strength 0.35 and 0.5, clashes and bond outliers appear in nearly every residue and fit to the map drops]] -is_grounded_in-> [[STU - Guidance strength sweep from 0.0 to 0.5 for each predictor]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-is_grounded_in-e4-s4",
+   "@type": [
+    "sw:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e4",
+   "destination": "sw:s4",
+   "title": "[[EVD - In PTP1B, unguided Boltz-2 (X-ray mode) favors altloc B, and 65.5% (167 of 255) of its training cluster is closer to B]] -is_grounded_in-> [[STU - Training-cluster composition analysis]]",
+   "creator": "sw:creator"
+  },
+  {
+   "@id": "sw:rel-is_grounded_in-e9-s4",
+   "@type": [
+    "sw:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "sw:e9",
+   "destination": "sw:s4",
+   "title": "[[EVD - The fraction of each ensemble near altloc B tracks the training-cluster fraction, before and after guidance]] -is_grounded_in-> [[STU - Training-cluster composition analysis]]",
+   "creator": "sw:creator"
+  }
+ ]
+}

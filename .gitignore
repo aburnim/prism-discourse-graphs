@@ -1,0 +1,7 @@
+.DS_Store
+.vscode/
+.claude/
+CLAUDE.md
+*.skill
+*.zip
+__pycache__/
