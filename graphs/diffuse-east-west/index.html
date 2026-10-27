@@ -1,0 +1,3097 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prism: Mac1 diffuse scattering East-West graph</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#f1f0f1; --panel:rgba(255,255,255,.86); --panel-solid:#fff; --ink:#1b1d26; --muted:#5d5f6e; --line:#dcd9e3; --soft:#f2eff9;
+  --brand:#9863ff; --brand-2:#7c4dff; --brand-deep:#5b34d6; --brand-soft:#b9a3f0; --cut:#f1f0f1;
+  --q:#b26a00; --c:#7c4dff; --e:#0e7c6b; --s:#3f51d8; --p:#5d6275; --r:#c2367a;
+  --sup:#0e7c6b; --opp:#d43c3c; --add:#8f8ca0; --grd:#3f51d8; --fol:#9a97aa; --req:#c2367a;
+  --sans:"Inter Tight","Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+  --mono:"JetBrains Mono","IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --page:linear-gradient(180deg,#f1f0f1 0%,#ebe8ee 40%,#d9cfea 100%);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#161821; --panel:rgba(29,31,43,.88); --panel-solid:#1d1f2b; --ink:#ecebf3; --muted:#a3a4b8; --line:#2f3242; --soft:#242636;
+    --brand:#a07bff; --brand-2:#8c5cff; --brand-deep:#6a45e0; --brand-soft:#c7b4ff; --cut:#161821;
+    --q:#e8a64a; --c:#a07bff; --e:#3fc4a8; --s:#7d8cff; --p:#a3a8bd; --r:#f07ab0;
+    --sup:#3fc4a8; --opp:#f07070; --add:#7a7b90; --grd:#7d8cff; --fol:#6f7186; --req:#f07ab0;
+    --page:radial-gradient(1200px 500px at 85% -5%,rgba(110,80,230,.35),transparent 60%),radial-gradient(1000px 500px at 5% 105%,rgba(90,70,220,.30),transparent 60%),#161821;
+  }
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;background:var(--page);background-attachment:fixed;color:var(--ink);font:15px/1.5 var(--sans)}
+a{color:var(--brand-2)}
+.mono{font-family:var(--mono)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;max-width:1500px;margin:0 auto;padding:22px 24px 0}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.brand svg{width:34px;height:34px}
+.brand span{font-size:30px;font-weight:400;letter-spacing:-.02em}
+.links{display:flex;flex-wrap:wrap;align-items:center;gap:4px;padding:6px;border:1px solid var(--line);border-radius:12px;background:var(--panel);backdrop-filter:blur(10px);box-shadow:0 6px 24px rgba(40,30,80,.08)}
+.links a,.links button{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:10px 12px;border:0;border-radius:8px;background:none;color:var(--ink);text-decoration:none;cursor:pointer}
+.links a:hover,.links button:hover{background:var(--soft)}
+.links .primary{color:#fff;background:linear-gradient(135deg,var(--brand),var(--brand-deep));padding:10px 16px}
+.links .primary:hover{background:linear-gradient(135deg,var(--brand-2),var(--brand-deep))}
+header{padding:36px 24px 8px;max-width:1500px;margin:0 auto}
+.eyebrow{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--brand-2);margin:0 0 10px}
+h1{font-size:clamp(34px,5vw,56px);line-height:1.04;font-weight:500;margin:0 0 14px;letter-spacing:-.035em}
+h1 .grad{background:linear-gradient(90deg,var(--brand-2),var(--brand-soft));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);margin:0 0 14px;max-width:1100px}
+.sub em{color:var(--ink);font-style:normal;font-weight:500}
+.sub .mono{font-size:12.5px}
+.note{font:12.5px/1.5 var(--mono);color:var(--muted);background:var(--panel);border:1px solid var(--brand);border-radius:8px;padding:9px 12px;margin:0 0 14px}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.btn{display:inline-flex;align-items:center;gap:6px;font:500 12px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:11px 16px;border-radius:8px;text-decoration:none;color:#fff;background:linear-gradient(135deg,var(--brand),var(--brand-deep));border:1px solid transparent}
+.btn:hover{background:linear-gradient(135deg,var(--brand-2),var(--brand-deep))}
+.btn .v{text-transform:none;letter-spacing:0;opacity:.9}
+.btn.ghost{color:var(--brand-2);background:none;border-color:var(--brand);padding:6px 10px;font-size:11px;vertical-align:middle;margin-left:6px}
+.btn.ghost:hover{background:var(--soft)}
+.how{font-size:14.5px;margin:0 0 10px;max-width:1100px}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font:11.5px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:6px 0 4px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend svg{width:28px;height:8px}
+.wrap{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:16px;max-width:1500px;margin:0 auto;padding:10px 24px 32px}
+.scroller{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;backdrop-filter:blur(10px)}
+.graph{position:relative;min-width:1000px;padding:14px 10px 16px}
+.graph svg.edges{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.cols{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));column-gap:36px}
+.col h2,.col h3{font:500 11.5px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);display:flex;gap:7px;align-items:center}
+.col h2{margin:4px 2px 12px}
+.col h3{margin:22px 2px 12px}
+.col h2 i{width:9px;height:9px;border-radius:2px;display:inline-block}
+.n{display:block;width:100%;text-align:left;font:12.5px/1.38 var(--sans);color:var(--ink);background:var(--panel-solid);
+   border:1px solid var(--line);border-left:4px solid var(--k);border-radius:8px;padding:8px 10px;margin:0 0 10px;cursor:pointer;transition:opacity .15s,box-shadow .15s}
+.n:hover{box-shadow:0 4px 16px rgba(60,40,140,.14)}
+.n:focus-visible{outline:2px solid var(--k);outline-offset:2px}
+.n.sel{box-shadow:0 0 0 2px var(--k),0 6px 20px rgba(60,40,140,.18)}
+.n .tag{display:inline-block;font:600 10px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--opp);margin-bottom:3px}
+.n.opposed{border-style:dashed;border-left-style:solid}
+.cites{margin:-6px 0 12px;padding:9px 10px;background:var(--soft);border:1px solid var(--line);border-left:4px solid var(--k);border-radius:0 0 8px 8px;font-size:11.5px;line-height:1.4}
+.cites .ct{font:500 10px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--brand-2);margin-bottom:5px}
+.cites .cl{margin:0 0 6px}
+.cites .cq{margin:0 0 6px;font-style:italic}
+.cites a{font-family:var(--mono);font-size:10.5px;word-break:break-all}
+.dim .n:not(.on){opacity:.28}
+path.edge{fill:none;stroke-width:1.4;opacity:.42;transition:opacity .15s}
+.dim path.edge{opacity:.06}
+.dim path.edge.on{opacity:.95;stroke-width:2}
+.hov path.edge.hl{opacity:.95;stroke-width:2}
+aside{position:sticky;top:12px;align-self:start;background:var(--panel);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:14px;padding:18px;max-height:calc(100vh - 24px);overflow:auto}
+aside .empty{color:var(--muted);font-size:14px}
+aside .chip{display:inline-block;font:500 10.5px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:#fff;background:var(--k);border-radius:6px;padding:4px 8px}
+aside h2{font-size:19px;line-height:1.3;font-weight:500;letter-spacing:-.015em;margin:10px 0 8px}
+aside p{margin:0 0 12px;font-size:14px}
+aside h4{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:16px 0 7px}
+aside ul{margin:0;padding:0;list-style:none}
+aside li{margin:0 0 6px}
+aside li button{font:13px/1.4 var(--sans);text-align:left;background:none;border:0;padding:0 0 0 10px;border-left:3px solid var(--k);color:var(--ink);cursor:pointer}
+aside li button:hover{color:var(--brand-2)}
+aside figure{margin:0 0 12px}
+aside figure img{width:100%;border:1px solid var(--line);border-radius:8px;background:#fff}
+aside figcaption{font-size:12px;color:var(--muted)}
+aside .warn{font-size:13px;color:var(--opp);font-weight:600}
+aside .id{font:11px var(--mono);color:var(--muted);word-break:break-all}
+.att{font-size:12.5px;color:var(--muted)}
+q{font-style:italic}
+aside blockquote{margin:0 0 12px;padding:9px 12px;border-left:3px solid var(--brand);background:var(--soft);border-radius:0 8px 8px 0;font-size:14px;font-style:italic}
+aside blockquote cite{display:block;font-style:normal;font-size:12px;color:var(--muted);margin-top:4px}
+aside .loc{font-size:13px;margin:0 0 12px}
+aside .doi{font-size:12.5px}
+aside .doi a{font-family:var(--mono);font-size:11.5px;word-break:break-all}
+.refs{max-width:1500px;margin:0 auto;padding:0 24px 24px}
+.refs h2{font-size:22px;font-weight:500;letter-spacing:-.02em;margin:22px 0 4px}
+.refs ol{padding-left:0;list-style:none;margin:10px 0;columns:2 520px;column-gap:32px}
+.refs li{break-inside:avoid;margin:0 0 12px;font-size:13px}
+.refs li .num{display:inline-block;min-width:30px;font-family:var(--mono);font-size:12px;color:var(--brand-2)}
+.refs li a.d{font-family:var(--mono);font-size:11.5px;word-break:break-all}
+.refs li .by{display:block;padding-left:30px;font-size:12px;color:var(--muted)}
+.refs li .by button{font:inherit;background:none;border:0;padding:0;color:var(--brand-2);cursor:pointer;text-decoration:underline}
+.refs ul{font-size:13px;padding-left:18px}
+footer{max-width:1500px;margin:0 auto;padding:0 24px 36px;font-size:12px;color:var(--muted)}
+@media (max-width:1000px){.wrap{grid-template-columns:1fr}aside{position:static;max-height:none}}
+@media (max-width:600px){.top,header,.wrap,.refs,footer{padding-left:16px;padding-right:16px}}
+</style>
+</head>
+<body>
+<div class="top">
+  <a class="brand" href="https://prismscience.org" target="_blank" rel="noopener" aria-label="Prism">
+    <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" fill="var(--brand)"/><polygon points="96,6 96,68 29.7,68" fill="var(--cut)"/><polygon points="4,68 29.7,68 4,92" fill="var(--cut)"/></svg>
+    <span>Prism</span>
+  </a>
+  <nav class="links">
+    <a href="../../index.html">&#8592; All graphs</a>
+    <a href="https://doi.org/10.82153/hrpy-t681" target="_blank" rel="noopener">Paper</a>
+    <a href="https://github.com/prism-science/logbook" target="_blank" rel="noopener">Logbook</a>
+    <a href="https://github.com/prism-science/diffuse-analysis-mac1-east-west" target="_blank" rel="noopener">Analysis code</a>
+    <a href="https://github.com/MIRA-science/schema" target="_blank" rel="noopener">MIRA schema</a>
+    <button id="clear" type="button">Clear</button>
+    <button id="dl" class="primary" type="button">Download JSON-LD &#8599;</button>
+  </nav>
+</div>
+<header>
+  <p class="eyebrow">Prism research output &middot; MIRA discourse graph</p>
+  <h1>Mac1 diffuse scattering East-West as a <span class="grad">MIRA discourse graph</span></h1>
+  <p class="sub"><em>Iterating diffuse scattering protocols in parallel leads to reproducible, high-quality data from Mac1</em>. Zielinski K, Meisburger S, Lu K, Bassim V, Holton J, Fraser JS, Ando N. The Stacks, October 20 2026 (v2). CC BY 4.0. <span class="mono">doi:10.82153/hrpy-t681</span></p>
+  <div class="btns"><a class="btn" href="https://doi.org/10.5281/zenodo.17351307" target="_blank" rel="noopener">Logbook <span class="v">doi:10.5281/zenodo.17351307</span> &#8599;</a><a class="btn" href="https://doi.org/10.5281/zenodo.23487904" target="_blank" rel="noopener">Raw data (high quality) <span class="v">doi:10.5281/zenodo.23487904</span> &#8599;</a><a class="btn" href="https://doi.org/10.5281/zenodo.23487927" target="_blank" rel="noopener">Raw data (lesser quality) <span class="v">doi:10.5281/zenodo.23487927</span> &#8599;</a><a class="btn" href="https://doi.org/10.5281/zenodo.23487517" target="_blank" rel="noopener">Processing <span class="v">doi:10.5281/zenodo.23487517</span> &#8599;</a><a class="btn" href="https://doi.org/10.5281/zenodo.23487401" target="_blank" rel="noopener">Analysis + figures <span class="v">doi:10.5281/zenodo.23487401</span> &#8599;</a></div>
+  <p class="note">Draft extraction from version 2 of the paper. Not reviewed by the authors. 54 nodes, 86 relations, serialized against the MIRA schema (JSON-LD, embedded in this file).</p>
+  <p class="how"><strong>How to read:</strong> Start with a Question. Claims answer it. Evidence supports or opposes each Claim and points to the figure it comes from. Each piece of Evidence comes from a Study, and each Study follows Protocols. Requests are open work. Click any box to trace its full chain, see where it sits in the paper, and get DOIs for the works it cites.</p>
+  <p class="how">In MIRA, a Claim is defined as: <q>Atomic, generalized assertions about the world that (propose to) answer research questions</q> <a class="btn ghost" href="https://mira.science" target="_blank" rel="noopener">MIRA schema: more info &#8599;</a></p>
+  <div class="legend" id="legend"></div>
+</header>
+
+<div class="wrap">
+  <div class="scroller"><div class="graph" id="graph"><svg class="edges" id="edges" aria-hidden="true"></svg><div class="cols" id="cols"></div></div></div>
+  <aside id="panel" aria-live="polite"><p class="empty">Select a box to see its description, figures, sources and connections.</p></aside>
+</div>
+<section class="refs" id="refs">
+  <div id="refsec"><h2>References</h2>
+  <ol id="reflist"></ol></div>
+  <h2>Other resources</h2>
+  <ul id="reslist">
+    <li><a href="https://github.com/prism-science/logbook" target="_blank" rel="noopener">prism-science/logbook</a> (online logbook of every synchrotron visit)</li>
+    <li><a href="https://github.com/prism-science/diffuse-data-pub-mac1-east-west" target="_blank" rel="noopener">prism-science/diffuse-data-pub-mac1-east-west</a> (raw images, four high-quality datasets (also SBGrid Databank 1301 to 1304))</li>
+    <li><a href="https://github.com/prism-science/diffuse-data-pub-mac1-suboptimal" target="_blank" rel="noopener">prism-science/diffuse-data-pub-mac1-suboptimal</a> (raw images, lesser-quality datasets)</li>
+    <li><a href="https://github.com/prism-science/diffuse-processing-mac1-east-west" target="_blank" rel="noopener">prism-science/diffuse-processing-mac1-east-west</a> (DIALS and mdx2 processing scripts and results)</li>
+    <li><a href="https://github.com/prism-science/diffuse-analysis-mac1-east-west" target="_blank" rel="noopener">prism-science/diffuse-analysis-mac1-east-west</a> (analysis code that reproduces the figures)</li>
+    <li><a href="https://github.com/MIRA-science/schema" target="_blank" rel="noopener">MIRA-science/schema</a> (LinkML schema, Apache-2.0)</li>
+    <li><a href="https://github.com/MIRA-science/demo-MIRA-graph-data" target="_blank" rel="noopener">MIRA-science/demo-MIRA-graph-data</a> (format conventions followed here)</li>
+  </ul>
+</section>
+
+<script type="application/json" id="cfg">{"slug": "diffuse-east-west", "sources": {"paper": {"short": "Zielinski et al. 2026", "url": "https://doi.org/10.82153/hrpy-t681", "label": "doi:10.82153/hrpy-t681"}}, "nodeSource": {"dew:q1": "paper", "dew:q2": "paper", "dew:q3": "paper", "dew:q4": "paper", "dew:q5": "paper", "dew:c1": "paper", "dew:c2": "paper", "dew:c3": "paper", "dew:c4": "paper", "dew:c5": "paper", "dew:c6": "paper", "dew:c7": "paper", "dew:c8": "paper", "dew:c9": "paper", "dew:c10": "paper", "dew:c11": "paper", "dew:c12": "paper", "dew:c13": "paper", "dew:c14": "paper", "dew:e1": "paper", "dew:e2": "paper", "dew:e3": "paper", "dew:e4": "paper", "dew:e5": "paper", "dew:e6": "paper", "dew:e7": "paper", "dew:e8": "paper", "dew:e9": "paper", "dew:e10": "paper", "dew:e11": "paper", "dew:e12": "paper", "dew:e13": "paper", "dew:e14": "paper", "dew:e15": "paper", "dew:e16": "paper", "dew:e17": "paper", "dew:e18": "paper", "dew:e19": "paper", "dew:s1": "paper", "dew:s2": "paper", "dew:s3": "paper", "dew:s4": "paper", "dew:s5": "paper", "dew:s6": "paper", "dew:p1": "paper", "dew:p2": "paper", "dew:p3": "paper", "dew:p4": "paper", "dew:p5": "paper", "dew:r1": "paper", "dew:r2": "paper", "dew:r3": "paper", "dew:r4": "paper", "dew:r5": "paper"}, "loc": {"dew:q1": "Purpose; Introduction, paragraphs 3-5", "dew:q2": "Results: 'Separating isotropic and anisotropic contributions'; 'Comparing data quality', last paragraph", "dew:q3": "Introduction, paragraph 3; Results: 'Comparing data quality and consistency across datasets'", "dew:q4": "Introduction, last paragraph; Results: 'Experimental factors leading to high data quality and reproducibility'", "dew:q5": "Results: 'X-ray Dose'; Discussion, paragraph 3", "dew:c1": "Results: 'Comparing data quality and consistency across datasets'; Discussion, paragraph 1", "dew:c2": "Results: 'Four high-quality datasets establish a baseline for reproducibility'; Discussion, paragraph 1", "dew:c3": "Results: 'Separating isotropic and anisotropic contributions', paragraph 1, Figure 1", "dew:c4": "Results: 'Comparing data quality and consistency across datasets', last paragraph", "dew:c5": "Results: 'Separating isotropic and anisotropic contributions', last paragraph, Figure 2a", "dew:c6": "Results: 'Comparing data quality and consistency across datasets'; Methods: 'Derivation of CC_lim'", "dew:c7": "Results: 'Four high-quality datasets establish a baseline for reproducibility', Table 1", "dew:c8": "Results: 'Multi-Crystal Datasets', Figure 3", "dew:c9": "Results: 'Humidity', Figure 4", "dew:c10": "Results: 'Humidity', last paragraph; Discussion, paragraph 2", "dew:c11": "Results: 'Crystal Size', Figure 6; Discussion, paragraph 2", "dew:c12": "Results: 'X-ray Dose', Figure 5; Discussion, paragraph 3", "dew:c13": "Discussion, paragraph 3", "dew:c14": "Discussion, paragraph 3", "dew:e1": "Results: 'Separating isotropic and anisotropic contributions', Figure 1", "dew:e2": "Results: 'Separating isotropic and anisotropic contributions', Figure 2a", "dew:e3": "Results: 'Comparing data quality and consistency across datasets', Figure 2b", "dew:e4": "Results: 'Assessing internal data quality of individual datasets', Figure 2b", "dew:e5": "Results: 'Separating isotropic and anisotropic contributions', last paragraph, Figure 2a", "dew:e6": "Results: 'X-ray Dose', last paragraph, Figure 5c", "dew:e7": "Results: 'Four high-quality datasets establish a baseline for reproducibility', Table 1", "dew:e8": "Results: 'Four high-quality datasets establish a baseline for reproducibility', Table 1", "dew:e9": "Results: 'Four high-quality datasets establish a baseline for reproducibility', Table 1", "dew:e10": "Results: 'Multi-Crystal Datasets', Figure 3a", "dew:e11": "Results: 'Multi-Crystal Datasets', Figure 3b", "dew:e12": "Results: 'Humidity', Figure 4", "dew:e13": "Results: 'Humidity', Figure 4", "dew:e14": "Results: 'Humidity', Figure 4", "dew:e15": "Discussion, paragraph 2; Methods: 'Data collection'", "dew:e16": "Results: 'Crystal Size', Figure 6c", "dew:e17": "Results: 'Crystal Size', Figure 6a-b", "dew:e18": "Results: 'X-ray Dose', paragraph 1", "dew:e19": "Results: 'X-ray Dose', Figure 5a-b; Discussion, paragraph 3", "dew:s1": "Results: 'Optimized data collection procedure'; 'Four high-quality datasets'; Table 1", "dew:s2": "Results: 'Assessing internal data quality'; 'Comparing data quality and consistency across datasets', Figure 2", "dew:s3": "Results: 'Multi-Crystal Datasets', Figure 3", "dew:s4": "Results: 'Humidity', Figure 4", "dew:s5": "Results: 'X-ray Dose', Figure 5", "dew:s6": "Results: 'Crystal Size', Figure 6", "dew:p1": "Methods: 'Protein expression, purification, and crystallization'", "dew:p2": "Results: 'Optimized data collection procedure'; Methods: 'Data collection'", "dew:p3": "Results: 'Optimized data collection procedure'; Methods: 'Data collection'", "dew:p4": "Methods: 'Data processing'", "dew:p5": "Methods: 'Data processing'; 'Derivation of CC_lim'", "dew:r1": "Discussion, paragraph 2", "dew:r2": "Discussion, paragraph 2", "dew:r3": "Results: 'X-ray Dose', last paragraph; Discussion, paragraph 3", "dew:r4": "Discussion, last paragraph", "dew:r5": "Discussion, last paragraph"}}</script>
+<script type="application/ld+json" id="mira">
+{
+ "@context": [
+  "https://mira-science.github.io/schema/mira.jsonld",
+  {
+   "dew": "https://prismscience.org/mira/diffuse-east-west#",
+   "Study": "mira:Study",
+   "Item": "sioc:Item",
+   "dct": "http://purl.org/dc/terms/",
+   "references": {
+    "@id": "dct:references",
+    "@type": "@id"
+   },
+   "bibliographicCitation": "dct:bibliographicCitation",
+   "identifier": "dct:identifier"
+  }
+ ],
+ "@graph": [
+  {
+   "@id": "dew:creator",
+   "@type": "UserAccount",
+   "accountName": "Andy Burnim"
+  },
+  {
+   "@id": "dew:schema-Question",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Question"
+   ],
+   "label": "Question",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:schema-Claim",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Claim"
+   ],
+   "label": "Claim",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:schema-Evidence",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Evidence"
+   ],
+   "label": "Evidence",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:schema-Study",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Study"
+   ],
+   "label": "Study",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:schema-Protocol",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Protocol"
+   ],
+   "label": "Protocol",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:schema-Request",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Request"
+   ],
+   "label": "Request",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:areldef-addresses",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:addresses",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "dew:areldef-addresses"
+    }
+   ],
+   "label": "addresses",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:reldef-addresses",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "dew:schema-Claim",
+   "range": "dew:schema-Question",
+   "subClassOf": [
+    "dew:areldef-addresses"
+   ],
+   "label": "addresses",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:areldef-supports",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:supports",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "dew:areldef-supports"
+    }
+   ],
+   "label": "supports",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:reldef-supports",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "dew:schema-Evidence",
+   "range": "dew:schema-Claim",
+   "subClassOf": [
+    "dew:areldef-supports"
+   ],
+   "label": "supports",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:areldef-opposes",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:opposes",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "dew:areldef-opposes"
+    }
+   ],
+   "label": "opposes",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:reldef-opposes",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "dew:schema-Evidence",
+   "range": "dew:schema-Claim",
+   "subClassOf": [
+    "dew:areldef-opposes"
+   ],
+   "label": "opposes",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:areldef-is_grounded_in",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:is_grounded_in",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "dew:areldef-is_grounded_in"
+    }
+   ],
+   "label": "is_grounded_in",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:reldef-is_grounded_in",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "dew:schema-Evidence",
+   "range": "dew:schema-Study",
+   "subClassOf": [
+    "dew:areldef-is_grounded_in"
+   ],
+   "label": "is_grounded_in",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:areldef-follows",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:follows",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "dew:areldef-follows"
+    }
+   ],
+   "label": "follows",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:reldef-follows",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "dew:schema-Study",
+   "range": "dew:schema-Protocol",
+   "subClassOf": [
+    "dew:areldef-follows"
+   ],
+   "label": "follows",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:areldef-request_target",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:request_target",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "dew:areldef-request_target"
+    }
+   ],
+   "label": "request_target",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:reldef-request_target",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "dew:schema-Request",
+   "range": "dew:schema-Claim",
+   "subClassOf": [
+    "dew:areldef-request_target"
+   ],
+   "label": "request_target",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "https://doi.org/10.82153/hrpy-t681",
+   "@type": "SourceDocument",
+   "title": "Iterating diffuse scattering protocols in parallel leads to reproducible, high-quality data from Mac1",
+   "bibliographicCitation": "Zielinski K, Meisburger S, Lu K, Bassim V, Holton J, Fraser JS, Ando N (2026). The Stacks.",
+   "identifier": "doi:10.82153/hrpy-t681",
+   "describesActivity": [
+    "dew:s1",
+    "dew:s2",
+    "dew:s3",
+    "dew:s4",
+    "dew:s5",
+    "dew:s6"
+   ]
+  },
+  {
+   "@id": "https://doi.org/10.82153/jkxj-tw08",
+   "@type": "SourceDocument",
+   "title": "Chrispens K et al. (2026) sampleworks: A Modular Platform for Experimentally Guided Biomolecular Ensemble Generation",
+   "identifier": "doi:10.82153/jkxj-tw08",
+   "bibliographicCitation": "Reference 5 in Zielinski et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1038/s41467-020-14933-6",
+   "@type": "SourceDocument",
+   "title": "Meisburger SP, Case DA, Ando N (2020) Diffuse X-ray scattering from correlated motions in a protein crystal",
+   "identifier": "doi:10.1038/s41467-020-14933-6",
+   "bibliographicCitation": "Reference 12 in Zielinski et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s1399004715013838",
+   "@type": "SourceDocument",
+   "title": "Polikanov YS, Moore PB (2015) Acoustic vibrations contribute to the diffuse scatter produced by ribosome crystals",
+   "identifier": "doi:10.1107/s1399004715013838",
+   "bibliographicCitation": "Reference 14 in Zielinski et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1073/pnas.94.12.6180",
+   "@type": "SourceDocument",
+   "title": "Wall ME, Ealick SE, Gruner SM (1997) Three-dimensional diffuse x-ray scattering from crystals of Staphylococcal nuclease",
+   "identifier": "doi:10.1073/pnas.94.12.6180",
+   "bibliographicCitation": "Reference 16 in Zielinski et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1073/pnas.1416744111",
+   "@type": "SourceDocument",
+   "title": "Wall ME et al. (2014) Conformational dynamics of a crystalline protein from microsecond-scale molecular dynamics simulations and diffuse X-ray scattering",
+   "identifier": "doi:10.1073/pnas.1416744111",
+   "bibliographicCitation": "Reference 17 in Zielinski et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1063/4.0000087",
+   "@type": "SourceDocument",
+   "title": "Su Z et al. (2021) Reproducibility of protein x-ray diffuse scattering and potential utility for modeling atomic displacement parameters",
+   "identifier": "doi:10.1063/4.0000087",
+   "bibliographicCitation": "Reference 18 in Zielinski et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s2059798324002705",
+   "@type": "SourceDocument",
+   "title": "Meisburger SP, Ando N (2024) Scaling and merging macromolecular diffuse scattering with mdx2",
+   "identifier": "doi:10.1107/s2059798324002705",
+   "bibliographicCitation": "Reference 19 in Zielinski et al. 2026"
+  },
+  {
+   "@id": "https://www.sciencedirect.com/science/chapter/bookseries/abs/pii/S0076687923002380",
+   "@type": "SourceDocument",
+   "title": "Pei X et al. (2023) Chapter One: Introduction to diffuse scattering and data collection",
+   "bibliographicCitation": "Reference 21 in Zielinski et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1126/sciadv.abf8711",
+   "@type": "SourceDocument",
+   "title": "Schuller M et al. (2021) Fragment binding to the Nsp3 macrodomain of SARS-CoV-2 identified through crystallographic screening and computational docking",
+   "identifier": "doi:10.1126/sciadv.abf8711",
+   "bibliographicCitation": "Reference 22 in Zielinski et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1126/sciadv.abo5083",
+   "@type": "SourceDocument",
+   "title": "Correy GJ et al. (2022) The mechanisms of catalysis and ligand binding for the SARS-CoV-2 NSP3 macrodomain from neutron and x-ray diffraction at room temperature",
+   "identifier": "doi:10.1126/sciadv.abo5083",
+   "bibliographicCitation": "Reference 23 in Zielinski et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1016/s0076-6879%2803%2968015-8",
+   "@type": "SourceDocument",
+   "title": "Snell EH, Bellamy HD, Borgstahl GE (2003) Macromolecular Crystal Quality",
+   "identifier": "doi:10.1016/s0076-6879(03)68015-8",
+   "bibliographicCitation": "Reference 24 in Zielinski et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1002/prot.21246",
+   "@type": "SourceDocument",
+   "title": "Meinhold L, Smith JC (2007) Protein dynamics from X-ray crystallography: Anisotropic, global motion in diffuse scattering patterns",
+   "identifier": "doi:10.1002/prot.21246",
+   "bibliographicCitation": "Reference 25 in Zielinski et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1038/s41467-023-36734-3",
+   "@type": "SourceDocument",
+   "title": "Meisburger SP, Case DA, Ando N (2023) Robust total X-ray scattering workflow to study correlated motion of proteins in crystals",
+   "identifier": "doi:10.1038/s41467-023-36734-3",
+   "bibliographicCitation": "Reference 26 in Zielinski et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1126/science.1218231",
+   "@type": "SourceDocument",
+   "title": "Karplus PA, Diederichs K (2012) Linking Crystallographic Model and Data Quality",
+   "identifier": "doi:10.1126/science.1218231",
+   "bibliographicCitation": "Reference 27 in Zielinski et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1016/j.bpj.2026.08.008",
+   "@type": "SourceDocument",
+   "title": "Nia SS et al. (2026) Snapshots of internal protein crystal architecture at the nanoscale",
+   "identifier": "doi:10.1016/j.bpj.2026.08.008",
+   "bibliographicCitation": "Reference 28 in Zielinski et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1002/pro.4224",
+   "@type": "SourceDocument",
+   "title": "Winter G et al. (2022) DIALS as a toolkit",
+   "identifier": "doi:10.1002/pro.4224",
+   "bibliographicCitation": "Reference 29 in Zielinski et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb7twf/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 7TWF",
+   "identifier": "doi:10.2210/pdb7twf/pdb"
+  },
+  {
+   "@id": "https://thestacks.org/publications/diffuse-scattering-east-west#table1",
+   "@type": "Item",
+   "format": "text/html",
+   "content": "Table 1. Bragg statistics (mosaicity, resolution, unit cell, outer-shell CC1/2 and completeness) for each crystal and each merged dataset.",
+   "isContainedBy": "https://thestacks.org/publications/diffuse-scattering-east-west"
+  },
+  {
+   "@id": "https://thestacks-01.s3.amazonaws.com/publications/01M3MXMRFR5HA8VNDRS7TJPYJ2/media_b0626931_ac57d438b6f8",
+   "@type": "Item",
+   "format": "image/png",
+   "content": "Figure 1. Total and anisotropic diffuse intensity for the four high-quality datasets, in integer and half-integer reciprocal-space sections.",
+   "isContainedBy": "https://thestacks.org/publications/diffuse-scattering-east-west"
+  },
+  {
+   "@id": "https://thestacks-01.s3.amazonaws.com/publications/01M3MXMRFR5HA8VNDRS7TJPYJ2/media_5418fbcd_6072efb90f0e",
+   "@type": "Item",
+   "format": "image/png",
+   "content": "Figure 2. Isotropic and anisotropic intensity profiles versus resolution, and CC*, CC_pair and CC_lim for every pair of datasets.",
+   "isContainedBy": "https://thestacks.org/publications/diffuse-scattering-east-west"
+  },
+  {
+   "@id": "https://thestacks-01.s3.amazonaws.com/publications/01M3MXMRFR5HA8VNDRS7TJPYJ2/media_0aa91147",
+   "@type": "Item",
+   "format": "text/html",
+   "content": "Figure 3 (interactive). Anisotropic l=0.5 slices and signal-to-noise for every one-, two- and three-crystal merge from CHESS 2025-09-24.",
+   "isContainedBy": "https://thestacks.org/publications/diffuse-scattering-east-west"
+  },
+  {
+   "@id": "https://thestacks-01.s3.amazonaws.com/publications/01M3MXMRFR5HA8VNDRS7TJPYJ2/media_843e074a_21b4f8d5674e",
+   "@type": "Item",
+   "format": "text/html",
+   "content": "Figure 4 (interactive). Wilson B, mosaicity and unit cell axes for four mounting conditions at ALS 2025-07-01 against humidity-controlled references.",
+   "isContainedBy": "https://thestacks.org/publications/diffuse-scattering-east-west"
+  },
+  {
+   "@id": "https://thestacks-01.s3.amazonaws.com/publications/01M3MXMRFR5HA8VNDRS7TJPYJ2/media_f0783a32_0f3969943b4f",
+   "@type": "Item",
+   "format": "text/html",
+   "content": "Figure 5a-b (interactive). Isotropic and anisotropic profiles and l=0.5 slices for the two halves of a high-dose and a low-dose dataset.",
+   "isContainedBy": "https://thestacks.org/publications/diffuse-scattering-east-west"
+  },
+  {
+   "@id": "https://thestacks-01.s3.amazonaws.com/publications/01M3MXMRFR5HA8VNDRS7TJPYJ2/media_8bc6b587_d41b0f09519e",
+   "@type": "Item",
+   "format": "text/html",
+   "content": "Figure 5c (interactive). CC* for each half and CC_pair against CC_lim between halves, for the high-dose and low-dose datasets.",
+   "isContainedBy": "https://thestacks.org/publications/diffuse-scattering-east-west"
+  },
+  {
+   "@id": "https://thestacks-01.s3.amazonaws.com/publications/01M3MXMRFR5HA8VNDRS7TJPYJ2/media_67edc2dc_40cfd2e43500",
+   "@type": "Item",
+   "format": "text/html",
+   "content": "Figure 6 (interactive). Profiles, l=0.5 slices and signal-to-noise for small (about 100 µm) versus large crystals.",
+   "isContainedBy": "https://thestacks.org/publications/diffuse-scattering-east-west"
+  },
+  {
+   "@id": "https://doi.org/10.82153/hrpy-t681#quote-c1",
+   "@type": "Item",
+   "format": "text/plain",
+   "content": "diffuse scattering protocols are transferrable between research groups and synchrotron beamlines",
+   "isContainedBy": "https://doi.org/10.82153/hrpy-t681",
+   "title": "Zielinski et al. 2026, Discussion, paragraph 1"
+  },
+  {
+   "@id": "dew:q1",
+   "@type": [
+    "dew:schema-Question",
+    "mira:Question"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "QUE - Are 3D diffuse scattering maps reproducible across independent teams, beamlines and visits?",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Earlier agreement tests used one group's data from one facility. The diffuse signal is weak and sensitive to beamline, sample handling and processing."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Purpose; Introduction, paragraphs 3-5",
+   "references": [
+    "https://doi.org/10.1073/pnas.94.12.6180",
+    "https://doi.org/10.1063/4.0000087",
+    "https://doi.org/10.1107/s2059798324002705"
+   ]
+  },
+  {
+   "@id": "dew:q2",
+   "@type": [
+    "dew:schema-Question",
+    "mira:Question"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "QUE - Do the Mac1 diffuse maps contain features suitable for modeling correlated motion?",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Asks whether the maps show halos and cloudy patterns at a quality comparable to earlier lysozyme datasets."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Separating isotropic and anisotropic contributions'; 'Comparing data quality', last paragraph",
+   "references": [
+    "https://doi.org/10.1038/s41467-020-14933-6",
+    "https://doi.org/10.1038/s41467-023-36734-3"
+   ]
+  },
+  {
+   "@id": "dew:q3",
+   "@type": [
+    "dew:schema-Question",
+    "mira:Question"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "QUE - How can agreement between two diffuse datasets be judged against their noise?",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "A single correlation coefficient over a broad resolution range is dominated by strong features and cannot show where agreement breaks down."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Introduction, paragraph 3; Results: 'Comparing data quality and consistency across datasets'",
+   "references": [
+    "https://doi.org/10.1073/pnas.94.12.6180",
+    "https://doi.org/10.1063/4.0000087"
+   ]
+  },
+  {
+   "@id": "dew:q4",
+   "@type": [
+    "dew:schema-Question",
+    "mira:Question"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "QUE - Which experimental variables most limit diffuse data quality and agreement?",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Retrospective analysis of less ideal datasets from the optimization process: crystal number, humidity, X-ray dose and crystal size."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Introduction, last paragraph; Results: 'Experimental factors leading to high data quality and reproducibility'"
+  },
+  {
+   "@id": "dew:q5",
+   "@type": [
+    "dew:schema-Question",
+    "mira:Question"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "QUE - How does X-ray dose change the diffuse signal?",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Radiation damage is a possible source of correlated disorder, but how it shows up in diffuse scattering was unclear."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'X-ray Dose'; Discussion, paragraph 3"
+  },
+  {
+   "@id": "dew:c1",
+   "@type": [
+    "dew:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Diffuse maps from the East (CHESS) and West (ALS) teams agree within experimental error",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Agreement between the two teams was comparable to agreement between repeated visits by one team."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Comparing data quality and consistency across datasets'; Discussion, paragraph 1",
+   "references": [
+    "https://doi.org/10.82153/hrpy-t681#quote-c1"
+   ]
+  },
+  {
+   "@id": "dew:c2",
+   "@type": [
+    "dew:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Diffuse maps are reproducible across repeated synchrotron visits by the same team",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Each team collected two independent multi-crystal datasets on different visits, and each pair agreed within noise above about 6 Å."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Four high-quality datasets establish a baseline for reproducibility'; Discussion, paragraph 1"
+  },
+  {
+   "@id": "dew:c3",
+   "@type": [
+    "dew:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - mdx2 processing gives consistent diffuse maps across different detectors and beamlines",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Data from an Eiger2 X 16M (CHESS) and a Pilatus3 S 6M (ALS), in different image formats, produced visually similar maps."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Separating isotropic and anisotropic contributions', paragraph 1, Figure 1",
+   "references": [
+    "https://doi.org/10.1107/s2059798324002705"
+   ]
+  },
+  {
+   "@id": "dew:c4",
+   "@type": [
+    "dew:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - The Mac1 maps match the quality of earlier lysozyme datasets, so the GOODVIBES/DISCOBALL workflow can be applied",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The maps show the same feature types (halos, cloudy patterns) and set a baseline for perturbation experiments such as ligand binding or temperature."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Comparing data quality and consistency across datasets', last paragraph",
+   "references": [
+    "https://doi.org/10.1038/s41467-020-14933-6",
+    "https://doi.org/10.1038/s41467-023-36734-3"
+   ]
+  },
+  {
+   "@id": "dew:c5",
+   "@type": [
+    "dew:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - The isotropic and anisotropic diffuse components likely have different physical origins",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Their resolution profiles are similar in shape, but the peaks do not sit at the same resolution."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Separating isotropic and anisotropic contributions', last paragraph, Figure 2a",
+   "references": [
+    "https://doi.org/10.1002/prot.21246"
+   ]
+  },
+  {
+   "@id": "dew:c6",
+   "@type": [
+    "dew:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - CC_lim, the product of two datasets' CC* values, is the maximum correlation expected from noise alone",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "If the pairwise map correlation (CC_pair) falls below CC_lim in a resolution shell, the two maps differ beyond noise in that shell."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Comparing data quality and consistency across datasets'; Methods: 'Derivation of CC_lim'",
+   "references": [
+    "https://doi.org/10.1126/science.1218231"
+   ]
+  },
+  {
+   "@id": "dew:c7",
+   "@type": [
+    "dew:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Humidity-controlled Mac1 crystals from one team are highly isomorphous with very low mosaicity",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Low mosaicity indicates no dehydration stress during mounting and lets diffuse scattering be measured close to Bragg peaks."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Four high-quality datasets establish a baseline for reproducibility', Table 1",
+   "references": [
+    "https://doi.org/10.1016/s0076-6879%2803%2968015-8"
+   ]
+  },
+  {
+   "@id": "dew:c8",
+   "@type": [
+    "dew:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Merging crystals in diverse orientations improves reciprocal-space coverage and diffuse signal-to-noise",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Mac1 crystals sit on the loop in a preferred orientation. Sampling diverse orientations matters more than reaching a strict minimum number of crystals."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Multi-Crystal Datasets', Figure 3",
+   "references": [
+    "https://doi.org/10.1038/s41467-020-14933-6",
+    "https://doi.org/10.1063/4.0000087",
+    "https://doi.org/10.1107/s2059798324002705",
+    "https://doi.org/10.1038/s41467-023-36734-3"
+   ]
+  },
+  {
+   "@id": "dew:c9",
+   "@type": [
+    "dew:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Mac1 crystals need humidity control and a sleeve mount; oil coating offers little benefit",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Oil coating can compromise both crystal hydration and lattice order. Only a sleeve without oil matched the humidity-controlled references."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Humidity', Figure 4",
+   "references": [
+    "https://www.sciencedirect.com/science/chapter/bookseries/abs/pii/S0076687923002380"
+   ]
+  },
+  {
+   "@id": "dew:c10",
+   "@type": [
+    "dew:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Sleeve mounts allow a matched background measurement; oil mounts do not",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Translating along the sleeve gives an equivalent path length of the same material. Oil around the crystal varies between mounts and with rotation."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Humidity', last paragraph; Discussion, paragraph 2",
+   "references": [
+    "https://doi.org/10.1038/s41467-020-14933-6",
+    "https://www.sciencedirect.com/science/chapter/bookseries/abs/pii/S0076687923002380"
+   ]
+  },
+  {
+   "@id": "dew:c11",
+   "@type": [
+    "dew:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Larger crystals are the most direct route to a stronger reproducible diffuse signal",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Dose limits rule out more flux or longer exposures, so a larger illuminated volume is the remaining way to boost signal for a given dose."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Crystal Size', Figure 6; Discussion, paragraph 2"
+  },
+  {
+   "@id": "dew:c12",
+   "@type": [
+    "dew:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Radiation damage leaves a measurable signature in the diffuse signal",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "This gives a diagnostic for dose effects when screening data. The authors also identify a low-dose regime where damage is negligible relative to other errors."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'X-ray Dose', Figure 5; Discussion, paragraph 3"
+  },
+  {
+   "@id": "dew:c13",
+   "@type": [
+    "dew:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Global radiation damage acts as a resolution-dependent rescaling of the anisotropic pattern",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The simplest elastic-lattice model: dose raises the effective temperature or lowers stiffness, which in the one-phonon approximation rescales the pattern as B rises. The paper's data go against this."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Discussion, paragraph 3",
+   "references": [
+    "https://doi.org/10.1107/s1399004715013838",
+    "https://doi.org/10.1038/s41467-023-36734-3"
+   ]
+  },
+  {
+   "@id": "dew:c14",
+   "@type": [
+    "dew:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Radiation damage may be concentrated in microscopic regions or defects of the crystal",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Offered as one possible explanation, consistent with 4D-STEM images of nanoscale domain reorientation in lysozyme and myoglobin crystals. Not tested here."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Discussion, paragraph 3",
+   "references": [
+    "https://doi.org/10.1016/j.bpj.2026.08.008"
+   ]
+  },
+  {
+   "@id": "dew:e1",
+   "@type": [
+    "dew:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - The four diffuse maps look nearly identical: halos in integer planes, cloudy patterns in half-integer planes to 1.25 Å",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Maps were reconstructed on a 2x2x4 oversampled grid and normalized to the isotropic maximum. Total intensity shows a bright ring at about 3.3 Å."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Separating isotropic and anisotropic contributions', Figure 1",
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/01M3MXMRFR5HA8VNDRS7TJPYJ2/media_b0626931_ac57d438b6f8"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/hrpy-t681"
+   ],
+   "observationOriginActivity": "dew:s1"
+  },
+  {
+   "@id": "dew:e2",
+   "@type": [
+    "dew:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Isotropic profiles match across datasets: peak at ~3.3 Å, shoulder at ~2.2 Å, flat beyond 1.7 Å",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The anisotropic RMS profile and its overall magnitude are also consistent between the four datasets."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Separating isotropic and anisotropic contributions', Figure 2a",
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/01M3MXMRFR5HA8VNDRS7TJPYJ2/media_5418fbcd_6072efb90f0e"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/hrpy-t681"
+   ],
+   "observationOriginActivity": "dew:s2"
+  },
+  {
+   "@id": "dew:e3",
+   "@type": [
+    "dew:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - CC_pair closely approaches CC_lim for all six dataset pairs, with gaps only below ~6 Å",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The low-resolution gaps appear within teams (ALS vs ALS, CHESS vs CHESS) as well, so they are not site effects. No significant East vs West differences."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Comparing data quality and consistency across datasets', Figure 2b",
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/01M3MXMRFR5HA8VNDRS7TJPYJ2/media_5418fbcd_6072efb90f0e"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/hrpy-t681"
+   ],
+   "observationOriginActivity": "dew:s2"
+  },
+  {
+   "@id": "dew:e4",
+   "@type": [
+    "dew:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - CC* exceeds 0.85 from 6 to 2.2 Å and reaches 0.965-0.997 near 4 Å in all four datasets",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "CHESS 2025-11-05, from two crystals about 500 µm across, has the highest signal-to-noise and keeps CC* above 0.95 from 13.3 to 1.8 Å."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Assessing internal data quality of individual datasets', Figure 2b",
+   "references": [
+    "https://doi.org/10.1038/s41467-020-14933-6",
+    "https://doi.org/10.1126/science.1218231"
+   ],
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/01M3MXMRFR5HA8VNDRS7TJPYJ2/media_5418fbcd_6072efb90f0e"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/hrpy-t681"
+   ],
+   "observationOriginActivity": "dew:s2"
+  },
+  {
+   "@id": "dew:e5",
+   "@type": [
+    "dew:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - The main anisotropic peak sits at lower resolution than the 3.3 Å isotropic peak",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Both signals are small at low resolution, peak in the water ring, show a shoulder and decay at high resolution, but the peak positions differ."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Separating isotropic and anisotropic contributions', last paragraph, Figure 2a",
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/01M3MXMRFR5HA8VNDRS7TJPYJ2/media_5418fbcd_6072efb90f0e"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/hrpy-t681"
+   ],
+   "observationOriginActivity": "dew:s2"
+  },
+  {
+   "@id": "dew:e6",
+   "@type": [
+    "dew:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Low-dose halves: CC_pair matches CC_lim at all resolutions; high-dose halves fall below CC_lim from 10 to 5 Å",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The high-dose gap closes around 2.5 Å and beyond. CC_lim here is the product of the two halves' CC* values."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'X-ray Dose', last paragraph, Figure 5c",
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/01M3MXMRFR5HA8VNDRS7TJPYJ2/media_8bc6b587_d41b0f09519e"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/hrpy-t681"
+   ],
+   "observationOriginActivity": "dew:s5"
+  },
+  {
+   "@id": "dew:e7",
+   "@type": [
+    "dew:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Bragg resolution regularly exceeds 1.1 Å, DIALS mosaicity is 0.014° or lower, and merged completeness is 100%",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Resolution is on par with the best room-temperature P4_3 Mac1 structures (e.g. 7TWF). Data were truncated at 1.25 Å for all datasets; single crystals had lower outer-shell completeness."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Four high-quality datasets establish a baseline for reproducibility', Table 1",
+   "references": [
+    "https://doi.org/10.1126/sciadv.abo5083",
+    "https://doi.org/10.1016/s0076-6879%2803%2968015-8",
+    "https://doi.org/10.2210/pdb7twf/pdb"
+   ],
+   "observationBase": [
+    "https://thestacks.org/publications/diffuse-scattering-east-west#table1"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/hrpy-t681"
+   ],
+   "observationOriginActivity": "dew:s1"
+  },
+  {
+   "@id": "dew:e8",
+   "@type": [
+    "dew:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Outer-shell CC1/2 rises after merging in every dataset, e.g. 0.871, 0.942, 0.929 to 0.980 (ALS 2025-10-15)",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "CHESS 2025-11-05 rose from 0.988 and 0.984 to 0.994. An increase is expected only if the crystals are truly isomorphous."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Four high-quality datasets establish a baseline for reproducibility', Table 1",
+   "observationBase": [
+    "https://thestacks.org/publications/diffuse-scattering-east-west#table1"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/hrpy-t681"
+   ],
+   "observationOriginActivity": "dew:s1"
+  },
+  {
+   "@id": "dew:e9",
+   "@type": [
+    "dew:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Unit cells are consistent within each team; ALS crystals have ~2.5% larger volume than CHESS crystals",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "ALS a = 89.22-89.27 Å, CHESS a = 88.41-88.44 Å. The authors attribute the between-team difference to crystallization (sitting vs hanging drop)."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Four high-quality datasets establish a baseline for reproducibility', Table 1",
+   "observationBase": [
+    "https://thestacks.org/publications/diffuse-scattering-east-west#table1"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/hrpy-t681"
+   ],
+   "observationOriginActivity": "dew:s1"
+  },
+  {
+   "@id": "dew:e10",
+   "@type": [
+    "dew:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Single-crystal maps show a propeller pattern that fades in two-crystal merges and is absent with three crystals",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The pattern comes from uneven multiplicity and stays visible for xtal2 + xtal3, which had similar orientations."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Multi-Crystal Datasets', Figure 3a",
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/01M3MXMRFR5HA8VNDRS7TJPYJ2/media_0aa91147"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/hrpy-t681"
+   ],
+   "observationOriginActivity": "dew:s3"
+  },
+  {
+   "@id": "dew:e11",
+   "@type": [
+    "dew:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Signal reaches noise at 1.8-2 Å for single crystals and at 1.6 Å for the three-crystal merge",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Signal-to-noise is the noise-corrected anisotropic RMS intensity over the RMS propagated error, and rises with each added crystal."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Multi-Crystal Datasets', Figure 3b",
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/01M3MXMRFR5HA8VNDRS7TJPYJ2/media_0aa91147"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/hrpy-t681"
+   ],
+   "observationOriginActivity": "dew:s3"
+  },
+  {
+   "@id": "dew:e12",
+   "@type": [
+    "dew:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Paratone-N without a sleeve: Wilson B 20.5 vs 13.1 Å², mosaicity 0.120° vs 0.014°, c 39.48 vs 40.20 Å",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Every Bragg quality indicator was worse than the humidity-controlled references, consistent with dehydration during mounting."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Humidity', Figure 4",
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/01M3MXMRFR5HA8VNDRS7TJPYJ2/media_843e074a_21b4f8d5674e"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/hrpy-t681"
+   ],
+   "observationOriginActivity": "dew:s4"
+  },
+  {
+   "@id": "dew:e13",
+   "@type": [
+    "dew:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Sleeve plus oil: Wilson B back to 11.7-12.6 Å², but c is ~0.5 Å short and Santovac-5 mosaicity is 0.186°",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "With Paratone-N in a sleeve, mosaicity was 0.022°. The shorter c axes suggest partial dehydration even inside a sleeve."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Humidity', Figure 4",
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/01M3MXMRFR5HA8VNDRS7TJPYJ2/media_843e074a_21b4f8d5674e"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/hrpy-t681"
+   ],
+   "observationOriginActivity": "dew:s4"
+  },
+  {
+   "@id": "dew:e14",
+   "@type": [
+    "dew:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Sleeve without oil: mosaicity 0.009° and both unit cell axes within ~0.1 Å of the references",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "It was the only ambient-harvested mount that matched the references on all four metrics."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Humidity', Figure 4",
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/01M3MXMRFR5HA8VNDRS7TJPYJ2/media_843e074a_21b4f8d5674e"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/hrpy-t681"
+   ],
+   "observationOriginActivity": "dew:s4"
+  },
+  {
+   "@id": "dew:e15",
+   "@type": [
+    "dew:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Background collected 100-300 µm from the crystal on the sleeve matched well; background at the Kapton loop neck did not",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The loop-neck background likely led to oversubtraction."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Discussion, paragraph 2; Methods: 'Data collection'",
+   "sourceDocument": [
+    "https://doi.org/10.82153/hrpy-t681"
+   ],
+   "observationOriginActivity": "dew:s1"
+  },
+  {
+   "@id": "dew:e16",
+   "@type": [
+    "dew:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Small crystals (~100 µm) have 4- to 5-fold lower signal-to-noise and reach noise at ~2.1 Å vs ~1.25 Å",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "This holds even though the small-crystal merge has three crystals and the large-crystal merge (CHESS 2025-11-05) only two."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Crystal Size', Figure 6c",
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/01M3MXMRFR5HA8VNDRS7TJPYJ2/media_67edc2dc_40cfd2e43500"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/hrpy-t681"
+   ],
+   "observationOriginActivity": "dew:s6"
+  },
+  {
+   "@id": "dew:e17",
+   "@type": [
+    "dew:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Small-crystal maps show the same principal features but are weaker and less sharply defined",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The isotropic profile is lower near the 2.2-2.5 Å shoulder. Part of the difference may come from scaling and merging noisier data."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Crystal Size', Figure 6a-b",
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/01M3MXMRFR5HA8VNDRS7TJPYJ2/media_67edc2dc_40cfd2e43500"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/hrpy-t681"
+   ],
+   "observationOriginActivity": "dew:s6"
+  },
+  {
+   "@id": "dew:e18",
+   "@type": [
+    "dew:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Doubling exposure per frame raised mosaicity from 0.014° to 0.056° and Wilson B from 13.2 to 13.9 Å²",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "0.1 s vs 0.05 s per 0.1° frame at ALS, with humidity-controlled harvesting, so the comparison isolates X-ray dose."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'X-ray Dose', paragraph 1",
+   "sourceDocument": [
+    "https://doi.org/10.82153/hrpy-t681"
+   ],
+   "observationOriginActivity": "dew:s5"
+  },
+  {
+   "@id": "dew:e19",
+   "@type": [
+    "dew:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - High-dose diffuse changes sit mostly at low resolution and the pattern changes shape rather than rescaling",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The second high-dose half has higher RMS intensity near 10 Å and stronger features at d > ~4 Å. The low-dose halves look nearly identical."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'X-ray Dose', Figure 5a-b; Discussion, paragraph 3",
+   "observationBase": [
+    "https://thestacks-01.s3.amazonaws.com/publications/01M3MXMRFR5HA8VNDRS7TJPYJ2/media_f0783a32_0f3969943b4f"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/hrpy-t681"
+   ],
+   "observationOriginActivity": "dew:s5"
+  },
+  {
+   "@id": "dew:s1",
+   "@type": [
+    "dew:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - Four high-quality multi-crystal Mac1 datasets, two per team",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "East: CHESS ID7B2, 2025-09-24 (3 crystals) and 2025-11-05 (2). West: ALS 8.3.1, 2025-10-15 (3) and 2025-11-25 (2). Also SBGrid Databank 1301 to 1304."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Optimized data collection procedure'; 'Four high-quality datasets'; Table 1"
+  },
+  {
+   "@id": "dew:s2",
+   "@type": [
+    "dew:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - Resolution-shell comparison of the four anisotropic diffuse maps",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Isotropic and anisotropic profiles, CC* per dataset, and CC_pair against CC_lim for every pair."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Assessing internal data quality'; 'Comparing data quality and consistency across datasets', Figure 2"
+  },
+  {
+   "@id": "dew:s3",
+   "@type": [
+    "dew:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - Crystal-number analysis: every one-, two- and three-crystal merge of CHESS 2025-09-24",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Compares reciprocal-space uniformity and signal-to-noise as crystals are added."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Multi-Crystal Datasets', Figure 3"
+  },
+  {
+   "@id": "dew:s4",
+   "@type": [
+    "dew:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - Mounting-condition test at ALS 2025-07-01 without humidity control",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Four single-crystal conditions (oil type and sleeve) compared by Bragg statistics against two humidity-controlled ALS references. Diffuse maps were not extracted."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Humidity', Figure 4"
+  },
+  {
+   "@id": "dew:s5",
+   "@type": [
+    "dew:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - X-ray dose test at ALS: high-dose single crystal vs the ALS 2025-10-15 reference",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Each rotation series was split at its midpoint and the halves merged with a common scale model."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'X-ray Dose', Figure 5"
+  },
+  {
+   "@id": "dew:s6",
+   "@type": [
+    "dew:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - Crystal-size test: ALS 2026-04-23 small crystals vs CHESS 2025-11-05 large crystals",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Three ~100 µm crystals vs two 200-400 µm crystals, both humidity controlled and at matched low dose."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Crystal Size', Figure 6"
+  },
+  {
+   "@id": "dew:p1",
+   "@type": [
+    "dew:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - Mac1 expression, purification and seeded crystallization at UCSF and Cornell",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "P4_3 Mac1 (residues 3-169) from E. coli, His-tag cleaved, 40 mg/mL. Sitting drops at UCSF and hanging drops at Cornell over 100 mM CHES pH 9.5 with PEG 3000; PEG and seed dilution tune crystal size."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Methods: 'Protein expression, purification, and crystallization'",
+   "references": [
+    "https://doi.org/10.1126/sciadv.abf8711",
+    "https://doi.org/10.1126/sciadv.abo5083"
+   ]
+  },
+  {
+   "@id": "dew:p2",
+   "@type": [
+    "dew:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - Humidity-controlled harvesting into plastic capillaries",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Harvested in a MiTeGen SLEEC chamber (~100% RH) or humidified gas stream (~90% RH), with Kapton loops in MicroRT capillaries and well solution 2-4 mm from the crystal."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Optimized data collection procedure'; Methods: 'Data collection'",
+   "references": [
+    "https://www.sciencedirect.com/science/chapter/bookseries/abs/pii/S0076687923002380"
+   ]
+  },
+  {
+   "@id": "dew:p3",
+   "@type": [
+    "dew:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - Low-dose room-temperature diffuse data collection with matched background",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "~100 µm beam, about 10^11 photons/s, shutterless 0.1° frames over ~720°. A 360° background is taken 100-300 µm along the spindle at the same fluence per degree. Datasets are truncated until B decay is below 2 Å²."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'Optimized data collection procedure'; Methods: 'Data collection'",
+   "references": [
+    "https://doi.org/10.1038/s41467-020-14933-6",
+    "https://www.sciencedirect.com/science/chapter/bookseries/abs/pii/S0076687923002380"
+   ]
+  },
+  {
+   "@id": "dew:p4",
+   "@type": [
+    "dew:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - DIALS Bragg processing then mdx2 diffuse integration, scaling and merging",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "2x2x4 oversampled grid, background correction, joint scaling, symmetry averaging. The isotropic part is a trimmed mean in 0.01 Å⁻¹ shells and is subtracted to give the anisotropic map."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Methods: 'Data processing'",
+   "references": [
+    "https://doi.org/10.1107/s2059798324002705",
+    "https://doi.org/10.1002/pro.4224"
+   ]
+  },
+  {
+   "@id": "dew:p5",
+   "@type": [
+    "dew:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - CC1/2, CC* and CC_lim statistics on anisotropic maps per resolution shell",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Random half-datasets give CC1/2 and CC*. CC_lim is the product of two datasets' CC*. All CCs use the anisotropic pattern because the isotropic part inflates them."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Methods: 'Data processing'; 'Derivation of CC_lim'",
+   "references": [
+    "https://doi.org/10.1073/pnas.1416744111",
+    "https://doi.org/10.1126/science.1218231"
+   ]
+  },
+  {
+   "@id": "dew:r1",
+   "@type": [
+    "dew:schema-Request",
+    "mira:Request"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "REQ - Build diffuse maps from larger numbers of crystals",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "To find how signal quality keeps improving as more datasets are merged."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Discussion, paragraph 2"
+  },
+  {
+   "@id": "dew:r2",
+   "@type": [
+    "dew:schema-Request",
+    "mira:Request"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "REQ - Determine how diffuse signal-to-noise propagates into the models derived from the maps",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "This will set the crystal size and signal strength needed for a given interpretive claim, including whether ~100 µm crystals are enough."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Discussion, paragraph 2"
+  },
+  {
+   "@id": "dew:r3",
+   "@type": [
+    "dew:schema-Request",
+    "mira:Request"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "REQ - Establish the mechanism of dose-dependent diffuse changes across systems beyond Mac1",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Different crystals may respond differently to X-ray dose, so the effects need systematic study."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Results: 'X-ray Dose', last paragraph; Discussion, paragraph 3"
+  },
+  {
+   "@id": "dew:r4",
+   "@type": [
+    "dew:schema-Request",
+    "mira:Request"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "REQ - Run Mac1 perturbation experiments (ligand binding, temperature) against this baseline",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Several perturbation datasets are already collected (see the online logbooks)."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Discussion, last paragraph"
+  },
+  {
+   "@id": "dew:r5",
+   "@type": [
+    "dew:schema-Request",
+    "mira:Request"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "REQ - Separate lattice from internal motion with GOODVIBES and 3D-ΔPDF, and test dynamics models against the maps",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Testing models of protein dynamics directly against diffuse data is a long-term goal of the sampleworks project."
+   },
+   "creator": "dew:creator",
+   "bibliographicCitation": "Zielinski et al. 2026, doi:10.82153/hrpy-t681. Discussion, last paragraph",
+   "references": [
+    "https://doi.org/10.1038/s41467-023-36734-3",
+    "https://doi.org/10.82153/jkxj-tw08"
+   ]
+  },
+  {
+   "@id": "dew:rel-addresses-c1-q1",
+   "@type": [
+    "dew:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:c1",
+   "destination": "dew:q1",
+   "title": "[[CLM - Diffuse maps from the East (CHESS) and West (ALS) teams agree within experimental error]] -addresses-> [[QUE - Are 3D diffuse scattering maps reproducible across independent teams, beamlines and visits?]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-addresses-c2-q1",
+   "@type": [
+    "dew:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:c2",
+   "destination": "dew:q1",
+   "title": "[[CLM - Diffuse maps are reproducible across repeated synchrotron visits by the same team]] -addresses-> [[QUE - Are 3D diffuse scattering maps reproducible across independent teams, beamlines and visits?]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-addresses-c3-q1",
+   "@type": [
+    "dew:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:c3",
+   "destination": "dew:q1",
+   "title": "[[CLM - mdx2 processing gives consistent diffuse maps across different detectors and beamlines]] -addresses-> [[QUE - Are 3D diffuse scattering maps reproducible across independent teams, beamlines and visits?]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-addresses-c7-q1",
+   "@type": [
+    "dew:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:c7",
+   "destination": "dew:q1",
+   "title": "[[CLM - Humidity-controlled Mac1 crystals from one team are highly isomorphous with very low mosaicity]] -addresses-> [[QUE - Are 3D diffuse scattering maps reproducible across independent teams, beamlines and visits?]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-addresses-c4-q2",
+   "@type": [
+    "dew:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:c4",
+   "destination": "dew:q2",
+   "title": "[[CLM - The Mac1 maps match the quality of earlier lysozyme datasets, so the GOODVIBES/DISCOBALL workflow can be applied]] -addresses-> [[QUE - Do the Mac1 diffuse maps contain features suitable for modeling correlated motion?]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-addresses-c5-q2",
+   "@type": [
+    "dew:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:c5",
+   "destination": "dew:q2",
+   "title": "[[CLM - The isotropic and anisotropic diffuse components likely have different physical origins]] -addresses-> [[QUE - Do the Mac1 diffuse maps contain features suitable for modeling correlated motion?]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-addresses-c6-q3",
+   "@type": [
+    "dew:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:c6",
+   "destination": "dew:q3",
+   "title": "[[CLM - CC_lim, the product of two datasets' CC* values, is the maximum correlation expected from noise alone]] -addresses-> [[QUE - How can agreement between two diffuse datasets be judged against their noise?]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-addresses-c7-q4",
+   "@type": [
+    "dew:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:c7",
+   "destination": "dew:q4",
+   "title": "[[CLM - Humidity-controlled Mac1 crystals from one team are highly isomorphous with very low mosaicity]] -addresses-> [[QUE - Which experimental variables most limit diffuse data quality and agreement?]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-addresses-c8-q4",
+   "@type": [
+    "dew:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:c8",
+   "destination": "dew:q4",
+   "title": "[[CLM - Merging crystals in diverse orientations improves reciprocal-space coverage and diffuse signal-to-noise]] -addresses-> [[QUE - Which experimental variables most limit diffuse data quality and agreement?]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-addresses-c9-q4",
+   "@type": [
+    "dew:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:c9",
+   "destination": "dew:q4",
+   "title": "[[CLM - Mac1 crystals need humidity control and a sleeve mount; oil coating offers little benefit]] -addresses-> [[QUE - Which experimental variables most limit diffuse data quality and agreement?]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-addresses-c10-q4",
+   "@type": [
+    "dew:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:c10",
+   "destination": "dew:q4",
+   "title": "[[CLM - Sleeve mounts allow a matched background measurement; oil mounts do not]] -addresses-> [[QUE - Which experimental variables most limit diffuse data quality and agreement?]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-addresses-c11-q4",
+   "@type": [
+    "dew:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:c11",
+   "destination": "dew:q4",
+   "title": "[[CLM - Larger crystals are the most direct route to a stronger reproducible diffuse signal]] -addresses-> [[QUE - Which experimental variables most limit diffuse data quality and agreement?]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-addresses-c12-q4",
+   "@type": [
+    "dew:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:c12",
+   "destination": "dew:q4",
+   "title": "[[CLM - Radiation damage leaves a measurable signature in the diffuse signal]] -addresses-> [[QUE - Which experimental variables most limit diffuse data quality and agreement?]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-addresses-c12-q5",
+   "@type": [
+    "dew:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:c12",
+   "destination": "dew:q5",
+   "title": "[[CLM - Radiation damage leaves a measurable signature in the diffuse signal]] -addresses-> [[QUE - How does X-ray dose change the diffuse signal?]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-addresses-c13-q5",
+   "@type": [
+    "dew:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:c13",
+   "destination": "dew:q5",
+   "title": "[[CLM - Global radiation damage acts as a resolution-dependent rescaling of the anisotropic pattern]] -addresses-> [[QUE - How does X-ray dose change the diffuse signal?]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-addresses-c14-q5",
+   "@type": [
+    "dew:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:c14",
+   "destination": "dew:q5",
+   "title": "[[CLM - Radiation damage may be concentrated in microscopic regions or defects of the crystal]] -addresses-> [[QUE - How does X-ray dose change the diffuse signal?]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e1-c3",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e1",
+   "destination": "dew:c3",
+   "title": "[[EVD - The four diffuse maps look nearly identical: halos in integer planes, cloudy patterns in half-integer planes to 1.25 Å]] -supports-> [[CLM - mdx2 processing gives consistent diffuse maps across different detectors and beamlines]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e1-c4",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e1",
+   "destination": "dew:c4",
+   "title": "[[EVD - The four diffuse maps look nearly identical: halos in integer planes, cloudy patterns in half-integer planes to 1.25 Å]] -supports-> [[CLM - The Mac1 maps match the quality of earlier lysozyme datasets, so the GOODVIBES/DISCOBALL workflow can be applied]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e2-c1",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e2",
+   "destination": "dew:c1",
+   "title": "[[EVD - Isotropic profiles match across datasets: peak at ~3.3 Å, shoulder at ~2.2 Å, flat beyond 1.7 Å]] -supports-> [[CLM - Diffuse maps from the East (CHESS) and West (ALS) teams agree within experimental error]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e2-c2",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e2",
+   "destination": "dew:c2",
+   "title": "[[EVD - Isotropic profiles match across datasets: peak at ~3.3 Å, shoulder at ~2.2 Å, flat beyond 1.7 Å]] -supports-> [[CLM - Diffuse maps are reproducible across repeated synchrotron visits by the same team]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e3-c1",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e3",
+   "destination": "dew:c1",
+   "title": "[[EVD - CC_pair closely approaches CC_lim for all six dataset pairs, with gaps only below ~6 Å]] -supports-> [[CLM - Diffuse maps from the East (CHESS) and West (ALS) teams agree within experimental error]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e3-c2",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e3",
+   "destination": "dew:c2",
+   "title": "[[EVD - CC_pair closely approaches CC_lim for all six dataset pairs, with gaps only below ~6 Å]] -supports-> [[CLM - Diffuse maps are reproducible across repeated synchrotron visits by the same team]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e3-c6",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e3",
+   "destination": "dew:c6",
+   "title": "[[EVD - CC_pair closely approaches CC_lim for all six dataset pairs, with gaps only below ~6 Å]] -supports-> [[CLM - CC_lim, the product of two datasets' CC* values, is the maximum correlation expected from noise alone]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e4-c4",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e4",
+   "destination": "dew:c4",
+   "title": "[[EVD - CC* exceeds 0.85 from 6 to 2.2 Å and reaches 0.965-0.997 near 4 Å in all four datasets]] -supports-> [[CLM - The Mac1 maps match the quality of earlier lysozyme datasets, so the GOODVIBES/DISCOBALL workflow can be applied]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e4-c11",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e4",
+   "destination": "dew:c11",
+   "title": "[[EVD - CC* exceeds 0.85 from 6 to 2.2 Å and reaches 0.965-0.997 near 4 Å in all four datasets]] -supports-> [[CLM - Larger crystals are the most direct route to a stronger reproducible diffuse signal]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e5-c5",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e5",
+   "destination": "dew:c5",
+   "title": "[[EVD - The main anisotropic peak sits at lower resolution than the 3.3 Å isotropic peak]] -supports-> [[CLM - The isotropic and anisotropic diffuse components likely have different physical origins]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e6-c6",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e6",
+   "destination": "dew:c6",
+   "title": "[[EVD - Low-dose halves: CC_pair matches CC_lim at all resolutions; high-dose halves fall below CC_lim from 10 to 5 Å]] -supports-> [[CLM - CC_lim, the product of two datasets' CC* values, is the maximum correlation expected from noise alone]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e6-c12",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e6",
+   "destination": "dew:c12",
+   "title": "[[EVD - Low-dose halves: CC_pair matches CC_lim at all resolutions; high-dose halves fall below CC_lim from 10 to 5 Å]] -supports-> [[CLM - Radiation damage leaves a measurable signature in the diffuse signal]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e7-c7",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e7",
+   "destination": "dew:c7",
+   "title": "[[EVD - Bragg resolution regularly exceeds 1.1 Å, DIALS mosaicity is 0.014° or lower, and merged completeness is 100%]] -supports-> [[CLM - Humidity-controlled Mac1 crystals from one team are highly isomorphous with very low mosaicity]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e7-c8",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e7",
+   "destination": "dew:c8",
+   "title": "[[EVD - Bragg resolution regularly exceeds 1.1 Å, DIALS mosaicity is 0.014° or lower, and merged completeness is 100%]] -supports-> [[CLM - Merging crystals in diverse orientations improves reciprocal-space coverage and diffuse signal-to-noise]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e8-c7",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e8",
+   "destination": "dew:c7",
+   "title": "[[EVD - Outer-shell CC1/2 rises after merging in every dataset, e.g. 0.871, 0.942, 0.929 to 0.980 (ALS 2025-10-15)]] -supports-> [[CLM - Humidity-controlled Mac1 crystals from one team are highly isomorphous with very low mosaicity]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e9-c7",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e9",
+   "destination": "dew:c7",
+   "title": "[[EVD - Unit cells are consistent within each team; ALS crystals have ~2.5% larger volume than CHESS crystals]] -supports-> [[CLM - Humidity-controlled Mac1 crystals from one team are highly isomorphous with very low mosaicity]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e10-c8",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e10",
+   "destination": "dew:c8",
+   "title": "[[EVD - Single-crystal maps show a propeller pattern that fades in two-crystal merges and is absent with three crystals]] -supports-> [[CLM - Merging crystals in diverse orientations improves reciprocal-space coverage and diffuse signal-to-noise]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e11-c8",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e11",
+   "destination": "dew:c8",
+   "title": "[[EVD - Signal reaches noise at 1.8-2 Å for single crystals and at 1.6 Å for the three-crystal merge]] -supports-> [[CLM - Merging crystals in diverse orientations improves reciprocal-space coverage and diffuse signal-to-noise]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e12-c9",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e12",
+   "destination": "dew:c9",
+   "title": "[[EVD - Paratone-N without a sleeve: Wilson B 20.5 vs 13.1 Å², mosaicity 0.120° vs 0.014°, c 39.48 vs 40.20 Å]] -supports-> [[CLM - Mac1 crystals need humidity control and a sleeve mount; oil coating offers little benefit]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e13-c9",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e13",
+   "destination": "dew:c9",
+   "title": "[[EVD - Sleeve plus oil: Wilson B back to 11.7-12.6 Å², but c is ~0.5 Å short and Santovac-5 mosaicity is 0.186°]] -supports-> [[CLM - Mac1 crystals need humidity control and a sleeve mount; oil coating offers little benefit]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e14-c9",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e14",
+   "destination": "dew:c9",
+   "title": "[[EVD - Sleeve without oil: mosaicity 0.009° and both unit cell axes within ~0.1 Å of the references]] -supports-> [[CLM - Mac1 crystals need humidity control and a sleeve mount; oil coating offers little benefit]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e15-c10",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e15",
+   "destination": "dew:c10",
+   "title": "[[EVD - Background collected 100-300 µm from the crystal on the sleeve matched well; background at the Kapton loop neck did not]] -supports-> [[CLM - Sleeve mounts allow a matched background measurement; oil mounts do not]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e16-c11",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e16",
+   "destination": "dew:c11",
+   "title": "[[EVD - Small crystals (~100 µm) have 4- to 5-fold lower signal-to-noise and reach noise at ~2.1 Å vs ~1.25 Å]] -supports-> [[CLM - Larger crystals are the most direct route to a stronger reproducible diffuse signal]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e17-c11",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e17",
+   "destination": "dew:c11",
+   "title": "[[EVD - Small-crystal maps show the same principal features but are weaker and less sharply defined]] -supports-> [[CLM - Larger crystals are the most direct route to a stronger reproducible diffuse signal]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e18-c12",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e18",
+   "destination": "dew:c12",
+   "title": "[[EVD - Doubling exposure per frame raised mosaicity from 0.014° to 0.056° and Wilson B from 13.2 to 13.9 Å²]] -supports-> [[CLM - Radiation damage leaves a measurable signature in the diffuse signal]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-supports-e19-c12",
+   "@type": [
+    "dew:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e19",
+   "destination": "dew:c12",
+   "title": "[[EVD - High-dose diffuse changes sit mostly at low resolution and the pattern changes shape rather than rescaling]] -supports-> [[CLM - Radiation damage leaves a measurable signature in the diffuse signal]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-opposes-e19-c13",
+   "@type": [
+    "dew:areldef-opposes",
+    "mira:opposes"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e19",
+   "destination": "dew:c13",
+   "title": "[[EVD - High-dose diffuse changes sit mostly at low resolution and the pattern changes shape rather than rescaling]] -opposes-> [[CLM - Global radiation damage acts as a resolution-dependent rescaling of the anisotropic pattern]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-follows-s1-p1",
+   "@type": [
+    "dew:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:s1",
+   "destination": "dew:p1",
+   "title": "[[STU - Four high-quality multi-crystal Mac1 datasets, two per team]] -follows-> [[PRO - Mac1 expression, purification and seeded crystallization at UCSF and Cornell]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-follows-s1-p2",
+   "@type": [
+    "dew:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:s1",
+   "destination": "dew:p2",
+   "title": "[[STU - Four high-quality multi-crystal Mac1 datasets, two per team]] -follows-> [[PRO - Humidity-controlled harvesting into plastic capillaries]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-follows-s1-p3",
+   "@type": [
+    "dew:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:s1",
+   "destination": "dew:p3",
+   "title": "[[STU - Four high-quality multi-crystal Mac1 datasets, two per team]] -follows-> [[PRO - Low-dose room-temperature diffuse data collection with matched background]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-follows-s1-p4",
+   "@type": [
+    "dew:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:s1",
+   "destination": "dew:p4",
+   "title": "[[STU - Four high-quality multi-crystal Mac1 datasets, two per team]] -follows-> [[PRO - DIALS Bragg processing then mdx2 diffuse integration, scaling and merging]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-follows-s2-p4",
+   "@type": [
+    "dew:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:s2",
+   "destination": "dew:p4",
+   "title": "[[STU - Resolution-shell comparison of the four anisotropic diffuse maps]] -follows-> [[PRO - DIALS Bragg processing then mdx2 diffuse integration, scaling and merging]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-follows-s2-p5",
+   "@type": [
+    "dew:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:s2",
+   "destination": "dew:p5",
+   "title": "[[STU - Resolution-shell comparison of the four anisotropic diffuse maps]] -follows-> [[PRO - CC1/2, CC* and CC_lim statistics on anisotropic maps per resolution shell]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-follows-s3-p4",
+   "@type": [
+    "dew:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:s3",
+   "destination": "dew:p4",
+   "title": "[[STU - Crystal-number analysis: every one-, two- and three-crystal merge of CHESS 2025-09-24]] -follows-> [[PRO - DIALS Bragg processing then mdx2 diffuse integration, scaling and merging]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-follows-s4-p1",
+   "@type": [
+    "dew:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:s4",
+   "destination": "dew:p1",
+   "title": "[[STU - Mounting-condition test at ALS 2025-07-01 without humidity control]] -follows-> [[PRO - Mac1 expression, purification and seeded crystallization at UCSF and Cornell]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-follows-s4-p3",
+   "@type": [
+    "dew:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:s4",
+   "destination": "dew:p3",
+   "title": "[[STU - Mounting-condition test at ALS 2025-07-01 without humidity control]] -follows-> [[PRO - Low-dose room-temperature diffuse data collection with matched background]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-follows-s4-p4",
+   "@type": [
+    "dew:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:s4",
+   "destination": "dew:p4",
+   "title": "[[STU - Mounting-condition test at ALS 2025-07-01 without humidity control]] -follows-> [[PRO - DIALS Bragg processing then mdx2 diffuse integration, scaling and merging]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-follows-s5-p2",
+   "@type": [
+    "dew:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:s5",
+   "destination": "dew:p2",
+   "title": "[[STU - X-ray dose test at ALS: high-dose single crystal vs the ALS 2025-10-15 reference]] -follows-> [[PRO - Humidity-controlled harvesting into plastic capillaries]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-follows-s5-p3",
+   "@type": [
+    "dew:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:s5",
+   "destination": "dew:p3",
+   "title": "[[STU - X-ray dose test at ALS: high-dose single crystal vs the ALS 2025-10-15 reference]] -follows-> [[PRO - Low-dose room-temperature diffuse data collection with matched background]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-follows-s5-p4",
+   "@type": [
+    "dew:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:s5",
+   "destination": "dew:p4",
+   "title": "[[STU - X-ray dose test at ALS: high-dose single crystal vs the ALS 2025-10-15 reference]] -follows-> [[PRO - DIALS Bragg processing then mdx2 diffuse integration, scaling and merging]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-follows-s5-p5",
+   "@type": [
+    "dew:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:s5",
+   "destination": "dew:p5",
+   "title": "[[STU - X-ray dose test at ALS: high-dose single crystal vs the ALS 2025-10-15 reference]] -follows-> [[PRO - CC1/2, CC* and CC_lim statistics on anisotropic maps per resolution shell]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-follows-s6-p1",
+   "@type": [
+    "dew:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:s6",
+   "destination": "dew:p1",
+   "title": "[[STU - Crystal-size test: ALS 2026-04-23 small crystals vs CHESS 2025-11-05 large crystals]] -follows-> [[PRO - Mac1 expression, purification and seeded crystallization at UCSF and Cornell]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-follows-s6-p2",
+   "@type": [
+    "dew:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:s6",
+   "destination": "dew:p2",
+   "title": "[[STU - Crystal-size test: ALS 2026-04-23 small crystals vs CHESS 2025-11-05 large crystals]] -follows-> [[PRO - Humidity-controlled harvesting into plastic capillaries]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-follows-s6-p4",
+   "@type": [
+    "dew:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:s6",
+   "destination": "dew:p4",
+   "title": "[[STU - Crystal-size test: ALS 2026-04-23 small crystals vs CHESS 2025-11-05 large crystals]] -follows-> [[PRO - DIALS Bragg processing then mdx2 diffuse integration, scaling and merging]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-request_target-r1-c8",
+   "@type": [
+    "dew:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:r1",
+   "destination": "dew:c8",
+   "title": "[[REQ - Build diffuse maps from larger numbers of crystals]] -request_target-> [[CLM - Merging crystals in diverse orientations improves reciprocal-space coverage and diffuse signal-to-noise]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-request_target-r2-c11",
+   "@type": [
+    "dew:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:r2",
+   "destination": "dew:c11",
+   "title": "[[REQ - Determine how diffuse signal-to-noise propagates into the models derived from the maps]] -request_target-> [[CLM - Larger crystals are the most direct route to a stronger reproducible diffuse signal]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-request_target-r3-c12",
+   "@type": [
+    "dew:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:r3",
+   "destination": "dew:c12",
+   "title": "[[REQ - Establish the mechanism of dose-dependent diffuse changes across systems beyond Mac1]] -request_target-> [[CLM - Radiation damage leaves a measurable signature in the diffuse signal]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-request_target-r3-c14",
+   "@type": [
+    "dew:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:r3",
+   "destination": "dew:c14",
+   "title": "[[REQ - Establish the mechanism of dose-dependent diffuse changes across systems beyond Mac1]] -request_target-> [[CLM - Radiation damage may be concentrated in microscopic regions or defects of the crystal]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-request_target-r4-c1",
+   "@type": [
+    "dew:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:r4",
+   "destination": "dew:c1",
+   "title": "[[REQ - Run Mac1 perturbation experiments (ligand binding, temperature) against this baseline]] -request_target-> [[CLM - Diffuse maps from the East (CHESS) and West (ALS) teams agree within experimental error]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-request_target-r4-c2",
+   "@type": [
+    "dew:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:r4",
+   "destination": "dew:c2",
+   "title": "[[REQ - Run Mac1 perturbation experiments (ligand binding, temperature) against this baseline]] -request_target-> [[CLM - Diffuse maps are reproducible across repeated synchrotron visits by the same team]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-request_target-r5-c4",
+   "@type": [
+    "dew:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:r5",
+   "destination": "dew:c4",
+   "title": "[[REQ - Separate lattice from internal motion with GOODVIBES and 3D-ΔPDF, and test dynamics models against the maps]] -request_target-> [[CLM - The Mac1 maps match the quality of earlier lysozyme datasets, so the GOODVIBES/DISCOBALL workflow can be applied]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-is_grounded_in-e1-s1",
+   "@type": [
+    "dew:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e1",
+   "destination": "dew:s1",
+   "title": "[[EVD - The four diffuse maps look nearly identical: halos in integer planes, cloudy patterns in half-integer planes to 1.25 Å]] -is_grounded_in-> [[STU - Four high-quality multi-crystal Mac1 datasets, two per team]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-is_grounded_in-e2-s2",
+   "@type": [
+    "dew:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e2",
+   "destination": "dew:s2",
+   "title": "[[EVD - Isotropic profiles match across datasets: peak at ~3.3 Å, shoulder at ~2.2 Å, flat beyond 1.7 Å]] -is_grounded_in-> [[STU - Resolution-shell comparison of the four anisotropic diffuse maps]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-is_grounded_in-e3-s2",
+   "@type": [
+    "dew:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e3",
+   "destination": "dew:s2",
+   "title": "[[EVD - CC_pair closely approaches CC_lim for all six dataset pairs, with gaps only below ~6 Å]] -is_grounded_in-> [[STU - Resolution-shell comparison of the four anisotropic diffuse maps]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-is_grounded_in-e4-s2",
+   "@type": [
+    "dew:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e4",
+   "destination": "dew:s2",
+   "title": "[[EVD - CC* exceeds 0.85 from 6 to 2.2 Å and reaches 0.965-0.997 near 4 Å in all four datasets]] -is_grounded_in-> [[STU - Resolution-shell comparison of the four anisotropic diffuse maps]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-is_grounded_in-e5-s2",
+   "@type": [
+    "dew:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e5",
+   "destination": "dew:s2",
+   "title": "[[EVD - The main anisotropic peak sits at lower resolution than the 3.3 Å isotropic peak]] -is_grounded_in-> [[STU - Resolution-shell comparison of the four anisotropic diffuse maps]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-is_grounded_in-e6-s5",
+   "@type": [
+    "dew:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e6",
+   "destination": "dew:s5",
+   "title": "[[EVD - Low-dose halves: CC_pair matches CC_lim at all resolutions; high-dose halves fall below CC_lim from 10 to 5 Å]] -is_grounded_in-> [[STU - X-ray dose test at ALS: high-dose single crystal vs the ALS 2025-10-15 reference]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-is_grounded_in-e7-s1",
+   "@type": [
+    "dew:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e7",
+   "destination": "dew:s1",
+   "title": "[[EVD - Bragg resolution regularly exceeds 1.1 Å, DIALS mosaicity is 0.014° or lower, and merged completeness is 100%]] -is_grounded_in-> [[STU - Four high-quality multi-crystal Mac1 datasets, two per team]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-is_grounded_in-e8-s1",
+   "@type": [
+    "dew:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e8",
+   "destination": "dew:s1",
+   "title": "[[EVD - Outer-shell CC1/2 rises after merging in every dataset, e.g. 0.871, 0.942, 0.929 to 0.980 (ALS 2025-10-15)]] -is_grounded_in-> [[STU - Four high-quality multi-crystal Mac1 datasets, two per team]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-is_grounded_in-e9-s1",
+   "@type": [
+    "dew:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e9",
+   "destination": "dew:s1",
+   "title": "[[EVD - Unit cells are consistent within each team; ALS crystals have ~2.5% larger volume than CHESS crystals]] -is_grounded_in-> [[STU - Four high-quality multi-crystal Mac1 datasets, two per team]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-is_grounded_in-e10-s3",
+   "@type": [
+    "dew:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e10",
+   "destination": "dew:s3",
+   "title": "[[EVD - Single-crystal maps show a propeller pattern that fades in two-crystal merges and is absent with three crystals]] -is_grounded_in-> [[STU - Crystal-number analysis: every one-, two- and three-crystal merge of CHESS 2025-09-24]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-is_grounded_in-e11-s3",
+   "@type": [
+    "dew:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e11",
+   "destination": "dew:s3",
+   "title": "[[EVD - Signal reaches noise at 1.8-2 Å for single crystals and at 1.6 Å for the three-crystal merge]] -is_grounded_in-> [[STU - Crystal-number analysis: every one-, two- and three-crystal merge of CHESS 2025-09-24]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-is_grounded_in-e12-s4",
+   "@type": [
+    "dew:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e12",
+   "destination": "dew:s4",
+   "title": "[[EVD - Paratone-N without a sleeve: Wilson B 20.5 vs 13.1 Å², mosaicity 0.120° vs 0.014°, c 39.48 vs 40.20 Å]] -is_grounded_in-> [[STU - Mounting-condition test at ALS 2025-07-01 without humidity control]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-is_grounded_in-e13-s4",
+   "@type": [
+    "dew:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e13",
+   "destination": "dew:s4",
+   "title": "[[EVD - Sleeve plus oil: Wilson B back to 11.7-12.6 Å², but c is ~0.5 Å short and Santovac-5 mosaicity is 0.186°]] -is_grounded_in-> [[STU - Mounting-condition test at ALS 2025-07-01 without humidity control]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-is_grounded_in-e14-s4",
+   "@type": [
+    "dew:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e14",
+   "destination": "dew:s4",
+   "title": "[[EVD - Sleeve without oil: mosaicity 0.009° and both unit cell axes within ~0.1 Å of the references]] -is_grounded_in-> [[STU - Mounting-condition test at ALS 2025-07-01 without humidity control]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-is_grounded_in-e15-s1",
+   "@type": [
+    "dew:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e15",
+   "destination": "dew:s1",
+   "title": "[[EVD - Background collected 100-300 µm from the crystal on the sleeve matched well; background at the Kapton loop neck did not]] -is_grounded_in-> [[STU - Four high-quality multi-crystal Mac1 datasets, two per team]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-is_grounded_in-e16-s6",
+   "@type": [
+    "dew:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e16",
+   "destination": "dew:s6",
+   "title": "[[EVD - Small crystals (~100 µm) have 4- to 5-fold lower signal-to-noise and reach noise at ~2.1 Å vs ~1.25 Å]] -is_grounded_in-> [[STU - Crystal-size test: ALS 2026-04-23 small crystals vs CHESS 2025-11-05 large crystals]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-is_grounded_in-e17-s6",
+   "@type": [
+    "dew:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e17",
+   "destination": "dew:s6",
+   "title": "[[EVD - Small-crystal maps show the same principal features but are weaker and less sharply defined]] -is_grounded_in-> [[STU - Crystal-size test: ALS 2026-04-23 small crystals vs CHESS 2025-11-05 large crystals]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-is_grounded_in-e18-s5",
+   "@type": [
+    "dew:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e18",
+   "destination": "dew:s5",
+   "title": "[[EVD - Doubling exposure per frame raised mosaicity from 0.014° to 0.056° and Wilson B from 13.2 to 13.9 Å²]] -is_grounded_in-> [[STU - X-ray dose test at ALS: high-dose single crystal vs the ALS 2025-10-15 reference]]",
+   "creator": "dew:creator"
+  },
+  {
+   "@id": "dew:rel-is_grounded_in-e19-s5",
+   "@type": [
+    "dew:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "dew:e19",
+   "destination": "dew:s5",
+   "title": "[[EVD - High-dose diffuse changes sit mostly at low resolution and the pattern changes shape rather than rescaling]] -is_grounded_in-> [[STU - X-ray dose test at ALS: high-dose single crystal vs the ALS 2025-10-15 reference]]",
+   "creator": "dew:creator"
+  }
+ ]
+}
+</script>
+<script>
+(function(){
+  const doc = JSON.parse(document.getElementById('mira').textContent);
+  const CFG = JSON.parse(document.getElementById('cfg').textContent);
+  const G = doc['@graph'];
+  const TYPES = ['Question','Claim','Evidence','Study','Protocol','Request'];
+  const COLOR = {Question:'--q',Claim:'--c',Evidence:'--e',Study:'--s',Protocol:'--p',Request:'--r'};
+  const COL = {Question:0,Request:0,Claim:1,Evidence:2,Study:3,Protocol:4};
+  const REL = {
+    supports:{v:'--sup',dash:'',out:'Supports',inn:'Supported by'},
+    opposes:{v:'--opp',dash:'5 4',out:'Opposes',inn:'Opposed by'},
+    addresses:{v:'--add',dash:'',out:'Answers question',inn:'Answered by claim'},
+    is_grounded_in:{v:'--grd',dash:'2 3',out:'Comes from study',inn:'Produced evidence'},
+    follows:{v:'--fol',dash:'1 3',out:'Follows protocol',inn:'Used by study'},
+    request_target:{v:'--req',dash:'6 3',out:'Targets claim',inn:'Open requests'}
+  };
+  const types = t => [].concat(t||[]);
+  const byId = {}; G.forEach(o => byId[o['@id']] = o);
+  const nodes = [], edges = [];
+  G.forEach(o => {
+    const t = types(o['@type']);
+    const k = TYPES.find(x => t.includes('mira:'+x));
+    if (k) nodes.push({id:o['@id'], type:k, o});
+    else if (o.source && o.destination){
+      const r = Object.keys(REL).find(x => t.includes('mira:'+x));
+      if (r) edges.push({r, s:o.source, d:o.destination});
+    }
+  });
+  const N = {}; nodes.forEach(n => N[n.id] = n);
+  const label = n => n.o.title.replace(/^[A-Z]{3}\s*-\s*/,'');
+  const desc = n => (n.o.description && n.o.description.content) || '';
+  const isQuote = o => types(o['@type']).includes('Item') && o.isContainedBy && /#quote-/.test(o['@id']);
+  const isPdb = o => /10\.2210\/pdb/.test(o['@id']);
+  const refNum = o => { const m = /^Reference (\d+)/.exec(o.bibliographicCitation||''); return m ? +m[1] : 0; };
+  const isOpposed = id => edges.some(e=>e.d===id&&e.r==='opposes') && !edges.some(e=>e.d===id&&e.r==='supports');
+
+  // legend
+  const lg = document.getElementById('legend');
+  Object.entries(REL).forEach(([k,v]) => {
+    lg.insertAdjacentHTML('beforeend', `<span><svg viewBox="0 0 28 8"><line x1="0" y1="4" x2="28" y2="4" stroke="var(${v.v})" stroke-width="2" stroke-dasharray="${v.dash}"/></svg>${k.replace(/_/g,' ')}</span>`);
+  });
+
+  // columns
+  const colsEl = document.getElementById('cols');
+  const heads = [['Question','Questions'],['Claim','Claims'],['Evidence','Evidence'],['Study','Studies'],['Protocol','Protocols']];
+  const cols = heads.map(([t,h]) => {
+    const d = document.createElement('div'); d.className='col';
+    d.innerHTML = `<h2><i style="background:var(${COLOR[t]})"></i>${h}</h2>`;
+    colsEl.appendChild(d); return d;
+  });
+  const els = {};
+  function addNode(n){
+    const b = document.createElement('button'); b.type='button'; b.className='n'; b.style.setProperty('--k',`var(${COLOR[n.type]})`);
+    if (n.type==='Claim' && isOpposed(n.id)){ b.classList.add('opposed'); b.innerHTML = '<span class="tag">Tested hypothesis: opposed by evidence</span><br>'; }
+    b.appendChild(document.createTextNode(label(n)));
+    b.addEventListener('click', () => select(n.id));
+    b.addEventListener('mouseenter', () => hover(n.id, true));
+    b.addEventListener('mouseleave', () => hover(n.id, false));
+    els[n.id] = b; cols[COL[n.type]].appendChild(b);
+  }
+  nodes.filter(n=>n.type!=='Request').forEach(addNode);
+  const reqs = nodes.filter(n=>n.type==='Request');
+  if (reqs.length){ cols[0].insertAdjacentHTML('beforeend', `<h3><i style="width:9px;height:9px;border-radius:2px;display:inline-block;background:var(--r)"></i>Open requests</h3>`); reqs.forEach(addNode); }
+
+  // edges
+  const svg = document.getElementById('edges'), graph = document.getElementById('graph');
+  const NS = 'http://www.w3.org/2000/svg';
+  svg.innerHTML = '<defs>' + Object.entries(REL).map(([k,v]) =>
+    `<marker id="m-${k}" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L8,4 L0,8 z" fill="var(${v.v})"/></marker>`).join('') + '</defs>';
+  edges.forEach(e => {
+    const p = document.createElementNS(NS,'path'); p.setAttribute('class','edge');
+    p.setAttribute('stroke', `var(${REL[e.r].v})`); if (REL[e.r].dash) p.setAttribute('stroke-dasharray', REL[e.r].dash);
+    p.setAttribute('marker-end', `url(#m-${e.r})`); e.el = p; svg.appendChild(p);
+  });
+  function draw(){
+    const g = graph.getBoundingClientRect();
+    edges.forEach(e => {
+      const a = els[e.s].getBoundingClientRect(), b = els[e.d].getBoundingClientRect();
+      const ltr = a.left < b.left;
+      const x1 = (ltr ? a.right : a.left) - g.left, y1 = a.top + a.height/2 - g.top;
+      const x2 = (ltr ? b.left - 2 : b.right + 2) - g.left, y2 = b.top + b.height/2 - g.top;
+      const dx = (x2 - x1) * 0.5;
+      e.el.setAttribute('d', `M${x1},${y1} C${x1+dx},${y1} ${x2-dx},${y2} ${x2},${y2}`);
+    });
+  }
+  new ResizeObserver(draw).observe(graph);
+  window.addEventListener('resize', draw);
+
+  // chain tracing: walk left from the node toward questions, and right toward protocols
+  const nb = id => edges.filter(e=>e.s===id||e.d===id).map(e=>e.s===id?e.d:e.s);
+  function walk(start, dir){
+    const seen = new Set([start]), q = [start];
+    while (q.length){ const c = q.shift();
+      nb(c).forEach(x => { if (!seen.has(x) && Math.sign(COL[N[x].type]-COL[N[c].type])===dir){ seen.add(x); q.push(x); } }); }
+    return seen;
+  }
+  let current = null;
+  function select(id){
+    current = id;
+    const on = new Set([...walk(id,-1), ...walk(id,1)]);
+    graph.classList.add('dim');
+    Object.entries(els).forEach(([k,b]) => { b.classList.toggle('on', on.has(k)); b.classList.toggle('sel', k===id); });
+    edges.forEach(e => e.el.classList.toggle('on', on.has(e.s) && on.has(e.d) && (e.s===id||e.d===id||Math.abs(COL[N[e.s].type]-COL[N[e.d].type])===1)));
+    show(id);
+    showCites(id);
+  }
+  // citation card shown directly under the clicked node
+  function showCites(id){
+    document.querySelectorAll('.cites').forEach(x => x.remove());
+    const n = N[id], d = document.createElement('div');
+    d.className = 'cites'; d.style.setProperty('--k', `var(${COLOR[n.type]})`);
+    const refs = [].concat(n.o.references||[]).map(r => byId[r]).filter(Boolean);
+    const src = CFG.sources[CFG.nodeSource[id]] || {};
+    const main = [src.short || '', src.url || '', src.label || src.url || ''];
+    const loc = CFG.loc[id] || '';
+    let h = `<div class="ct">Citations</div><div class="cl"><b>${esc(main[0])}</b>, ${esc(loc)}<br><a href="${main[1]}" target="_blank" rel="noopener">${esc(main[2])}</a></div>`;
+    refs.filter(isQuote).forEach(q => { h += `<div class="cq">"${esc(q.content)}"</div>`; });
+    refs.filter(r => types(r['@type']).includes('SourceDocument')).forEach(w => {
+      const short = w.title;
+      h += `<div class="cl">${refNum(w) ? `[${refNum(w)}] ` : ''}${esc(short)}<br><a href="${esc(w['@id'])}" target="_blank" rel="noopener">${esc(w.identifier)}</a></div>`;
+    });
+    const pdbs = refs.filter(isPdb);
+    if (pdbs.length) h += `<div class="cl">PDB: ` + pdbs.map(p => `<a href="${esc(p['@id'])}" target="_blank" rel="noopener" title="${esc(p.identifier)}">${esc(p.title.replace('PDB entry ',''))}</a>`).join(' ') + '</div>';
+    d.innerHTML = h;
+    els[id].after(d);
+    requestAnimationFrame(draw);
+  }
+  function clear(){
+    document.querySelectorAll('.cites').forEach(x => x.remove()); requestAnimationFrame(draw);
+    current = null; graph.classList.remove('dim');
+    Object.values(els).forEach(b => b.classList.remove('on','sel'));
+    edges.forEach(e => e.el.classList.remove('on'));
+    document.getElementById('panel').innerHTML = '<p class="empty">Select a box to see its description, figures, sources and connections.</p>';
+  }
+  function hover(id, onFlag){
+    if (current) return;
+    graph.classList.toggle('hov', onFlag);
+    edges.forEach(e => e.el.classList.toggle('hl', onFlag && (e.s===id||e.d===id)));
+  }
+  document.getElementById('clear').addEventListener('click', clear);
+  document.addEventListener('keydown', ev => { if (ev.key==='Escape') clear(); });
+
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  function show(id){
+    const n = N[id], P = document.getElementById('panel');
+    P.style.setProperty('--k', `var(${COLOR[n.type]})`);
+    let h = `<span class="chip">${n.type}</span><h2>${esc(label(n))}</h2><p>${esc(desc(n))}</p>`;
+    if (n.type==='Claim' && isOpposed(id)) h += `<p class="warn">Every linked piece of evidence opposes this claim.</p>`;
+    if (n.o.bibliographicCitation) h += `<h4>Where this comes from</h4><p class="loc">${esc(n.o.bibliographicCitation)}</p>`;
+    const refs = [].concat(n.o.references||[]).map(r => byId[r]).filter(Boolean);
+    refs.filter(isQuote).forEach(q => {
+      const src = byId[q.isContainedBy] || {};
+      h += `<h4>Quote</h4><blockquote>"${esc(q.content)}"<cite>${esc(q.title)}. <a href="${esc(q.isContainedBy)}" target="_blank" rel="noopener">${esc(src.identifier || q.isContainedBy)}</a></cite></blockquote>`;
+    });
+    const works = refs.filter(r => types(r['@type']).includes('SourceDocument'));
+    if (works.length) h += '<h4>Cited works (DOI)</h4><ul>' + works.map(w =>
+      `<li class="doi">${refNum(w) ? `[${refNum(w)}] ` : ''}${esc(w.title)}<br><a href="${esc(w['@id'])}" target="_blank" rel="noopener">${esc(w.identifier)}</a></li>`).join('') + '</ul>';
+    const pdbs = refs.filter(isPdb);
+    if (pdbs.length) h += `<h4>PDB entries (DOI)</h4><p class="doi">` + pdbs.map(p =>
+      `<a href="${esc(p['@id'])}" target="_blank" rel="noopener">${esc(p.title.replace('PDB entry ',''))}</a>`).join(' &middot; ') + '</p>';
+    const groups = {};
+    edges.forEach(e => {
+      if (e.s===id) (groups[REL[e.r].out] ||= []).push(e.d);
+      if (e.d===id) (groups[REL[e.r].inn] ||= []).push(e.s);
+    });
+    Object.entries(groups).forEach(([g, ids]) => {
+      h += `<h4>${g}</h4><ul>` + ids.map(x => `<li><button type="button" data-id="${esc(x)}" style="--k:var(${COLOR[N[x].type]})">${esc(label(N[x]))}</button></li>`).join('') + '</ul>';
+    });
+    const figs = [].concat(n.o.observationBase||[]);
+    if (figs.length){
+      h += '<h4>Observation base (figures)</h4>';
+      figs.forEach(f => { const it = byId[f] || {};
+        h += `<figure><a href="${esc(f)}" target="_blank" rel="noopener"><img src="${esc(f)}" alt="${esc(it.content||'Figure')}" loading="lazy" onerror="this.remove()"></a><figcaption>${esc(it.content||'')} <a href="${esc(f)}" target="_blank" rel="noopener">Open</a></figcaption></figure>`; });
+    }
+    const src = [].concat(n.o.sourceDocument||[]);
+    if (src.length){
+      h += '<h4>Source documents</h4><ul>' + src.map(s => { const d = byId[s]||{};
+        return `<li class="doi">${esc(d.title||s)}<br><a href="${esc(s)}" target="_blank" rel="noopener">${esc(d.identifier||s)}</a></li>`; }).join('') + '</ul>';
+    }
+    h += `<h4>Node id</h4><p class="id">${esc(id)}</p>`;
+    P.innerHTML = h;
+    P.querySelectorAll('li button').forEach(b => b.addEventListener('click', () => { select(b.dataset.id); els[b.dataset.id].scrollIntoView({block:'nearest',inline:'nearest'}); }));
+  }
+
+  // works-cited and PDB lists, built from the graph
+  const citedBy = {};
+  nodes.forEach(n => [].concat(n.o.references||[]).forEach(r => (citedBy[r] ||= []).push(n.id)));
+  const goto = id => { select(id); els[id].scrollIntoView({block:'center',inline:'nearest',behavior:'smooth'}); };
+  const allWorks = G.filter(o => types(o['@type']).includes('SourceDocument') && refNum(o)).sort((a,b) => refNum(a)-refNum(b));
+  const ol = document.getElementById('reflist');
+  allWorks.forEach(w => {
+    const li = document.createElement('li');
+    li.innerHTML = `<span class="num">${refNum(w)}.</span>${esc(w.title)}. <a class="d" href="${esc(w['@id'])}" target="_blank" rel="noopener">${esc(w.identifier)}</a><span class="by">Cited by: </span>`;
+    const by = li.querySelector('.by');
+    (citedBy[w['@id']]||[]).forEach((id,i) => {
+      if (i) by.appendChild(document.createTextNode(', '));
+      const b = document.createElement('button'); b.type='button'; b.textContent = N[id].type+' '+id.split(':').pop().toUpperCase();
+      b.title = label(N[id]); b.addEventListener('click', () => goto(id)); by.appendChild(b);
+    });
+    ol.appendChild(li);
+  });
+  if (!allWorks.length) document.getElementById('refsec').remove();
+
+  document.getElementById('dl').addEventListener('click', () => {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(doc,null,2)], {type:'application/ld+json'}));
+    a.download = CFG.slug + '-mira-graph.jsonld'; a.click(); URL.revokeObjectURL(a.href);
+  });
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
