@@ -151,7 +151,7 @@ const other = (l, n) => l.s === n ? l.t : l.s;
 const side = (l, n) => (l.s === n) === (l.dir === 'in') ? -1 : 1;
 
 // ---- state
-let focus = null, sel = null, hover = null, hidden = new Set();
+let focus = null, sel = null, hover = null, hidden = new Set(['pdb']);  // PDB entries start hidden; the chip turns them on
 let vis = [], vlinks = [], alpha = 0;
 const T = {k:1, x:0, y:0};
 const cv = document.getElementById('cv'), ctx = cv.getContext('2d');
@@ -168,7 +168,7 @@ papers.forEach(p => vbtn(p.label, p));
 Object.entries(TYPES).forEach(([t, v]) => {
   const n = nodes.filter(x => x.type === t).length;
   if (!n || t === 'paper') return;
-  const b = document.createElement('button'); b.type = 'button'; b.className = 'pill type'; b.setAttribute('aria-pressed', 'true');
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'pill type'; b.setAttribute('aria-pressed', String(!hidden.has(t)));
   b.innerHTML = `<span class="dot" style="background:${v.c}"></span>${esc(v.l)} <span class="n">${n}</span>`;
   b.onclick = () => { hidden.has(t) ? hidden.delete(t) : hidden.add(t); b.setAttribute('aria-pressed', String(!hidden.has(t)));
     if (sel && hidden.has(sel.type)) sel = null; layout(false); panel(); };
