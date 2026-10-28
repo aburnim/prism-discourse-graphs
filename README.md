@@ -14,17 +14,26 @@ Prism research papers mapped as [MIRA](https://mira.science) discourse graphs. E
 
 > **Status:** draft extractions. They have not been reviewed by the paper authors.
 
+### Artifact graph
+**Live:** https://aburnim.github.io/prism-discourse-graphs/artifacts/
+
+An interactive network of what went into each paper (datasets, PDB entries, code, protocols, earlier blog posts) and what came out of it (released data and code, and the [Prism blog posts](https://prismscience.org/research) that describe or cite it). Papers that cite each other, or share an artifact, are linked. Pick a paper to see only its inputs (left) and outputs (right). Every link is typed with a [DataCite relationType](https://datacite-metadata-schema.readthedocs.io/en/4.5/properties/relatedidentifier/), and the page offers the same links as DataCite `relatedIdentifiers` JSON ([prism-artifacts-datacite.json](artifacts/prism-artifacts-datacite.json)).
+
 ## Repository layout
 
 ```
 index.html                                home page (generated)
 graphs/<slug>/index.html                  graph page (generated)
 graphs/<slug>/<slug>-mira-graph.jsonld    MIRA JSON-LD (generated)
+artifacts/index.html                      artifact graph page (generated)
+artifacts/prism-artifacts-datacite.json   DataCite relatedIdentifiers per paper (generated)
 specs/<slug>.json                         source of truth for each paper (edit these)
 scripts/build.py                          validates one spec and builds its page + JSON-LD
-scripts/build_site.py                     rebuilds every graph page and the home page
+scripts/build_artifacts.py                builds the artifact graph from every spec
+scripts/build_site.py                     rebuilds every graph page, the home page and the artifact graph
 assets/template.html                      graph page template
 assets/index-template.html                home page template
+assets/artifacts-template.html            artifact graph template
 docs/graph-spec.md                        spec format
 ```
 
@@ -38,7 +47,7 @@ conda activate prism-discourse-graphs
 ```
 
 ### Add a paper
-1. Write `specs/<slug>.json` following [docs/graph-spec.md](docs/graph-spec.md). Include a `card` block with `tag`, `date` (YYYY-MM-DD), `title` and `summary`.
+1. Write `specs/<slug>.json` following [docs/graph-spec.md](docs/graph-spec.md). Include a `card` block with `tag`, `date` (YYYY-MM-DD), `title` and `summary`, and an `artifacts` block listing the paper's inputs and outputs.
 2. Rebuild the site:
    ```bash
    python3 scripts/build_site.py .
@@ -65,6 +74,7 @@ GitHub Pages serves the `main` branch from the repository root. There is no buil
   - missing locations
   - over-long or duplicate quotes
 - **Viewer:** each graph page is a single self-contained HTML file with the JSON-LD embedded. It works offline except for web fonts.
+- **Artifact graph:** built from the same specs. The datasets, code and protocols are curated by hand in each spec's `artifacts` block. PDB entries come from `pdb_all` and the PDB IDs named on discourse graph nodes, and citations between Prism papers are detected from `refs`. Link types follow DataCite relationTypes, the same vocabulary used by [Scholix](http://www.scholix.org/) and close to PROV-O's `used` / `wasGeneratedBy`. The viewer is a hand-written canvas force layout with no external libraries.
 
 ## Contact
 Andy Burnim, Prism project, Astera Institute.

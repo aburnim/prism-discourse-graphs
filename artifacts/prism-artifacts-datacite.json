@@ -1,0 +1,628 @@
+[
+ {
+  "doi": "10.82153/2me0-hd96",
+  "titles": [
+   {
+    "title": "Supplying a user-defined bulk solvent map for refinement"
+   }
+  ],
+  "relatedIdentifiers": [
+   {
+    "relatedIdentifier": "https://github.com/jmholton/phenix_user_solvent",
+    "relatedIdentifierType": "URL",
+    "relationType": "IsSupplementedBy",
+    "resourceTypeGeneral": "Software"
+   },
+   {
+    "relatedIdentifier": "https://github.com/jmholton/bespoke_amber_restraints",
+    "relatedIdentifierType": "URL",
+    "relationType": "Requires",
+    "resourceTypeGeneral": "Software"
+   },
+   {
+    "relatedIdentifier": "https://github.com/Amber-MD/AmberClassic",
+    "relatedIdentifierType": "URL",
+    "relationType": "Requires",
+    "resourceTypeGeneral": "Software"
+   },
+   {
+    "relatedIdentifier": "https://prismscience.org/research/year-one-of-diffuse",
+    "relatedIdentifierType": "URL",
+    "relationType": "IsCitedBy",
+    "resourceTypeGeneral": "Text"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb1aho/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.82153/pff0-ck46",
+    "relatedIdentifierType": "DOI",
+    "relationType": "IsCitedBy",
+    "resourceTypeGeneral": "Text"
+   }
+  ]
+ },
+ {
+  "doi": "10.82153/hrpy-t681",
+  "titles": [
+   {
+    "title": "Iterating diffuse scattering protocols in parallel leads to reproducible, high-quality data from Mac1"
+   }
+  ],
+  "relatedIdentifiers": [
+   {
+    "relatedIdentifier": "10.5281/zenodo.17351307",
+    "relatedIdentifierType": "DOI",
+    "relationType": "IsDocumentedBy",
+    "resourceTypeGeneral": "Text"
+   },
+   {
+    "relatedIdentifier": "10.5281/zenodo.23487904",
+    "relatedIdentifierType": "DOI",
+    "relationType": "IsSupplementedBy",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.15785/SBGRID/1301",
+    "relatedIdentifierType": "DOI",
+    "relationType": "IsSupplementedBy",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.15785/SBGRID/1302",
+    "relatedIdentifierType": "DOI",
+    "relationType": "IsSupplementedBy",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.15785/SBGRID/1303",
+    "relatedIdentifierType": "DOI",
+    "relationType": "IsSupplementedBy",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.15785/SBGRID/1304",
+    "relatedIdentifierType": "DOI",
+    "relationType": "IsSupplementedBy",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.5281/zenodo.23487927",
+    "relatedIdentifierType": "DOI",
+    "relationType": "IsSupplementedBy",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.5281/zenodo.23487517",
+    "relatedIdentifierType": "DOI",
+    "relationType": "IsSupplementedBy",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.5281/zenodo.23487401",
+    "relatedIdentifierType": "DOI",
+    "relationType": "IsSupplementedBy",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "https://github.com/prism-science/diffuse-analysis-mac1-east-west",
+    "relatedIdentifierType": "URL",
+    "relationType": "IsSupplementedBy",
+    "resourceTypeGeneral": "Software"
+   },
+   {
+    "relatedIdentifier": "https://prismscience.org/research/allhands-january-2026",
+    "relatedIdentifierType": "URL",
+    "relationType": "Continues",
+    "resourceTypeGeneral": "Text"
+   },
+   {
+    "relatedIdentifier": "https://prismscience.org/research/reproducibility-stack",
+    "relatedIdentifierType": "URL",
+    "relationType": "Continues",
+    "resourceTypeGeneral": "Text"
+   },
+   {
+    "relatedIdentifier": "https://prismscience.org/research/year-one-of-diffuse",
+    "relatedIdentifierType": "URL",
+    "relationType": "Continues",
+    "resourceTypeGeneral": "Text"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb7twf/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.82153/jkxj-tw08",
+    "relatedIdentifierType": "DOI",
+    "relationType": "Cites",
+    "resourceTypeGeneral": "Text"
+   }
+  ]
+ },
+ {
+  "doi": "10.82153/pff0-ck46",
+  "titles": [
+   {
+    "title": "Recovering Conformational Heterogeneity from the Protein Data Bank at Scale: An Ensemble Dataset of over 60,000 Structures"
+   }
+  ],
+  "relatedIdentifiers": [
+   {
+    "relatedIdentifier": "https://www.wwpdb.org",
+    "relatedIdentifierType": "URL",
+    "relationType": "IsDerivedFrom",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "https://github.com/ExcitedStates/qfit-3.0",
+    "relatedIdentifierType": "URL",
+    "relationType": "Requires",
+    "resourceTypeGeneral": "Software"
+   },
+   {
+    "relatedIdentifier": "10.5281/zenodo.20801853",
+    "relatedIdentifierType": "DOI",
+    "relationType": "IsSupplementedBy",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "https://prismscience.org/research/goodvibes",
+    "relatedIdentifierType": "URL",
+    "relationType": "IsCitedBy",
+    "resourceTypeGeneral": "Text"
+   },
+   {
+    "relatedIdentifier": "https://prismscience.org/research/year-one-of-diffuse",
+    "relatedIdentifierType": "URL",
+    "relationType": "IsCitedBy",
+    "resourceTypeGeneral": "Text"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb7ccu/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.82153/2me0-hd96",
+    "relatedIdentifierType": "DOI",
+    "relationType": "Cites",
+    "resourceTypeGeneral": "Text"
+   },
+   {
+    "relatedIdentifier": "10.82153/jkxj-tw08",
+    "relatedIdentifierType": "DOI",
+    "relationType": "Cites",
+    "resourceTypeGeneral": "Text"
+   }
+  ]
+ },
+ {
+  "doi": "10.82153/jkxj-tw08",
+  "titles": [
+   {
+    "title": "sampleworks: A Modular Platform for Experimentally Guided Biomolecular Ensemble Generation"
+   }
+  ],
+  "relatedIdentifiers": [
+   {
+    "relatedIdentifier": "10.82153/hrpy-t681",
+    "relatedIdentifierType": "DOI",
+    "relationType": "IsCitedBy",
+    "resourceTypeGeneral": "Text"
+   },
+   {
+    "relatedIdentifier": "10.82153/pff0-ck46",
+    "relatedIdentifierType": "DOI",
+    "relationType": "IsCitedBy",
+    "resourceTypeGeneral": "Text"
+   },
+   {
+    "relatedIdentifier": "https://github.com/prism-science/sampleworks",
+    "relatedIdentifierType": "URL",
+    "relationType": "IsSupplementedBy",
+    "resourceTypeGeneral": "Software"
+   },
+   {
+    "relatedIdentifier": "10.5281/zenodo.20584989",
+    "relatedIdentifierType": "DOI",
+    "relationType": "IsSupplementedBy",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "https://github.com/aivant/peppr",
+    "relatedIdentifierType": "URL",
+    "relationType": "Requires",
+    "resourceTypeGeneral": "Software"
+   },
+   {
+    "relatedIdentifier": "https://prismscience.org/research/allhands-january-2026",
+    "relatedIdentifierType": "URL",
+    "relationType": "Continues",
+    "resourceTypeGeneral": "Text"
+   },
+   {
+    "relatedIdentifier": "https://prismscience.org/research/sampleworks",
+    "relatedIdentifierType": "URL",
+    "relationType": "Continues",
+    "resourceTypeGeneral": "Text"
+   },
+   {
+    "relatedIdentifier": "https://prismscience.org/research/science-in-the-open",
+    "relatedIdentifierType": "URL",
+    "relationType": "IsDescribedBy",
+    "resourceTypeGeneral": "Text"
+   },
+   {
+    "relatedIdentifier": "https://prismscience.org/research/ttpd-15",
+    "relatedIdentifierType": "URL",
+    "relationType": "IsCitedBy",
+    "resourceTypeGeneral": "Text"
+   },
+   {
+    "relatedIdentifier": "https://prismscience.org/research/taylor-roadmap",
+    "relatedIdentifierType": "URL",
+    "relationType": "IsCitedBy",
+    "resourceTypeGeneral": "Text"
+   },
+   {
+    "relatedIdentifier": "https://prismscience.org/research/goodvibes",
+    "relatedIdentifierType": "URL",
+    "relationType": "IsCitedBy",
+    "resourceTypeGeneral": "Text"
+   },
+   {
+    "relatedIdentifier": "https://prismscience.org/research/year-one-of-diffuse",
+    "relatedIdentifierType": "URL",
+    "relationType": "IsCitedBy",
+    "resourceTypeGeneral": "Text"
+   },
+   {
+    "relatedIdentifier": "https://prismscience.org/research/code-impact-predictions",
+    "relatedIdentifierType": "URL",
+    "relationType": "IsCitedBy",
+    "resourceTypeGeneral": "Text"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb8vpw/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb8vq1/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb8z76/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb9bn8/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb2i6h/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb2igt/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb2e7z/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb2p97/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb2qcv/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb3hyn/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb3i7m/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb3iac/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb6rp1/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb3dt2/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb4gmu/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb7avg/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb7p6m/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb5mhx/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb2xlw/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb2yl0/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb5i09/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb7z0e/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb2bwd/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb7frd/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb5rbr/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb2a26/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb5imv/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb3hvv/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb3l4p/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb3t94/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb5a71/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb5mc8/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb6b8x/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb6dur/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb6ni5/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb6ni6/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb6yvm/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb1vme/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb5sop/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb4ole/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.64898/2026.08.26.747373",
+    "relatedIdentifierType": "DOI",
+    "relationType": "IsCitedBy",
+    "resourceTypeGeneral": "Text"
+   }
+  ]
+ },
+ {
+  "doi": "10.64898/2026.08.26.747373",
+  "titles": [
+   {
+    "title": "WaterFlow: Prediction of Ordered Water Molecule Positions on Protein Structures"
+   }
+  ],
+  "relatedIdentifiers": [
+   {
+    "relatedIdentifier": "https://pdb-redo.eu/",
+    "relatedIdentifierType": "URL",
+    "relationType": "IsDerivedFrom",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "https://github.com/PDB-REDO/density-fitness",
+    "relatedIdentifierType": "URL",
+    "relationType": "Requires",
+    "resourceTypeGeneral": "Software"
+   },
+   {
+    "relatedIdentifier": "https://github.com/prism-science/WaterFlow",
+    "relatedIdentifierType": "URL",
+    "relationType": "IsSupplementedBy",
+    "resourceTypeGeneral": "Software"
+   },
+   {
+    "relatedIdentifier": "10.5281/zenodo.22046933",
+    "relatedIdentifierType": "DOI",
+    "relationType": "IsSupplementedBy",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "https://prismscience.org/research/water-analysis",
+    "relatedIdentifierType": "URL",
+    "relationType": "Continues",
+    "resourceTypeGeneral": "Text"
+   },
+   {
+    "relatedIdentifier": "https://prismscience.org/research/waterflow",
+    "relatedIdentifierType": "URL",
+    "relationType": "IsDescribedBy",
+    "resourceTypeGeneral": "Text"
+   },
+   {
+    "relatedIdentifier": "https://prismscience.org/research/year-one-of-diffuse",
+    "relatedIdentifierType": "URL",
+    "relationType": "IsCitedBy",
+    "resourceTypeGeneral": "Text"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb7der/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb3mye/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb4rkw/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb5ep1/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.2210/pdb5ep4/pdb",
+    "relatedIdentifierType": "DOI",
+    "relationType": "References",
+    "resourceTypeGeneral": "Dataset"
+   },
+   {
+    "relatedIdentifier": "10.82153/jkxj-tw08",
+    "relatedIdentifierType": "DOI",
+    "relationType": "Cites",
+    "resourceTypeGeneral": "Text"
+   }
+  ]
+ }
+]

@@ -21,9 +21,10 @@ Full worked example: `specs/sampleworks.json`.
 | `nav` | no | `[{label, url}]` extra top-bar links. "Paper" and "MIRA schema" are added automatically |
 | `figures` | no | `{key: {url, caption}}` figure image URLs. Caption is paraphrased |
 | `refs` | no | `{key: {num, title, doi}}` works the paper cites. `num` = number in the paper's reference list. Use `url` instead of `doi` only when no DOI exists |
-| `pdb_all` | no | Every PDB ID in the paper's dataset. Stored in the JSON-LD only; per-node PDB links come from `node.pdb` |
+| `pdb_all` | no | Every PDB ID in the paper's dataset. Stored in the JSON-LD only; per-node PDB links come from `node.pdb`. Also added to the artifact graph as inputs |
 | `quotes` | no | `{nodeId: {source, text, where}}`. Max one per source, under 15 words, verbatim |
 | `resources` | no | `[{label, url, note}]` non-DOI resources listed at the bottom |
+| `artifacts` | no | Inputs and outputs for the artifact graph. See below. Not used by the discourse graph page |
 | `nodes` | yes | See below. Order within each type = order in the column |
 | `edges` | yes | `[[relation, sourceId, destinationId], ...]` |
 
@@ -32,6 +33,18 @@ Full worked example: `specs/sampleworks.json`.
 
 ### `sources` entry
 `{short, url, label, title}`. Example: `{"short": "sampleworks README", "url": "https://github.com/org/repo", "label": "github.com/org/repo", "title": "org/repo (GitHub)"}`. Add `doi` if it has one.
+
+### `artifacts` entry
+`{type, label, doi and/or url, direction, relation, note}`, read by `scripts/build_artifacts.py`. Example:
+`{"type": "dataset", "label": "WaterFlow supplementary data", "doi": "10.5281/zenodo.22046933", "direction": "output", "relation": "IsSupplementedBy", "note": "supplementary data for the preprint"}`
+
+- `type`: `dataset`, `code`, `protocol` (protocols and logbooks) or `post` (blogs, posts, talks). PDB entries come from `pdb_all` and each node's `pdb`, so do not list them here.
+- `doi` (bare) or `url`, or both. Artifacts with the same DOI or URL in several specs merge into one node.
+- `direction`: `input` (the paper used it) or `output` (the paper released it, or it came after).
+- `relation`: a [DataCite relationType](https://datacite-metadata-schema.readthedocs.io/en/4.5/properties/relatedidentifier/) from the paper's point of view.
+  - Inputs: `References`, `Requires` (software it ran), `IsDerivedFrom` (source data), `IsDocumentedBy` (logbooks), `Cites`, `Continues` (earlier blog posts about the same work).
+  - Outputs: `IsSupplementedBy` (released data or code), `IsSourceOf`, `IsDescribedBy` (posts that announce or explain the paper), `IsCitedBy` (later posts that link to it).
+- Citations between Prism papers are added automatically when a `refs` DOI matches another spec's `paper.doi`.
 
 ## Nodes
 
