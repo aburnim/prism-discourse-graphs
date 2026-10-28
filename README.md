@@ -6,6 +6,7 @@ Prism research papers mapped as [MIRA](https://mira.science) discourse graphs. E
 
 | Paper | Graph | JSON-LD |
 |---|---|---|
+| Wankowicz 2026, *qFit at scale* ([doi:10.82153/pff0-ck46](https://doi.org/10.82153/pff0-ck46)) | [graphs/qfit-at-scale/](https://aburnim.github.io/prism-discourse-graphs/graphs/qfit-at-scale/) | [qfit-at-scale-mira-graph.jsonld](graphs/qfit-at-scale/qfit-at-scale-mira-graph.jsonld) |
 | Zielinski et al. 2026, *Mac1 diffuse scattering East-West* ([doi:10.82153/hrpy-t681](https://doi.org/10.82153/hrpy-t681)) | [graphs/diffuse-east-west/](https://aburnim.github.io/prism-discourse-graphs/graphs/diffuse-east-west/) | [diffuse-east-west-mira-graph.jsonld](graphs/diffuse-east-west/diffuse-east-west-mira-graph.jsonld) |
 | Chrispens et al. 2026, *sampleworks* ([doi:10.82153/jkxj-tw08](https://doi.org/10.82153/jkxj-tw08)) | [graphs/sampleworks/](https://aburnim.github.io/prism-discourse-graphs/graphs/sampleworks/) | [sampleworks-mira-graph.jsonld](graphs/sampleworks/sampleworks-mira-graph.jsonld) |
 
