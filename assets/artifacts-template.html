@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prism artifact graph</title>
+<meta name="description" content="The datasets, PDB entries, code, protocols and blog posts that went into each Prism paper, and the ones that came out of it.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12L18 5M6 12l12 7' stroke='%239863ff' stroke-width='2.4' fill='none'/%3E%3Cg fill='%239863ff'%3E%3Ccircle cx='18' cy='5' r='3.4'/%3E%3Ccircle cx='6' cy='12' r='3.4'/%3E%3Ccircle cx='18' cy='19' r='3.4'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --navy:#0e1530; --navy-2:#141c3d; --ink-on-dark:#eceaf6; --muted-on-dark:#a9acc8; --brand:#9863ff; --brand-soft:#c7b4ff;
+  --line:rgba(255,255,255,.13); --glass:rgba(255,255,255,.045);
+  --sans:"Inter Tight","Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+  --mono:"JetBrains Mono","IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{background:var(--navy)}
+body{margin:0;min-height:100vh;color:var(--ink-on-dark);font:16px/1.5 var(--sans);
+  background:radial-gradient(1100px 520px at 88% -8%,rgba(120,90,240,.38),transparent 62%),
+             radial-gradient(900px 480px at 0% 108%,rgba(70,90,230,.32),transparent 60%),
+             linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1240px;margin:0 auto;padding:24px 24px 0}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink-on-dark);text-decoration:none}
+.brand svg{width:34px;height:34px}
+.brand span{font-size:30px;letter-spacing:-.02em}
+.toplinks{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.toplink{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-on-dark);text-decoration:none;
+  padding:10px 14px;border:1px solid rgba(255,255,255,.16);border-radius:10px;background:rgba(255,255,255,.04)}
+.toplink:hover{background:rgba(255,255,255,.1)}
+header{max-width:1240px;margin:0 auto;padding:56px 24px 28px}
+.eyebrow{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--brand-soft);margin:0 0 14px}
+h1{font-size:clamp(36px,5.6vw,64px);line-height:1.02;font-weight:500;letter-spacing:-.04em;margin:0 0 16px}
+h1 .grad{background:linear-gradient(90deg,var(--brand),var(--brand-soft));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:18px;color:var(--muted-on-dark);max-width:760px;margin:0}
+main{max-width:1240px;margin:0 auto;padding:0 24px 56px}
+.bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.bar .lbl{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted-on-dark);margin-right:4px;min-width:44px}
+.pill{font:500 12px var(--mono);letter-spacing:.04em;color:var(--ink-on-dark);background:var(--glass);border:1px solid var(--line);
+  border-radius:999px;padding:6px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.pill:hover{background:rgba(255,255,255,.1)}
+.pill[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+.pill.type[aria-pressed="false"]{opacity:.45}
+.pill.type[aria-pressed="true"]{background:var(--glass);border-color:rgba(255,255,255,.3)}
+.pill:focus-visible,.btn:focus-visible,.item:focus-visible{outline:2px solid var(--brand-soft);outline-offset:2px}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+.pill .n{color:var(--muted-on-dark)}
+.stage{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;margin-top:14px}
+.canvas-wrap{position:relative;height:clamp(520px,72vh,860px);border:1px solid var(--line);border-radius:22px;overflow:hidden;
+  background:radial-gradient(800px 500px at 50% 45%,rgba(152,99,255,.08),transparent 70%),rgba(4,8,24,.35)}
+canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+canvas.dragging{cursor:grabbing}
+.sides{position:absolute;inset:14px 18px auto;display:none;justify-content:space-between;pointer-events:none;
+  font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted-on-dark)}
+.sides.on{display:flex}
+.zoom{position:absolute;right:12px;bottom:12px;display:flex;flex-direction:column;gap:6px}
+.zoom button{width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:rgba(14,21,48,.85);color:var(--ink-on-dark);
+  font:500 16px var(--mono);cursor:pointer;display:grid;place-items:center}
+.zoom button:hover{background:rgba(152,99,255,.35)}
+.zoom svg{width:15px;height:15px}
+.panel{border:1px solid var(--line);border-radius:22px;background:var(--glass);padding:22px;height:clamp(520px,72vh,860px);overflow:auto}
+.panel h2{font-size:24px;line-height:1.15;font-weight:500;letter-spacing:-.02em;margin:10px 0 8px;overflow-wrap:anywhere}
+.panel p{color:var(--muted-on-dark);margin:0 0 12px;font-size:15px}
+.panel .meta{font:12px/1.5 var(--mono);color:var(--muted-on-dark)}
+.tchip{display:inline-flex;align-items:center;gap:7px;font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted-on-dark)}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
+.btn{font:500 12px var(--mono);letter-spacing:.04em;color:var(--ink-on-dark);text-decoration:none;border:1px solid var(--line);
+  background:rgba(255,255,255,.06);border-radius:9px;padding:8px 11px;cursor:pointer}
+.btn:hover{background:rgba(255,255,255,.12)}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn.primary:hover{filter:brightness(1.1)}
+.sec{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--brand-soft);margin:20px 0 8px;
+  padding-top:14px;border-top:1px solid var(--line)}
+.item{display:flex;align-items:flex-start;gap:9px;width:100%;text-align:left;background:none;border:0;color:var(--ink-on-dark);
+  font:14px/1.35 var(--sans);padding:6px 6px;border-radius:8px;cursor:pointer}
+.item:hover{background:rgba(255,255,255,.07)}
+.item .dot{margin-top:5px}
+.item small{display:block;font:11px var(--mono);color:var(--muted-on-dark)}
+.pdbs{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0 6px}
+.pdbs button{font:500 11px var(--mono);color:var(--ink-on-dark);background:rgba(94,168,255,.13);border:1px solid rgba(94,168,255,.35);
+  border-radius:6px;padding:3px 6px;cursor:pointer}
+.pdbs button:hover{background:rgba(94,168,255,.3)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0 4px}
+.stats div{border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}
+.stats b{display:block;font-size:24px;font-weight:500}
+.stats span{font:11px var(--mono);color:var(--muted-on-dark);text-transform:uppercase;letter-spacing:.08em}
+.how{margin:0;padding-left:18px;color:var(--muted-on-dark);font-size:14px}
+.how li{margin:0 0 6px}
+footer{max-width:1240px;margin:0 auto;padding:0 24px 40px;font-size:13px;color:var(--muted-on-dark)}
+footer a{color:var(--brand-soft)}
+@media (max-width:900px){.stage{grid-template-columns:1fr}.panel{height:auto;max-height:none}.canvas-wrap{height:62vh;min-height:420px}}
+@media (max-width:600px){.top,header,main,footer{padding-left:16px;padding-right:16px}header{padding-top:36px}.brand span{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="top">
+  <a class="brand" href="https://prismscience.org" target="_blank" rel="noopener" aria-label="Prism">
+    <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" fill="#9863ff"/><polygon points="96,6 96,68 29.7,68" fill="#0e1530"/><polygon points="4,68 29.7,68 4,92" fill="#0e1530"/></svg>
+    <span>Prism</span>
+  </a>
+  <div class="toplinks">
+    <a class="toplink" href="../index.html">Discourse graphs</a>
+    <a class="toplink" href="prism-artifacts-datacite.json" download>DataCite JSON &#8595;</a>
+  </div>
+</div>
+<header>
+  <p class="eyebrow">Prism research outputs</p>
+  <h1><span class="grad">Artifact graph</span> for Prism</h1>
+  <p class="lede">What went into each Prism paper and what came out of it: datasets, PDB entries, code, protocols and blog posts. Shared artifacts connect the papers.</p>
+</header>
+<main>
+  <div class="bar" id="views"><span class="lbl">View</span></div>
+  <div class="bar" id="types"><span class="lbl">Show</span></div>
+  <div class="stage">
+    <div class="canvas-wrap">
+      <canvas id="cv" aria-label="Network of Prism papers and their input and output artifacts. Use the panel to browse the same information as a list."></canvas>
+      <div class="sides" id="sides"><span>&#8592; Inputs</span><span>Outputs &#8594;</span></div>
+      <div class="zoom">
+        <button type="button" id="zin" aria-label="Zoom in">+</button>
+        <button type="button" id="zout" aria-label="Zoom out">&#8722;</button>
+        <button type="button" id="zfit" aria-label="Fit to view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+      </div>
+    </div>
+    <aside class="panel" id="panel" aria-live="polite"></aside>
+  </div>
+</main>
+<footer>Links are typed with <a href="https://datacite-metadata-schema.readthedocs.io/en/4.5/properties/relatedidentifier/" target="_blank" rel="noopener">DataCite relation types</a>, from the paper's point of view. Draft: built from the discourse graph specs and not reviewed by the authors.</footer>
+<script type="application/json" id="data">/*__DATA__*/</script>
+<script>
+(() => {
+const D = JSON.parse(document.getElementById('data').textContent);
+const TYPES = {
+  paper:    {c:'#9863ff', l:'Papers'},
+  dataset:  {c:'#3ec9a7', l:'Datasets'},
+  pdb:      {c:'#5ea8ff', l:'PDB entries'},
+  code:     {c:'#f2b84b', l:'Code'},
+  protocol: {c:'#ff8a7a', l:'Protocols + logs'},
+  post:     {c:'#e58ad6', l:'Posts + talks'},
+};
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+const nodes = D.nodes.map(n => ({...n, x:0, y:0, vx:0, vy:0, adj:[]}));
+const byId = new Map(nodes.map(n => [n.id, n]));
+const links = D.links.map(l => ({...l, s:byId.get(l.s), t:byId.get(l.t)}));
+links.forEach(l => { l.s.adj.push(l); l.t.adj.push(l); });
+nodes.forEach(n => n.r = n.type === 'paper' ? 13 : 4 + Math.min(5, Math.sqrt(n.adj.length) * 1.7));
+const papers = nodes.filter(n => n.type === 'paper').sort((a, b) => b.date.localeCompare(a.date));
+const other = (l, n) => l.s === n ? l.t : l.s;
+// Which side of n the neighbour across link l sits on: -1 upstream (input), +1 downstream (output)
+const side = (l, n) => (l.s === n) === (l.dir === 'in') ? -1 : 1;
+
+// ---- state
+let focus = null, sel = null, hover = null, hidden = new Set();
+let vis = [], vlinks = [], alpha = 0;
+const T = {k:1, x:0, y:0};
+const cv = document.getElementById('cv'), ctx = cv.getContext('2d');
+let W = 0, H = 0, dpr = 1;
+
+// ---- controls
+const views = document.getElementById('views'), types = document.getElementById('types');
+const vbtn = (label, n) => {
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'pill'; b.textContent = label;
+  b.onclick = () => setFocus(n); b._n = n; views.appendChild(b);
+};
+vbtn('All papers', null);
+papers.forEach(p => vbtn(p.label, p));
+Object.entries(TYPES).forEach(([t, v]) => {
+  const n = nodes.filter(x => x.type === t).length;
+  if (!n || t === 'paper') return;
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'pill type'; b.setAttribute('aria-pressed', 'true');
+  b.innerHTML = `<span class="dot" style="background:${v.c}"></span>${esc(v.l)} <span class="n">${n}</span>`;
+  b.onclick = () => { hidden.has(t) ? hidden.delete(t) : hidden.add(t); b.setAttribute('aria-pressed', String(!hidden.has(t)));
+    if (sel && hidden.has(sel.type)) sel = null; layout(false); panel(); };
+  types.appendChild(b);
+});
+const syncViews = () => [...views.querySelectorAll('.pill')].forEach(b => b.setAttribute('aria-pressed', String(b._n === focus)));
+
+// ---- layout + simulation
+function layout(reseed) {
+  if (focus) {
+    const vs = new Set([focus]);
+    focus.adj.forEach(l => { const o = other(l, focus); if (!hidden.has(o.type)) vs.add(o); });
+    vis = [...vs];
+  } else vis = nodes.filter(n => !hidden.has(n.type));
+  const vset = new Set(vis);
+  vlinks = links.filter(l => vset.has(l.s) && vset.has(l.t));
+  if (reseed) seed();
+  for (let i = 0; i < 260; i++) tick(Math.max(.02, 1 - i / 260));
+  alpha = .08; fit(); kick();
+}
+function seed() {
+  if (focus) {
+    // local view: inputs fan out on the left, outputs on the right
+    focus.x = focus.y = 0;
+    const L = [], R = [], order = Object.keys(TYPES);
+    focus.adj.forEach(l => { const o = other(l, focus); if (!hidden.has(o.type)) (side(l, focus) < 0 ? L : R).push(o); });
+    const fan = (arr, mid, rad, maxSpan) => {
+      arr.sort((a, b) => order.indexOf(a.type) - order.indexOf(b.type) || a.label.localeCompare(b.label));
+      const m = arr.length, span = Math.min(maxSpan, m * .42);
+      arr.forEach((n, i) => { const t = mid + (m > 1 ? (i / (m - 1) - .5) * span : 0);
+        n.tx = Math.cos(t) * rad; n.ty = Math.sin(t) * rad; n.x = n.tx; n.y = n.ty; });
+    };
+    // many PDB entries go on an outer ring so the other artifacts stay readable
+    [[L, Math.PI], [R, 0]].forEach(([arr, mid]) => {
+      const ring = arr.filter(n => n.type === 'pdb').length > 8;
+      const pdb = ring ? arr.filter(n => n.type === 'pdb') : [], main = ring ? arr.filter(n => n.type !== 'pdb') : arr;
+      fan(main, mid, 220, Math.PI * .8);
+      fan(pdb, mid, main.length ? 340 : 220, Math.PI * .9);
+    });
+  } else {
+    papers.forEach((p, i) => { const a = i / papers.length * 2 * Math.PI; p.x = Math.cos(a) * 260; p.y = Math.sin(a) * 200; });
+    nodes.forEach(n => { if (n.type === 'paper') return;
+      const p = other(n.adj[0], n), a = Math.random() * 2 * Math.PI;
+      n.x = p.x + Math.cos(a) * 60; n.y = p.y + Math.sin(a) * 60; });
+  }
+  nodes.forEach(n => n.vx = n.vy = 0);
+}
+function tick(a) {
+  const R = focus ? 300 : 900;
+  for (let i = 0; i < vis.length; i++) for (let j = i + 1; j < vis.length; j++) {
+    const p = vis[i], q = vis[j]; let dx = q.x - p.x, dy = q.y - p.y, d2 = dx * dx + dy * dy;
+    if (d2 < 1) { dx = Math.random() - .5; dy = Math.random() - .5; d2 = 1; }
+    if (d2 > 250000) continue;
+    const f = R * a / d2 * ((p.type === 'paper') + (q.type === 'paper') + 1);
+    dx *= f / Math.sqrt(d2); dy *= f / Math.sqrt(d2);
+    p.vx -= dx; p.vy -= dy; q.vx += dx; q.vy += dy;
+  }
+  if (!focus) vlinks.forEach(l => {
+    const pp = l.s.type === 'paper' && l.t.type === 'paper';
+    const L = pp ? 210 : 46 + l.t.r * 2;
+    const dx = l.t.x - l.s.x, dy = l.t.y - l.s.y, d = Math.sqrt(dx * dx + dy * dy) || 1;
+    const k = (d - L) / d * (pp ? .03 : .12) * a, wS = l.s.type === 'paper' && !pp ? .15 : .5;
+    l.s.vx += dx * k * wS; l.s.vy += dy * k * wS; l.t.vx -= dx * k * (1 - wS); l.t.vy -= dy * k * (1 - wS);
+  });
+  vis.forEach(n => {
+    if (focus) {
+      if (n === focus) { n.vx -= n.x * .3; n.vy -= n.y * .3; }
+      else { n.vx += (n.tx - n.x) * .15 * a; n.vy += (n.ty - n.y) * .15 * a; }
+    } else { n.vx -= n.x * .006 * a; n.vy -= n.y * .009 * a; }
+    if (n.fx != null) { n.x = n.fx; n.y = n.fy; n.vx = n.vy = 0; return; }
+    n.vx *= .55; n.vy *= .55; n.x += n.vx; n.y += n.vy;
+  });
+}
+let raf = 0;
+function kick(a) { if (a) alpha = Math.max(alpha, a); if (!raf) raf = requestAnimationFrame(frame); }
+function frame() {
+  raf = 0;
+  if (alpha > .004) { tick(alpha); alpha *= .97; }
+  draw();
+  if (alpha > .004) raf = requestAnimationFrame(frame);
+}
+function fit() {
+  if (!vis.length || !W) return;
+  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+  vis.forEach(n => { x0 = Math.min(x0, n.x - n.r); x1 = Math.max(x1, n.x + n.r); y0 = Math.min(y0, n.y - n.r); y1 = Math.max(y1, n.y + n.r + 18); });
+  // room for labels, which are drawn at screen size (beside the nodes in focus mode)
+  const px = focus ? Math.min(230, W * .26) : Math.min(150, W * .18), py = 60;
+  T.k = Math.min((W - px * 2) / Math.max(1, x1 - x0), (H - py * 2) / Math.max(1, y1 - y0), focus ? 1.4 : 2.2);
+  T.x = W / 2 - (x0 + x1) / 2 * T.k; T.y = H / 2 - (y0 + y1) / 2 * T.k;
+}
+
+// ---- drawing
+const lit = () => { const f = hover || sel; if (!f) return null;
+  const s = new Set([f]); f.adj.forEach(l => s.add(other(l, f))); return s; };
+function draw() {
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+  ctx.save(); ctx.translate(T.x, T.y); ctx.scale(T.k, T.k);
+  const L = lit(), f = hover || sel, arrows = focus || T.k > .7;
+  vlinks.forEach(l => {
+    const on = f && (l.s === f || l.t === f), dim = L && !on;
+    ctx.globalAlpha = dim ? .06 : on ? .95 : .32;
+    ctx.strokeStyle = on ? TYPES[other(l, f).type].c : '#b9bcdc';
+    ctx.lineWidth = (on ? 1.8 : 1) / T.k;
+    // provenance flows input -> paper -> output
+    const [a, b] = l.dir === 'in' ? [l.t, l.s] : [l.s, l.t];
+    const dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 1, ux = dx / d, uy = dy / d;
+    const ex = b.x - ux * (b.r + 2 / T.k), ey = b.y - uy * (b.r + 2 / T.k);
+    ctx.beginPath(); ctx.moveTo(a.x + ux * a.r, a.y + uy * a.r); ctx.lineTo(ex, ey); ctx.stroke();
+    if (arrows) {
+      const h = (on ? 7 : 5.5) / T.k;
+      ctx.fillStyle = ctx.strokeStyle; ctx.beginPath(); ctx.moveTo(ex, ey);
+      ctx.lineTo(ex - ux * h - uy * h * .55, ey - uy * h + ux * h * .55);
+      ctx.lineTo(ex - ux * h + uy * h * .55, ey - uy * h - ux * h * .55); ctx.fill();
+    }
+  });
+  vis.forEach(n => {
+    ctx.globalAlpha = L && !L.has(n) ? .14 : 1;
+    ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, 2 * Math.PI); ctx.fillStyle = TYPES[n.type].c; ctx.fill();
+    if (n.type === 'paper') { ctx.lineWidth = 2.5 / T.k; ctx.strokeStyle = 'rgba(255,255,255,.85)'; ctx.stroke(); }
+    if (n === sel || n === focus) { ctx.beginPath(); ctx.arc(n.x, n.y, n.r + 4 / T.k, 0, 2 * Math.PI);
+      ctx.lineWidth = 1.6 / T.k; ctx.strokeStyle = '#fff'; ctx.stroke(); }
+  });
+  ctx.restore();
+  // labels in screen space so they stay crisp at any zoom
+  ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+  const crowded = vis.filter(n => n.type === 'pdb').length > 12;
+  const show = n => {
+    if (n.type === 'paper' || n === f || T.k > 1.8) return true;
+    if (crowded && n.type === 'pdb' && T.k <= 1.3) return false;
+    return !!focus || !!(L && L.has(n));
+  };
+  vis.forEach(n => {
+    if (!show(n)) return;
+    const dim = L && !L.has(n);
+    if (dim && n.type !== 'paper') return;
+    // focus mode: label beside the node, away from the centre; otherwise centred below it
+    const beside = focus && n !== focus, s = n.x < focus?.x ? -1 : 1;
+    const sx = n.x * T.k + T.x + (beside ? s * (n.r * T.k + 6) : 0);
+    const sy = beside ? n.y * T.k + T.y : (n.y + n.r) * T.k + T.y + 5;
+    ctx.textAlign = beside ? (s < 0 ? 'right' : 'left') : 'center';
+    ctx.textBaseline = beside ? 'middle' : 'top';
+    const max = W < 520 ? (beside ? 14 : 20) : (beside ? 32 : 38);
+    let t = n.label; if (t.length > max) t = t.slice(0, max - 2) + '…';
+    ctx.font = n.type === 'paper' ? '600 13px "Inter Tight", sans-serif' : '500 11px "JetBrains Mono", monospace';
+    ctx.globalAlpha = dim ? .3 : 1;
+    ctx.lineWidth = 4; ctx.strokeStyle = 'rgba(10,14,34,.9)'; ctx.lineJoin = 'round'; ctx.strokeText(t, sx, sy);
+    ctx.fillStyle = n.type === 'paper' ? '#fff' : '#d9dbef'; ctx.fillText(t, sx, sy);
+  });
+  ctx.globalAlpha = 1;
+}
+
+// ---- panel
+const P = document.getElementById('panel');
+const relWord = {References:'references', Requires:'requires', IsDerivedFrom:'derived from', IsDocumentedBy:'documented by', Cites:'cites', Continues:'continues',
+  IsSupplementedBy:'supplemented by', IsSourceOf:'source of', IsDescribedBy:'described by', IsCitedBy:'cited by'};
+function list(n, s) {
+  const ls = n.adj.filter(l => side(l, n) === s && !hidden.has(other(l, n).type));
+  if (!ls.length) return '';
+  const head = n.type === 'paper' ? (s < 0 ? 'Inputs' : 'Outputs') : (s < 0 ? 'Produced by' : 'Used by');
+  const pdbs = ls.filter(l => other(l, n).type === 'pdb'), rest = ls.filter(l => other(l, n).type !== 'pdb');
+  const order = Object.keys(TYPES);
+  rest.sort((a, b) => order.indexOf(other(a, n).type) - order.indexOf(other(b, n).type));
+  let h = `<div class="sec">${head} (${ls.length})</div>`;
+  h += rest.map(l => { const o = other(l, n), rel = l.s === n ? l.rel : (l.rel === 'Cites' ? 'IsCitedBy' : l.rel);
+    return `<button class="item" type="button" data-id="${esc(o.id)}"><span class="dot" style="background:${TYPES[o.type].c}"></span>
+      <span>${esc(o.label)}<small>${esc(relWord[rel] || rel)}</small></span></button>`; }).join('');
+  if (pdbs.length) h += `<div class="item" style="cursor:default"><span class="dot" style="background:${TYPES.pdb.c}"></span><span>${pdbs.length} PDB entr${pdbs.length > 1 ? 'ies' : 'y'}<small>references</small></span></div>
+    <div class="pdbs">${pdbs.map(l => { const o = other(l, n); return `<button type="button" data-id="${esc(o.id)}">${esc(o.label.replace('PDB ', ''))}</button>`; }).join('')}</div>`;
+  return h;
+}
+function panel() {
+  const n = sel || focus;
+  if (!n) {
+    const arts = nodes.length - papers.length;
+    P.innerHTML = `<span class="tchip">Overview</span><h2>${papers.length} papers, ${arts} artifacts</h2>
+      <p>Each purple node is a Prism paper. The artifacts it used and the ones it released hang off it. Papers that cite each other are linked directly.</p>
+      <div class="stats"><div><b>${papers.length}</b><span>papers</span></div><div><b>${arts}</b><span>artifacts</span></div><div><b>${links.length}</b><span>links</span></div></div>
+      <div class="sec">How to read it</div>
+      <ul class="how"><li>Arrows follow provenance: input to paper to output.</li><li>Hover a node to light up its neighbours.</li>
+      <li>Click a node for details. Double-click a paper, or pick one under View, to see only its inputs and outputs.</li>
+      <li>Scroll to zoom, drag to pan, drag a node to move it.</li></ul>`;
+    return;
+  }
+  const ty = TYPES[n.type];
+  let h = `<span class="tchip"><span class="dot" style="background:${ty.c}"></span>${esc(n.type === 'pdb' ? 'PDB entry' : ty.l.replace(/s$/, '').replace('Protocols + log', 'Protocol or log').replace('Posts + talk', 'Post or talk'))}</span>
+    <h2>${esc(n.label)}</h2>`;
+  if (n.type === 'paper') h += `<p>${esc(n.title)}</p><div class="meta">${esc(n.short)} &middot; ${esc(n.venue)} &middot; doi:${esc(n.doi)}</div>`;
+  else { if (n.note) h += `<p>${esc(n.note)}</p>`; if (n.doi) h += `<div class="meta">doi:${esc(n.doi)}</div>`; }
+  h += `<div class="btns"><a class="btn primary" href="${esc(n.href)}" target="_blank" rel="noopener">Open${n.type === 'paper' ? ' paper' : ''} &#8599;</a>`;
+  if (n.alt) h += `<a class="btn" href="${esc(n.alt)}" target="_blank" rel="noopener">GitHub &#8599;</a>`;
+  if (n.graph) h += `<a class="btn" href="${esc(n.graph)}">Discourse graph &#8594;</a>`;
+  h += focus === n ? `<button class="btn" type="button" data-act="all">All papers</button>` : `<button class="btn" type="button" data-act="focus">Focus</button>`;
+  h += `</div>` + list(n, -1) + list(n, 1);
+  P.innerHTML = h;
+}
+P.addEventListener('click', e => {
+  const b = e.target.closest('[data-id],[data-act]'); if (!b) return;
+  if (b.dataset.act === 'all') return setFocus(null);
+  if (b.dataset.act === 'focus') return setFocus(sel);
+  const n = byId.get(b.dataset.id);
+  if (focus && !vis.includes(n)) setFocus(n.type === 'paper' ? n : null);
+  sel = n; panel(); draw();
+});
+
+function setFocus(n) {
+  focus = n; sel = n; hover = null;
+  document.getElementById('sides').classList.toggle('on', !!focus);
+  syncViews(); layout(true); panel();
+  history.replaceState(null, '', focus && focus.slug ? '#' + focus.slug : location.pathname + location.search);
+}
+
+// ---- interaction
+const toWorld = (sx, sy) => [(sx - T.x) / T.k, (sy - T.y) / T.k];
+function hit(sx, sy) {
+  const [x, y] = toWorld(sx, sy); let best = null, bd = Infinity;
+  vis.forEach(n => { const d = Math.hypot(n.x - x, n.y - y); if (d < n.r + 5 / T.k && d < bd) { bd = d; best = n; } });
+  return best;
+}
+let drag = null, moved = false, start = null;
+const pos = e => { const r = cv.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+cv.addEventListener('pointerdown', e => {
+  const [sx, sy] = pos(e); cv.setPointerCapture(e.pointerId); moved = false; start = [sx, sy];
+  const n = hit(sx, sy);
+  drag = n ? {n} : {pan: [T.x, T.y]};
+  if (n) { n.fx = n.x; n.fy = n.y; }
+  cv.classList.add('dragging');
+});
+cv.addEventListener('pointermove', e => {
+  const [sx, sy] = pos(e);
+  if (!drag) { const h = hit(sx, sy); if (h !== hover) { hover = h; cv.style.cursor = h ? 'pointer' : ''; draw(); } return; }
+  if (Math.hypot(sx - start[0], sy - start[1]) > 3) moved = true;
+  if (!moved) return;
+  if (drag.n) { const [x, y] = toWorld(sx, sy); drag.n.fx = x; drag.n.fy = y; kick(.25); }
+  else { T.x = drag.pan[0] + sx - start[0]; T.y = drag.pan[1] + sy - start[1]; draw(); }
+});
+const end = e => {
+  if (!drag) return;
+  if (drag.n) { drag.n.fx = drag.n.fy = null; }
+  if (!moved) { sel = drag.n || null; if (!sel && focus) sel = focus; panel(); draw(); }
+  drag = null; cv.classList.remove('dragging');
+};
+cv.addEventListener('pointerup', end); cv.addEventListener('pointercancel', end);
+cv.addEventListener('pointerleave', () => { if (!drag && hover) { hover = null; draw(); } });
+cv.addEventListener('dblclick', e => { const n = hit(...pos(e)); if (n && n !== focus) setFocus(n); });
+function zoom(f, sx = W / 2, sy = H / 2) {
+  const k = Math.min(6, Math.max(.2, T.k * f)); f = k / T.k;
+  T.x = sx - (sx - T.x) * f; T.y = sy - (sy - T.y) * f; T.k = k; draw();
+}
+cv.addEventListener('wheel', e => { e.preventDefault(); zoom(Math.exp(-e.deltaY * .0015), ...pos(e)); }, {passive: false});
+document.getElementById('zin').onclick = () => zoom(1.3);
+document.getElementById('zout').onclick = () => zoom(1 / 1.3);
+document.getElementById('zfit').onclick = () => { fit(); draw(); };
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  if (sel && sel !== focus) sel = focus; else if (focus) return setFocus(null); else sel = null;
+  panel(); draw();
+});
+
+function resize() {
+  const r = cv.getBoundingClientRect(); dpr = window.devicePixelRatio || 1;
+  const first = !W; W = r.width; H = r.height;
+  cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+  if (first) { const s = location.hash.slice(1); setFocus(papers.find(p => p.slug === s) || null); } else { fit(); draw(); }
+}
+new ResizeObserver(resize).observe(cv);
+document.fonts && document.fonts.ready.then(() => draw());
+})();
+</script>
+</body>
+</html>

@@ -28,6 +28,7 @@ body{margin:0;min-height:100vh;color:var(--ink-on-dark);font:16px/1.5 var(--sans
 .toplink{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-on-dark);text-decoration:none;
   padding:10px 14px;border:1px solid rgba(255,255,255,.16);border-radius:10px;background:rgba(255,255,255,.04)}
 .toplink:hover{background:rgba(255,255,255,.1)}
+.toplinks{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 header{max-width:1240px;margin:0 auto;padding:72px 24px 40px}
 .eyebrow{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--brand-soft);margin:0 0 14px}
 h1{font-size:clamp(40px,6.4vw,76px);line-height:1.02;font-weight:500;letter-spacing:-.04em;margin:0 0 18px}
@@ -65,7 +66,10 @@ footer a{color:var(--brand-soft)}
     <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" fill="#9863ff"/><polygon points="96,6 96,68 29.7,68" fill="#0e1530"/><polygon points="4,68 29.7,68 4,92" fill="#0e1530"/></svg>
     <span>Prism</span>
   </a>
-  <a class="toplink" href="https://mira.science" target="_blank" rel="noopener">About MIRA &#8599;</a>
+  <div class="toplinks">
+    <a class="toplink" href="artifacts/index.html">Artifact graph &#8594;</a>
+    <a class="toplink" href="https://mira.science" target="_blank" rel="noopener">About MIRA &#8599;</a>
+  </div>
 </div>
 <header>
   <p class="eyebrow">Prism research outputs</p>

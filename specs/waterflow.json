@@ -114,6 +114,15 @@
   {"label": "MIRA-science/schema", "url": "https://github.com/MIRA-science/schema", "note": "LinkML schema, Apache-2.0"},
   {"label": "MIRA-science/demo-MIRA-graph-data", "url": "https://github.com/MIRA-science/demo-MIRA-graph-data", "note": "format conventions followed here"}
  ],
+ "artifacts": [
+  {"type": "dataset", "label": "PDB-REDO", "url": "https://pdb-redo.eu/", "direction": "input", "relation": "IsDerivedFrom", "note": "re-refined training structures and per-water EDIAm scores"},
+  {"type": "code", "label": "PDB-REDO/density-fitness", "url": "https://github.com/PDB-REDO/density-fitness", "direction": "input", "relation": "Requires", "note": "computes EDIAm for structures not in PDB-REDO"},
+  {"type": "code", "label": "prism-science/WaterFlow", "url": "https://github.com/prism-science/WaterFlow", "direction": "output", "relation": "IsSupplementedBy", "note": "code, trained checkpoints and training instructions"},
+  {"type": "dataset", "label": "WaterFlow supplementary data", "doi": "10.5281/zenodo.22046933", "direction": "output", "relation": "IsSupplementedBy", "note": "supplementary data for the preprint"},
+  {"type": "post", "label": "Water analysis", "url": "https://prismscience.org/research/water-analysis", "direction": "input", "relation": "Continues", "note": "Blog, 2026-04-24. Motivates a new water predictor and points ahead to the WaterFlow post"},
+  {"type": "post", "label": "WaterFlow: Predicting Ordered Water Molecule Positions on Protein Structures", "url": "https://prismscience.org/research/waterflow", "direction": "output", "relation": "IsDescribedBy", "note": "Blog, 2026-09-01. Describes the WaterFlow preprint"},
+  {"type": "post", "label": "A Year (plus) of DiffUSE", "url": "https://prismscience.org/research/year-one-of-diffuse", "direction": "output", "relation": "IsCitedBy", "note": "Blog, 2026-09-01. Year-one review that lists the first scholarly publications and previews the two-beamline reproducibility paper"}
+ ],
  "nodes": [
   {"id": "q1", "type": "Question", "title": "QUE - Can a flow-matching model predict ordered water positions more accurately than the current state of the art?",
    "desc": "The previous best method, SuperWater, recovers only about 27% of waters at high precision. The paper asks whether a new generator and confidence model can do better, especially at sub-angstrom tolerance.",

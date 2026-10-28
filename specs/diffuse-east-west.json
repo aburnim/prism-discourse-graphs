@@ -83,6 +83,21 @@
   {"label": "MIRA-science/schema", "url": "https://github.com/MIRA-science/schema", "note": "LinkML schema, Apache-2.0"},
   {"label": "MIRA-science/demo-MIRA-graph-data", "url": "https://github.com/MIRA-science/demo-MIRA-graph-data", "note": "format conventions followed here"}
  ],
+ "artifacts": [
+  {"type": "protocol", "label": "Prism synchrotron logbook", "doi": "10.5281/zenodo.17351307", "url": "https://github.com/prism-science/logbook", "direction": "input", "relation": "IsDocumentedBy", "note": "online logbook of every synchrotron visit"},
+  {"type": "dataset", "label": "Mac1 raw data (high quality)", "doi": "10.5281/zenodo.23487904", "direction": "output", "relation": "IsSupplementedBy", "note": "raw images, four high-quality datasets (also SBGrid Databank 1301 to 1304)"},
+  {"type": "dataset", "label": "SBGrid Databank 1301", "doi": "10.15785/SBGRID/1301", "direction": "output", "relation": "IsSupplementedBy", "note": "one of the four high-quality Mac1 datasets"},
+  {"type": "dataset", "label": "SBGrid Databank 1302", "doi": "10.15785/SBGRID/1302", "direction": "output", "relation": "IsSupplementedBy", "note": "one of the four high-quality Mac1 datasets"},
+  {"type": "dataset", "label": "SBGrid Databank 1303", "doi": "10.15785/SBGRID/1303", "direction": "output", "relation": "IsSupplementedBy", "note": "one of the four high-quality Mac1 datasets"},
+  {"type": "dataset", "label": "SBGrid Databank 1304", "doi": "10.15785/SBGRID/1304", "direction": "output", "relation": "IsSupplementedBy", "note": "one of the four high-quality Mac1 datasets"},
+  {"type": "dataset", "label": "Mac1 raw data (lesser quality)", "doi": "10.5281/zenodo.23487927", "direction": "output", "relation": "IsSupplementedBy", "note": "raw images, lesser-quality datasets"},
+  {"type": "dataset", "label": "Mac1 processing", "doi": "10.5281/zenodo.23487517", "direction": "output", "relation": "IsSupplementedBy", "note": "DIALS and mdx2 processing scripts and results"},
+  {"type": "dataset", "label": "Mac1 analysis + figures", "doi": "10.5281/zenodo.23487401", "direction": "output", "relation": "IsSupplementedBy", "note": "analysis outputs that reproduce the figures"},
+  {"type": "code", "label": "prism-science/diffuse-analysis-mac1-east-west", "url": "https://github.com/prism-science/diffuse-analysis-mac1-east-west", "direction": "output", "relation": "IsSupplementedBy", "note": "analysis code that reproduces the figures"},
+  {"type": "post", "label": "DiffUSE January 2026 Retreat: From Coast to Coast, Diffuse Scattering Reproduces", "url": "https://prismscience.org/research/allhands-january-2026", "direction": "input", "relation": "Continues", "note": "Blog, 2026-02-02. Retreat summary: CHESS and ALS diffuse data reproduce, and density-guided ensemble generation (sampleworks) is under way"},
+  {"type": "post", "label": "Coffee is for Closers: making Mac1 diffuse scattering reproducible", "url": "https://prismscience.org/research/reproducibility-stack", "direction": "input", "relation": "Continues", "note": "Blog, 2026-08-31. Preview of the Mac1 CHESS and ALS reproducibility result and its pipeline"},
+  {"type": "post", "label": "A Year (plus) of DiffUSE", "url": "https://prismscience.org/research/year-one-of-diffuse", "direction": "input", "relation": "Continues", "note": "Blog, 2026-09-01. Year-one review that lists the first scholarly publications and previews the two-beamline reproducibility paper"}
+ ],
  "nodes": [
   {"id": "q1", "type": "Question", "title": "QUE - Are 3D diffuse scattering maps reproducible across independent teams, beamlines and visits?",
    "desc": "Earlier agreement tests used one group's data from one facility. The diffuse signal is weak and sensitive to beamline, sample handling and processing.",

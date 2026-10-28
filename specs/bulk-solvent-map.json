@@ -77,6 +77,12 @@
   {"label": "MIRA-science/schema", "url": "https://github.com/MIRA-science/schema", "note": "LinkML schema, Apache-2.0"},
   {"label": "MIRA-science/demo-MIRA-graph-data", "url": "https://github.com/MIRA-science/demo-MIRA-graph-data", "note": "format conventions followed here"}
  ],
+ "artifacts": [
+  {"type": "code", "label": "jmholton/phenix_user_solvent", "url": "https://github.com/jmholton/phenix_user_solvent", "direction": "output", "relation": "IsSupplementedBy", "note": "Phenix patches, documentation, 1AHO example data and solvent map"},
+  {"type": "code", "label": "jmholton/bespoke_amber_restraints", "url": "https://github.com/jmholton/bespoke_amber_restraints", "direction": "input", "relation": "Requires", "note": "pipeline that generates the MD-derived solvent maps"},
+  {"type": "code", "label": "Amber-MD/AmberClassic", "url": "https://github.com/Amber-MD/AmberClassic", "direction": "input", "relation": "Requires", "note": "msander, used to optimize the 1AHO ensemble against the solvent map"},
+  {"type": "post", "label": "A Year (plus) of DiffUSE", "url": "https://prismscience.org/research/year-one-of-diffuse", "direction": "output", "relation": "IsCitedBy", "note": "Blog, 2026-09-01. Year-one review that lists the first scholarly publications and previews the two-beamline reproducibility paper"}
+ ],
  "nodes": [
   {"id": "q3", "type": "Question", "title": "QUE - Where does the flat binary bulk-solvent mask fail to describe crystal solvent?",
    "desc": "Most refinement programs fill the region outside the atomic model with constant electron density. The paper lists the ways this assumption departs from real solvent.",

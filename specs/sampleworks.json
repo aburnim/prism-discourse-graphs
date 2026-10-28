@@ -356,6 +356,19 @@
    "note": "bad clash definition; no DOI"
   }
  ],
+ "artifacts": [
+  {"type": "code", "label": "prism-science/sampleworks", "url": "https://github.com/prism-science/sampleworks", "direction": "output", "relation": "IsSupplementedBy", "note": "GitHub repository, MIT license (formerly diff-use/sampleworks)"},
+  {"type": "dataset", "label": "sampleworks code + data archive", "doi": "10.5281/zenodo.20584989", "direction": "output", "relation": "IsSupplementedBy", "note": "archived code and benchmark data"},
+  {"type": "code", "label": "aivant/peppr", "url": "https://github.com/aivant/peppr", "direction": "input", "relation": "Requires", "note": "bond length and angle outlier metrics"},
+  {"type": "post", "label": "DiffUSE January 2026 Retreat: From Coast to Coast, Diffuse Scattering Reproduces", "url": "https://prismscience.org/research/allhands-january-2026", "direction": "input", "relation": "Continues", "note": "Blog, 2026-02-02. Retreat summary: CHESS and ALS diffuse data reproduce, and density-guided ensemble generation (sampleworks) is under way"},
+  {"type": "post", "label": "To ensembles and beyond!", "url": "https://prismscience.org/research/sampleworks", "direction": "input", "relation": "Continues", "note": "Blog, 2026-03-11. Introduces sampleworks"},
+  {"type": "post", "label": "Open Development for Biomolecular Ensemble Generation", "url": "https://prismscience.org/research/science-in-the-open", "direction": "output", "relation": "IsDescribedBy", "note": "Blog, 2026-06-12. Announces the sampleworks publication"},
+  {"type": "post", "label": "The Tortured Proteins Department, Episode 15", "url": "https://prismscience.org/research/ttpd-15", "direction": "output", "relation": "IsCitedBy", "note": "Podcast, 2026-06-13. Episode notes list the sampleworks publication"},
+  {"type": "post", "label": "Is it all just the lattice?", "url": "https://prismscience.org/research/taylor-roadmap", "direction": "output", "relation": "IsCitedBy", "note": "Blog, 2026-07-24. Diffuse scattering modeling roadmap that links sampleworks"},
+  {"type": "post", "label": "Modeling the contribution of harmonic lattice vibrations to the diffuse signal with GOODVIBES", "url": "https://prismscience.org/research/goodvibes", "direction": "output", "relation": "IsCitedBy", "note": "Blog, 2026-08-21. Cites sampleworks and qFit at scale"},
+  {"type": "post", "label": "A Year (plus) of DiffUSE", "url": "https://prismscience.org/research/year-one-of-diffuse", "direction": "output", "relation": "IsCitedBy", "note": "Blog, 2026-09-01. Year-one review that lists the first scholarly publications and previews the two-beamline reproducibility paper"},
+  {"type": "post", "label": "How Silent Code Updates Can Alter Protein Predictions", "url": "https://prismscience.org/research/code-impact-predictions", "direction": "output", "relation": "IsCitedBy", "note": "Blog, 2026-10-06. Builds on sampleworks and cites the paper"}
+ ],
  "nodes": [
   {
    "id": "q3",

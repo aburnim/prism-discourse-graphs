@@ -98,6 +98,13 @@
   {"label": "MIRA-science/schema", "url": "https://github.com/MIRA-science/schema", "note": "LinkML schema, Apache-2.0"},
   {"label": "MIRA-science/demo-MIRA-graph-data", "url": "https://github.com/MIRA-science/demo-MIRA-graph-data", "note": "format conventions followed here"}
  ],
+ "artifacts": [
+  {"type": "dataset", "label": "Protein Data Bank archive", "url": "https://www.wwpdb.org", "direction": "input", "relation": "IsDerivedFrom", "note": "source of the 60,000+ deposited structures that were re-modeled"},
+  {"type": "code", "label": "ExcitedStates/qfit-3.0", "url": "https://github.com/ExcitedStates/qfit-3.0", "direction": "input", "relation": "Requires", "note": "qFit code plus the pipeline scripts and parameters used here"},
+  {"type": "dataset", "label": "qFit multiconformer PDB models", "doi": "10.5281/zenodo.20801853", "direction": "output", "relation": "IsSupplementedBy", "note": "the ensemble dataset of over 60,000 structures"},
+  {"type": "post", "label": "Modeling the contribution of harmonic lattice vibrations to the diffuse signal with GOODVIBES", "url": "https://prismscience.org/research/goodvibes", "direction": "output", "relation": "IsCitedBy", "note": "Blog, 2026-08-21. Cites sampleworks and qFit at scale"},
+  {"type": "post", "label": "A Year (plus) of DiffUSE", "url": "https://prismscience.org/research/year-one-of-diffuse", "direction": "output", "relation": "IsCitedBy", "note": "Blog, 2026-09-01. Year-one review that lists the first scholarly publications and previews the two-beamline reproducibility paper"}
+ ],
  "nodes": [
   {"id": "q4", "type": "Question", "title": "QUE - Can experimental structural data supply the ensemble training data that ensemble predictors lack?",
    "desc": "Ensemble predictors need many examples of weighted conformational states. The paper asks whether X-ray and cryo-EM data already in the PDB can provide them.",

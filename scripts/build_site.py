@@ -4,8 +4,9 @@
 Usage: python3 build_site.py <site-dir>
 
 Reads every <site-dir>/specs/*.json (graph.json specs), builds each graph page at
-<site-dir>/graphs/<slug>/index.html (+ <slug>-mira-graph.jsonld), then writes
-<site-dir>/index.html with one card per paper, newest first. Static output: deploy
+<site-dir>/graphs/<slug>/index.html (+ <slug>-mira-graph.jsonld), writes
+<site-dir>/index.html with one card per paper, newest first, then builds the
+artifact graph (build_artifacts.py) at <site-dir>/artifacts/. Static output: deploy
 the folder to GitHub Pages as is (no build step).
 """
 import json, subprocess, sys, html
@@ -52,6 +53,9 @@ def main():
     t = t.replace("__COUNT__", f"{len(cards)} paper{'s' if len(cards) != 1 else ''}")
     (site / "index.html").write_text(t, encoding="utf-8")
     print(f"ok: {site/'index.html'} | {len(cards)} card(s)")
+    r = subprocess.run([sys.executable, str(HERE / "build_artifacts.py"), str(site)], capture_output=True, text=True)
+    print(r.stdout.strip())
+    if r.returncode: print(r.stderr); sys.exit(r.returncode)
 
 if __name__ == "__main__":
     main()
