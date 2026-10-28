@@ -1,0 +1,3368 @@
+{
+ "@context": [
+  "https://mira-science.github.io/schema/mira.jsonld",
+  {
+   "wf": "https://prismscience.org/mira/waterflow#",
+   "Study": "mira:Study",
+   "Item": "sioc:Item",
+   "dct": "http://purl.org/dc/terms/",
+   "references": {
+    "@id": "dct:references",
+    "@type": "@id"
+   },
+   "bibliographicCitation": "dct:bibliographicCitation",
+   "identifier": "dct:identifier"
+  }
+ ],
+ "@graph": [
+  {
+   "@id": "wf:creator",
+   "@type": "UserAccount",
+   "accountName": "Andy Burnim"
+  },
+  {
+   "@id": "wf:schema-Question",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Question"
+   ],
+   "label": "Question",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:schema-Claim",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Claim"
+   ],
+   "label": "Claim",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:schema-Evidence",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Evidence"
+   ],
+   "label": "Evidence",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:schema-Study",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Study"
+   ],
+   "label": "Study",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:schema-Protocol",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Protocol"
+   ],
+   "label": "Protocol",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:schema-Request",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Request"
+   ],
+   "label": "Request",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:areldef-addresses",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:addresses",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "wf:areldef-addresses"
+    }
+   ],
+   "label": "addresses",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:reldef-addresses",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "wf:schema-Claim",
+   "range": "wf:schema-Question",
+   "subClassOf": [
+    "wf:areldef-addresses"
+   ],
+   "label": "addresses",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:areldef-supports",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:supports",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "wf:areldef-supports"
+    }
+   ],
+   "label": "supports",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:reldef-supports",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "wf:schema-Evidence",
+   "range": "wf:schema-Claim",
+   "subClassOf": [
+    "wf:areldef-supports"
+   ],
+   "label": "supports",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:areldef-opposes",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:opposes",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "wf:areldef-opposes"
+    }
+   ],
+   "label": "opposes",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:reldef-opposes",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "wf:schema-Evidence",
+   "range": "wf:schema-Claim",
+   "subClassOf": [
+    "wf:areldef-opposes"
+   ],
+   "label": "opposes",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:areldef-is_grounded_in",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:is_grounded_in",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "wf:areldef-is_grounded_in"
+    }
+   ],
+   "label": "is_grounded_in",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:reldef-is_grounded_in",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "wf:schema-Evidence",
+   "range": "wf:schema-Study",
+   "subClassOf": [
+    "wf:areldef-is_grounded_in"
+   ],
+   "label": "is_grounded_in",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:areldef-follows",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:follows",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "wf:areldef-follows"
+    }
+   ],
+   "label": "follows",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:reldef-follows",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "wf:schema-Study",
+   "range": "wf:schema-Protocol",
+   "subClassOf": [
+    "wf:areldef-follows"
+   ],
+   "label": "follows",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:areldef-request_target",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:request_target",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "wf:areldef-request_target"
+    }
+   ],
+   "label": "request_target",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:reldef-request_target",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "wf:schema-Request",
+   "range": "wf:schema-Claim",
+   "subClassOf": [
+    "wf:areldef-request_target"
+   ],
+   "label": "request_target",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "https://doi.org/10.64898/2026.08.26.747373",
+   "@type": "SourceDocument",
+   "title": "WaterFlow: Prediction of Ordered Water Molecule Positions on Protein Structures",
+   "bibliographicCitation": "Srivastava V, Mai H, Collins M, Holton JM, Wall ME, Wankowicz SA (2026). bioRxiv.",
+   "identifier": "doi:10.64898/2026.08.26.747373",
+   "describesActivity": [
+    "wf:s1",
+    "wf:s3",
+    "wf:s4",
+    "wf:s5",
+    "wf:s2",
+    "wf:s6",
+    "wf:s7",
+    "wf:s8",
+    "wf:s9",
+    "wf:s10"
+   ]
+  },
+  {
+   "@id": "https://github.com/prism-science/WaterFlow",
+   "@type": "SourceDocument",
+   "title": "prism-science/WaterFlow (GitHub)"
+  },
+  {
+   "@id": "https://doi.org/10.1038/S41586-024-07487-W",
+   "@type": "SourceDocument",
+   "title": "Abramson J et al. (2024) Accurate structure prediction of biomolecular interactions with AlphaFold 3",
+   "identifier": "doi:10.1038/S41586-024-07487-W",
+   "bibliographicCitation": "Reference 21 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1101/2025.01.08.631967",
+   "@type": "SourceDocument",
+   "title": "ByteDance AML AI4Science Team et al. (2025) Protenix: advancing structure prediction through a comprehensive AlphaFold3 reproduction",
+   "identifier": "doi:10.1101/2025.01.08.631967",
+   "bibliographicCitation": "Reference 22 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1101/2025.06.14.659707",
+   "@type": "SourceDocument",
+   "title": "Passaro S et al. (2025) Boltz-2: Towards Accurate and Efficient Binding Affinity Prediction",
+   "identifier": "doi:10.1101/2025.06.14.659707",
+   "bibliographicCitation": "Reference 23 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1039/D3SC04185A",
+   "@type": "SourceDocument",
+   "title": "Buttenschoen M, Morris GM, Deane CM (2024) PoseBusters: AI-based docking methods fail to generate physically valid poses or generalise to novel sequences",
+   "identifier": "doi:10.1039/D3SC04185A",
+   "bibliographicCitation": "Reference 24 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1021/acs.jcim.2c00306",
+   "@type": "SourceDocument",
+   "title": "Park S, Seok C (2022) GalaxyWater-CNN: Prediction of Water Positions on the Protein Structure by a 3D-Convolutional Neural Network",
+   "identifier": "doi:10.1021/acs.jcim.2c00306",
+   "bibliographicCitation": "Reference 29 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1021/acs.jcim.3c01559",
+   "@type": "SourceDocument",
+   "title": "Zamanos A, Ioannakis G, Emiris IZ (2024) HydraProt: A New Deep Learning Tool for Fast and Accurate Prediction of Water Molecule Positions for Protein Structures",
+   "identifier": "doi:10.1021/acs.jcim.3c01559",
+   "bibliographicCitation": "Reference 31 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1101/2024.11.18.624208",
+   "@type": "SourceDocument",
+   "title": "Kuang X et al. (2024) SuperWater: Predicting Water Molecule Positions on Protein Structures by Generative AI",
+   "identifier": "doi:10.1101/2024.11.18.624208",
+   "bibliographicCitation": "Reference 33 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1016/0022-2836%2868%2990205-2",
+   "@type": "SourceDocument",
+   "title": "Matthews BW (1968) Solvent content of protein crystals",
+   "identifier": "doi:10.1016/0022-2836(68)90205-2",
+   "bibliographicCitation": "Reference 34 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1016/S0076-6879%2897%2977019-8",
+   "@type": "SourceDocument",
+   "title": "Badger J (1997) Modeling and refinement of water molecules and disordered solvent",
+   "identifier": "doi:10.1016/S0076-6879(97)77019-8",
+   "bibliographicCitation": "Reference 35 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1111/febs.12922",
+   "@type": "SourceDocument",
+   "title": "Holton JM et al. (2014) The R-factor gap in macromolecular crystallography: an untapped potential for insights on accurate structures",
+   "identifier": "doi:10.1111/febs.12922",
+   "bibliographicCitation": "Reference 36 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/S1600576716018719",
+   "@type": "SourceDocument",
+   "title": "Gnesi M, Carugo O (2017) How many water molecules are detected in X-ray protein crystal structures?",
+   "identifier": "doi:10.1107/S1600576716018719",
+   "bibliographicCitation": "Reference 38 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.64898/2026.05.30.729005",
+   "@type": "SourceDocument",
+   "title": "Wolff AM et al. (2026) Conformational flexibility of soybean lipoxygenase is coupled to crystal solvent content in serial crystallography",
+   "identifier": "doi:10.64898/2026.05.30.729005",
+   "bibliographicCitation": "Reference 40 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/S1399004715000292",
+   "@type": "SourceDocument",
+   "title": "Yamada H, Nagae T, Watanabe N (2015) High-pressure protein crystallography of hen egg-white lysozyme",
+   "identifier": "doi:10.1107/S1399004715000292",
+   "bibliographicCitation": "Reference 41 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1016/j.str.2014.04.016",
+   "@type": "SourceDocument",
+   "title": "Keedy DA et al. (2014) Crystal cryocooling distorts conformational heterogeneity in a model Michaelis complex of DHFR",
+   "identifier": "doi:10.1016/j.str.2014.04.016",
+   "bibliographicCitation": "Reference 42 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/S0907444911001314",
+   "@type": "SourceDocument",
+   "title": "Murshudov GN et al. (2011) REFMAC5 for the refinement of macromolecular crystal structures",
+   "identifier": "doi:10.1107/S0907444911001314",
+   "bibliographicCitation": "Reference 45 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/S0907444912001308",
+   "@type": "SourceDocument",
+   "title": "Afonine PV et al. (2012) Towards automated crystallographic structure refinement with phenix.refine",
+   "identifier": "doi:10.1107/S0907444912001308",
+   "bibliographicCitation": "Reference 46 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/S0907444910007493",
+   "@type": "SourceDocument",
+   "title": "Emsley P et al. (2010) Features and development of Coot",
+   "identifier": "doi:10.1107/S0907444910007493",
+   "bibliographicCitation": "Reference 47 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/S0108767386099622",
+   "@type": "SourceDocument",
+   "title": "Read RJ (1986) Improved Fourier coefficients for maps using phases from partial structures with errors",
+   "identifier": "doi:10.1107/S0108767386099622",
+   "bibliographicCitation": "Reference 48 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1111/febs.14320",
+   "@type": "SourceDocument",
+   "title": "Wlodawer A et al. (2018) Detect, correct, retract: How to manage incorrect structural models",
+   "identifier": "doi:10.1111/febs.14320",
+   "bibliographicCitation": "Reference 49 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/S0907444998012086",
+   "@type": "SourceDocument",
+   "title": "Carugo O, Bordo D (1999) How many water molecules can be detected by protein crystallography?",
+   "identifier": "doi:10.1107/S0907444998012086",
+   "bibliographicCitation": "Reference 50 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.48550/arXiv.2106.03843",
+   "@type": "SourceDocument",
+   "title": "Jing B et al. (2021) Equivariant Graph Neural Networks for 3D Macromolecular Structure",
+   "identifier": "doi:10.48550/arXiv.2106.03843",
+   "bibliographicCitation": "Reference 52 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1126/science.ads0018",
+   "@type": "SourceDocument",
+   "title": "Hayes T et al. (2025) Simulating 500 million years of evolution with a language model",
+   "identifier": "doi:10.1126/science.ads0018",
+   "bibliographicCitation": "Reference 53 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.48550/arXiv.2210.02747",
+   "@type": "SourceDocument",
+   "title": "Lipman Y et al. (2022) Flow Matching for generative modeling",
+   "identifier": "doi:10.48550/arXiv.2210.02747",
+   "bibliographicCitation": "Reference 54 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.48550/arXiv.2209.03003",
+   "@type": "SourceDocument",
+   "title": "Liu X, Gong C, Liu Q (2022) Flow straight and fast: Learning to generate and transfer data with rectified flow",
+   "identifier": "doi:10.48550/arXiv.2209.03003",
+   "bibliographicCitation": "Reference 55 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.48550/arXiv.2209.15571",
+   "@type": "SourceDocument",
+   "title": "Albergo MS, Vanden-Eijnden E (2022) Building normalizing flows with stochastic interpolants",
+   "identifier": "doi:10.48550/arXiv.2209.15571",
+   "bibliographicCitation": "Reference 56 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1093/bioinformatics/btr590",
+   "@type": "SourceDocument",
+   "title": "Joosten RP et al. (2011) Automatic rebuilding and optimization of crystallographic structures in the Protein Data Bank",
+   "identifier": "doi:10.1093/bioinformatics/btr590",
+   "bibliographicCitation": "Reference 57 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1038/nbt.3988",
+   "@type": "SourceDocument",
+   "title": "Steinegger M, Söding J (2017) MMseqs2 enables sensitive protein sequence searching for the analysis of massive data sets",
+   "identifier": "doi:10.1038/nbt.3988",
+   "bibliographicCitation": "Reference 58 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1038/s41587-023-01773-0",
+   "@type": "SourceDocument",
+   "title": "van Kempen M et al. (2024) Fast and accurate protein structure search with Foldseek",
+   "identifier": "doi:10.1038/s41587-023-01773-0",
+   "bibliographicCitation": "Reference 59 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1021/acs.jcim.7b00391",
+   "@type": "SourceDocument",
+   "title": "Meyder A et al. (2017) Estimating electron density support for individual atoms and molecular fragments in X-ray structures",
+   "identifier": "doi:10.1021/acs.jcim.7b00391",
+   "bibliographicCitation": "Reference 60 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.26434/chemrxiv-2025-8526g-v2",
+   "@type": "SourceDocument",
+   "title": "Brownless A-LR, Harrison-Rawn T, Kamerlin SCL (2025) WatCon: A Python tool for analysis of conserved water networks across protein families",
+   "identifier": "doi:10.26434/chemrxiv-2025-8526g-v2",
+   "bibliographicCitation": "Reference 66 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/S2052252524007784",
+   "@type": "SourceDocument",
+   "title": "Chen JCH et al. (2024) Solvent organization in the ultrahigh-resolution crystal structure of crambin at room temperature",
+   "identifier": "doi:10.1107/S2052252524007784",
+   "bibliographicCitation": "Reference 68 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1523/JNEUROSCI.4751-13.2014",
+   "@type": "SourceDocument",
+   "title": "Choi MS et al. (2014) Transnitrosylation from DJ-1 to PTEN attenuates neuronal cell death in parkinson's disease models",
+   "identifier": "doi:10.1523/JNEUROSCI.4751-13.2014",
+   "bibliographicCitation": "Reference 70 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1126/science.ade2574",
+   "@type": "SourceDocument",
+   "title": "Lin Z et al. (2023) Evolutionary-scale prediction of atomic-level protein structure with a language model",
+   "identifier": "doi:10.1126/science.ade2574",
+   "bibliographicCitation": "Reference 71 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1101/2025.06.30.662466",
+   "@type": "SourceDocument",
+   "title": "Lyu N et al. (2025) An Evaluation of Biomolecular Energetics Learned by AlphaFold",
+   "identifier": "doi:10.1101/2025.06.30.662466",
+   "bibliographicCitation": "Reference 72 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1002/pro.3330",
+   "@type": "SourceDocument",
+   "title": "Williams CJ et al. (2018) MolProbity: More and better reference data for improved all-atom structure validation",
+   "identifier": "doi:10.1002/pro.3330",
+   "bibliographicCitation": "Reference 73 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1016/j.cell.2024.01.003",
+   "@type": "SourceDocument",
+   "title": "Fraser JS, Murcko MA (2024) Structure is beauty, but not always truth",
+   "identifier": "doi:10.1016/j.cell.2024.01.003",
+   "bibliographicCitation": "Reference 74 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1002/prot.20478",
+   "@type": "SourceDocument",
+   "title": "Rodier F et al. (2005) Hydration of protein-protein interfaces",
+   "identifier": "doi:10.1002/prot.20478",
+   "bibliographicCitation": "Reference 75 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1371/journal.pbio.1002464",
+   "@type": "SourceDocument",
+   "title": "Boyaci H et al. (2016) Structure, Regulation, and Inhibition of the Quorum-Sensing Signal Integrator LuxO",
+   "identifier": "doi:10.1371/journal.pbio.1002464",
+   "bibliographicCitation": "Reference 78 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1021/ct900460m",
+   "@type": "SourceDocument",
+   "title": "Luchko T et al. (2010) Three-dimensional molecular theory of solvation coupled with molecular dynamics in Amber",
+   "identifier": "doi:10.1021/ct900460m",
+   "bibliographicCitation": "Reference 79 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1021/jp9723574",
+   "@type": "SourceDocument",
+   "title": "Lazaridis T (1998) Inhomogeneous fluid approach to solvation thermodynamics. 1. Theory",
+   "identifier": "doi:10.1021/jp9723574",
+   "bibliographicCitation": "Reference 80 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1038/s41592-020-01051-w",
+   "@type": "SourceDocument",
+   "title": "Lawson CL et al. (2021) Cryo-EM model validation recommendations based on outcomes of the 2019 EMDataResource challenge",
+   "identifier": "doi:10.1038/s41592-020-01051-w",
+   "bibliographicCitation": "Reference 84 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1101/2025.01.23.634578",
+   "@type": "SourceDocument",
+   "title": "Kretsch RC et al. (2025) Complex Water Networks Visualized through 2.2-2.3 Å Cryogenic Electron Microscopy of RNA",
+   "identifier": "doi:10.1101/2025.01.23.634578",
+   "bibliographicCitation": "Reference 85 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/S2052252524005098",
+   "@type": "SourceDocument",
+   "title": "Wankowicz SA, Fraser JS (2024) Comprehensive encoding of conformational and compositional protein structural ensembles through the mmCIF data structure",
+   "identifier": "doi:10.1107/S2052252524005098",
+   "bibliographicCitation": "Reference 87 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.7554/eLife.90606",
+   "@type": "SourceDocument",
+   "title": "Wankowicz SA et al. (2024) Automated multiconformer model building for X-ray crystallography and cryo-EM",
+   "identifier": "doi:10.7554/eLife.90606",
+   "bibliographicCitation": "Reference 88 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.7554/eLife.07574",
+   "@type": "SourceDocument",
+   "title": "Keedy DA et al. (2015) Mapping the conformational landscape of a dynamic enzyme by multitemperature and XFEL crystallography",
+   "identifier": "doi:10.7554/eLife.07574",
+   "bibliographicCitation": "Reference 90 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1101/2025.11.25.690589",
+   "@type": "SourceDocument",
+   "title": "Seo L et al. (2025) Crystallographic Ensembles Reveal the Structural Basis of Binding Entropy in SARS-CoV2 Macrodomain",
+   "identifier": "doi:10.1101/2025.11.25.690589",
+   "bibliographicCitation": "Reference 91 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.64898/2026.01.19.699807",
+   "@type": "SourceDocument",
+   "title": "Miller CA, Wankowicz SA (2026) Binding entropy can be predicted by crystallographic ensembles",
+   "identifier": "doi:10.64898/2026.01.19.699807",
+   "bibliographicCitation": "Reference 92 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.82153/JKXJ-TW08",
+   "@type": "SourceDocument",
+   "title": "Chrispens K et al. (2026) sampleworks: A modular platform for experimentally guided biomolecular ensemble generation",
+   "identifier": "doi:10.82153/JKXJ-TW08",
+   "bibliographicCitation": "Reference 94 in Srivastava et al. 2026"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb7der/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 7DER",
+   "identifier": "doi:10.2210/pdb7der/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb3mye/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 3MYE",
+   "identifier": "doi:10.2210/pdb3mye/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb4rkw/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 4RKW",
+   "identifier": "doi:10.2210/pdb4rkw/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb5ep1/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 5EP1",
+   "identifier": "doi:10.2210/pdb5ep1/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb5ep4/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 5EP4",
+   "identifier": "doi:10.2210/pdb5ep4/pdb"
+  },
+  {
+   "@id": "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F2.large.jpg",
+   "@type": "Item",
+   "format": "image/png",
+   "content": "Figure 1. WaterFlow architecture and training, and precision/recall and parity F1 for WaterFlow and re-trained SuperWater on the 698-structure holdout.",
+   "isContainedBy": "https://www.biorxiv.org/content/10.64898/2026.08.26.747373v1.full"
+  },
+  {
+   "@id": "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F3.large.jpg",
+   "@type": "Item",
+   "format": "image/png",
+   "content": "Figure 2. Consensus water clustering across isomorphous HEWL, endothiapepsin and carbonic anhydrase structures, with the precision/recall Pareto front and quality metrics.",
+   "isContainedBy": "https://www.biorxiv.org/content/10.64898/2026.08.26.747373v1.full"
+  },
+  {
+   "@id": "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F4.large.jpg",
+   "@type": "Item",
+   "format": "image/png",
+   "content": "Figure 3. Parity F1 against training set size for LARGE and SMALL, and the effect of per-water quality filtering.",
+   "isContainedBy": "https://www.biorxiv.org/content/10.64898/2026.08.26.747373v1.full"
+  },
+  {
+   "@id": "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F5.large.jpg",
+   "@type": "Item",
+   "format": "image/png",
+   "content": "Figure 4. Symmetry mates as input context: example bridging water in 3MYE, precision/recall with and without mates, and recall by distance to the nearest symmetry mate.",
+   "isContainedBy": "https://www.biorxiv.org/content/10.64898/2026.08.26.747373v1.full"
+  },
+  {
+   "@id": "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F6.large.jpg",
+   "@type": "Item",
+   "format": "image/png",
+   "content": "Figure 5. Water count against resolution and threshold, predictions on DJ-1 (4RKW) and its ESMFold model, and the LuxO apo/ATP binding site (5EP1/5EP4).",
+   "isContainedBy": "https://www.biorxiv.org/content/10.64898/2026.08.26.747373v1.full"
+  },
+  {
+   "@id": "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F7.large.jpg",
+   "@type": "Item",
+   "format": "image/png",
+   "content": "Figure 6. Predicted waters against experimental data: EDIAm by confidence threshold, density support of novel waters against decoys, 4RKW examples and R-free after refinement.",
+   "isContainedBy": "https://www.biorxiv.org/content/10.64898/2026.08.26.747373v1.full"
+  },
+  {
+   "@id": "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F12.large.jpg",
+   "@type": "Item",
+   "format": "image/png",
+   "content": "Figure S5. Precision/recall for density against confidence thresholding, and water count per residue against Wilson B.",
+   "isContainedBy": "https://www.biorxiv.org/content/10.64898/2026.08.26.747373v1.full"
+  },
+  {
+   "@id": "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F16.large.jpg",
+   "@type": "Item",
+   "format": "image/png",
+   "content": "Figure S9. Confidence score of one bridging water in 4RKW scored with and without symmetry mates.",
+   "isContainedBy": "https://www.biorxiv.org/content/10.64898/2026.08.26.747373v1.full"
+  },
+  {
+   "@id": "https://doi.org/10.64898/2026.08.26.747373#quote-c1",
+   "@type": "Item",
+   "format": "text/plain",
+   "content": "Water molecule prediction has kept pace with neither.",
+   "isContainedBy": "https://doi.org/10.64898/2026.08.26.747373",
+   "title": "Srivastava et al. 2026, Introduction, paragraph 2"
+  },
+  {
+   "@id": "https://github.com/prism-science/WaterFlow#quote-c16",
+   "@type": "Item",
+   "format": "text/plain",
+   "content": "The selection flag is the main knob that determines how many waters you predict.",
+   "isContainedBy": "https://github.com/prism-science/WaterFlow",
+   "title": "WaterFlow README, Selecting the final waters"
+  },
+  {
+   "@id": "wf:q1",
+   "@type": [
+    "wf:schema-Question",
+    "mira:Question"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "QUE - Can a flow-matching model predict ordered water positions more accurately than the current state of the art?",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The previous best method, SuperWater, recovers only about 27% of waters at high precision. The paper asks whether a new generator and confidence model can do better, especially at sub-angstrom tolerance."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Introduction, paragraphs 3 and 6; Results: Model Overview",
+   "references": [
+    "https://doi.org/10.1101/2024.11.18.624208"
+   ]
+  },
+  {
+   "@id": "wf:q2",
+   "@type": [
+    "wf:schema-Question",
+    "mira:Question"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "QUE - How reproducible are deposited water molecules across otherwise identical crystal structures?",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "If similar structures disagree on which waters are modeled, that variation limits any model trained and scored on deposited waters."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Crystallographic Water Placement Pareto Front, paragraphs 1-2"
+  },
+  {
+   "@id": "wf:q3",
+   "@type": [
+    "wf:schema-Question",
+    "mira:Question"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "QUE - Is water prediction limited more by training data quantity or by data quality?",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The authors compare a larger, lower-resolution training set with a smaller, higher-quality one, and test filtering individual waters by quality."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Training data size affects prediction accuracy"
+  },
+  {
+   "@id": "wf:q4",
+   "@type": [
+    "wf:schema-Question",
+    "mira:Question"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "QUE - Does adding crystal lattice neighbors (symmetry mates) to the input improve water prediction?",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Many surface waters are coordinated by atoms of neighboring molecules in the crystal, which a model that sees only the asymmetric unit cannot see."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Encoding Symmetry Mates Improves Prediction Accuracy, paragraph 1"
+  },
+  {
+   "@id": "wf:q5",
+   "@type": [
+    "wf:schema-Question",
+    "mira:Question"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "QUE - Are predicted waters supported by the experimental X-ray data, not only by deposited models?",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Deposited models are incomplete, so a predicted water scored as a false positive may be a real water that was never built."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Evaluating Water Prediction on Experimental Data, paragraphs 1-2",
+   "references": [
+    "https://doi.org/10.1111/febs.12922",
+    "https://doi.org/10.1016/j.cell.2024.01.003"
+   ]
+  },
+  {
+   "@id": "wf:q6",
+   "@type": [
+    "wf:schema-Question",
+    "mira:Question"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "QUE - How does WaterFlow behave across inference settings, on predicted structures and at ligand binding sites?",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Users choose a confidence or density threshold, and many applications will use predicted rather than crystal structures as input."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: WaterFlow Inference on Predicted Structures and Protein-Ligand Interactions"
+  },
+  {
+   "@id": "wf:c1",
+   "@type": [
+    "wf:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Water position prediction lags behind protein and protein-ligand structure prediction",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Protein structure prediction is near experimental accuracy for static structures, but water placement is still limited. Physics-based methods are slow and force-field dependent, and earlier deep learning methods remain weak at high precision."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Introduction, paragraphs 2-3",
+   "references": [
+    "https://doi.org/10.64898/2026.08.26.747373#quote-c1",
+    "https://doi.org/10.1038/S41586-024-07487-W",
+    "https://doi.org/10.1101/2025.01.08.631967",
+    "https://doi.org/10.1101/2025.06.14.659707",
+    "https://doi.org/10.1021/acs.jcim.2c00306",
+    "https://doi.org/10.1021/acs.jcim.3c01559",
+    "https://doi.org/10.1101/2024.11.18.624208"
+   ]
+  },
+  {
+   "@id": "wf:c17",
+   "@type": [
+    "wf:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Simpler design choices may suit the data-limited water prediction task",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "WaterFlow uses flow matching instead of diffusion, a simpler atom-atom graph, ESM3 embeddings and GVP message passing. The authors speculate this passes information to water nodes more directly, but did not test each change."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Discussion, paragraph 2; Results: Encoder, Generator, and Confidence Model",
+   "references": [
+    "https://doi.org/10.48550/arXiv.2106.03843",
+    "https://doi.org/10.1126/science.ads0018",
+    "https://doi.org/10.48550/arXiv.2210.02747"
+   ]
+  },
+  {
+   "@id": "wf:c3",
+   "@type": [
+    "wf:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - WaterFlow outperforms SuperWater at every precision level, most at sub-angstrom tolerance",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Both models were trained and scored on the same cluster-split data. The gap in parity F1 widens when the match radius is tightened from 1.0 to 0.5 Å."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: WaterFlow More Accurately Predicts Water Molecules, Figure 1B-C",
+   "references": [
+    "https://doi.org/10.1101/2024.11.18.624208"
+   ]
+  },
+  {
+   "@id": "wf:c4",
+   "@type": [
+    "wf:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Random train/test splits overstate water prediction accuracy because homologs share water sites",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "SuperWater was originally trained and tested on random 8:1:1 splits. Retrained on sequence and structure cluster splits, its precision and recall were lower than first reported."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: WaterFlow More Accurately Predicts Water Molecules, last paragraph",
+   "references": [
+    "https://doi.org/10.1101/2024.11.18.624208"
+   ]
+  },
+  {
+   "@id": "wf:c2",
+   "@type": [
+    "wf:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Deposited ordered waters are a noisy target for training and evaluation",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Which waters are modeled varies with experimental conditions such as temperature and pressure, and with modeling choices, peak picking and phase bias. Real but unmodeled waters bound recall, and waters missing from the evaluated structure bound precision."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Introduction, paragraphs 4-5",
+   "references": [
+    "https://doi.org/10.1016/0022-2836%2868%2990205-2",
+    "https://doi.org/10.1016/S0076-6879%2897%2977019-8",
+    "https://doi.org/10.1107/S1600576716018719",
+    "https://doi.org/10.64898/2026.05.30.729005",
+    "https://doi.org/10.1107/S1399004715000292",
+    "https://doi.org/10.1016/j.str.2014.04.016",
+    "https://doi.org/10.1107/S0907444911001314",
+    "https://doi.org/10.1107/S0907444912001308",
+    "https://doi.org/10.1107/S0907444910007493",
+    "https://doi.org/10.1107/S0108767386099622",
+    "https://doi.org/10.1111/febs.14320",
+    "https://doi.org/10.1107/S0907444998012086"
+   ]
+  },
+  {
+   "@id": "wf:c5",
+   "@type": [
+    "wf:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Consensus waters across isomorphous structures set an accuracy ceiling well above current predictions",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Up to about 30% of deposited waters are not reproduced across otherwise identical structures. The best achievable F1 against consensus sites is 0.87 to 0.94, so there is still room above WaterFlow."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Crystallographic Water Placement Pareto Front, Figure 2B",
+   "references": [
+    "https://doi.org/10.26434/chemrxiv-2025-8526g-v2"
+   ]
+  },
+  {
+   "@id": "wf:c6",
+   "@type": [
+    "wf:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Consensus waters are better supported by the experimental data than non-consensus waters",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Consensus waters have lower B-factor z-scores and higher EDIA. Structures that agree more with the consensus have better resolution and lower R-free."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Crystallographic Water Placement Pareto Front, Figure 2C-D, Tables 2-3",
+   "references": [
+    "https://doi.org/10.1021/acs.jcim.7b00391"
+   ]
+  },
+  {
+   "@id": "wf:c18",
+   "@type": [
+    "wf:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Training only on well-supported waters should give a more accurate model (tested hypothesis)",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Because up to 30% of the training signal is unreliable, the authors hypothesized that restricting training to better-resolved and better-supported data would help."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Training data size affects prediction accuracy, paragraphs 1 and 3"
+  },
+  {
+   "@id": "wf:c7",
+   "@type": [
+    "wf:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Structural diversity of high-quality training data limits water prediction accuracy",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "At equal training size, the higher-quality SMALL set gives better F1. LARGE overtakes it only by adding clusters that SMALL lacks, and then also saturates."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Training data size affects prediction accuracy, Figure 3A; Discussion, paragraph 4"
+  },
+  {
+   "@id": "wf:c8",
+   "@type": [
+    "wf:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Filtering individual training waters by EDIA and B-factor did not improve accuracy",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The model trained without the per-water filter was slightly better at parity. The authors suggest the extra waters may regularize, but say this needs more study."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Training data size affects prediction accuracy, Figure 3B; Discussion, paragraph 4"
+  },
+  {
+   "@id": "wf:c20",
+   "@type": [
+    "wf:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Models trained on static coordinates cannot represent partially occupied, fluctuating waters",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Many training waters are likely partially occupied and coupled to protein motion. Modeling protein, ligands and solvent as a joint ensemble could capture this."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Discussion, paragraphs 9-10",
+   "references": [
+    "https://doi.org/10.1107/S2052252524005098",
+    "https://doi.org/10.7554/eLife.90606",
+    "https://doi.org/10.7554/eLife.07574",
+    "https://doi.org/10.1101/2025.11.25.690589",
+    "https://doi.org/10.64898/2026.01.19.699807"
+   ]
+  },
+  {
+   "@id": "wf:c9",
+   "@type": [
+    "wf:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Including symmetry mates in the input graph improves water prediction",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Symmetry mates restore the coordination environment of waters at crystal contacts. The gain is almost entirely for waters within hydrogen-bonding range of a lattice neighbor."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Encoding Symmetry Mates Improves Prediction Accuracy, Figure 4B-C; Discussion, paragraph 3",
+   "references": [
+    "https://doi.org/10.1107/S2052252524007784",
+    "https://doi.org/10.1002/prot.20478"
+   ]
+  },
+  {
+   "@id": "wf:c10",
+   "@type": [
+    "wf:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Explicit crystal symmetry may benefit structure prediction more broadly",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Only one prior model the authors found includes symmetry mates or crystal contacts. Proteins, ligands and ions also form contacts across symmetry-related interfaces."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Discussion, paragraph 3",
+   "references": [
+    "https://doi.org/10.1039/D3SC04185A"
+   ]
+  },
+  {
+   "@id": "wf:c13",
+   "@type": [
+    "wf:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - The confidence score tracks experimental density support of predicted waters",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Higher confidence thresholds give predicted waters with higher EDIAm and higher density. Above a threshold of about 0.7, predicted waters are as well supported as deposited ones."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Evaluating Water Prediction on Experimental Data, Figure 6A-B",
+   "references": [
+    "https://doi.org/10.1021/acs.jcim.7b00391"
+   ]
+  },
+  {
+   "@id": "wf:c11",
+   "@type": [
+    "wf:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Many novel predictions are real waters that deposited models omit",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Predicted waters with no deposited water within 1.0 Å often sit on positive mFo-DFc difference density, and always have more density support than nearby decoy positions."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Evaluating Water Prediction on Experimental Data, Figure 6B-E; Discussion, last paragraph"
+  },
+  {
+   "@id": "wf:c12",
+   "@type": [
+    "wf:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - WaterFlow-predicted waters fit the structure factors nearly as well as deposited waters",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Unrefined predicted waters give R-free only slightly above the deposited model, and light refinement narrows the gap further. The authors suggest WaterFlow could be used to model waters during refinement."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Evaluating Water Prediction on Experimental Data, Figure 6F; Discussion, paragraph 10",
+   "references": [
+    "https://doi.org/10.1107/S0907444912001308",
+    "https://doi.org/10.1111/febs.14320"
+   ]
+  },
+  {
+   "@id": "wf:c16",
+   "@type": [
+    "wf:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Density thresholding removes the resolution dependence of water count at a small accuracy cost",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "With a fixed confidence threshold, the number of predicted waters falls with resolution, as deposited counts do. Keeping a fixed number of top waters per residue avoids this, with slightly lower precision and recall."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: WaterFlow Inference on Predicted Structures, Figure 5A-B, Figure S5; README: Selecting the final waters",
+   "references": [
+    "https://github.com/prism-science/WaterFlow#quote-c16",
+    "https://doi.org/10.1107/S0907444998012086"
+   ]
+  },
+  {
+   "@id": "wf:c14",
+   "@type": [
+    "wf:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - WaterFlow is less accurate on predicted structures than on crystal structures",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Predicted models carry a different distribution of coordinate error than refined crystal models, which can disturb hydrogen bonds. The confidence model likely needs recalibration for the input source."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: WaterFlow Inference on Predicted Structures, Table 4; Discussion, paragraph 7",
+   "references": [
+    "https://doi.org/10.1126/science.ade2574",
+    "https://doi.org/10.1101/2025.06.30.662466"
+   ]
+  },
+  {
+   "@id": "wf:c19",
+   "@type": [
+    "wf:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - WaterFlow is untested on cryo-EM structures and nucleic acids",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Training used only proteins from X-ray structures. Cryo-EM models have larger coordinate uncertainty, and waters around nucleic acids may fall outside the model's scope."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Discussion, paragraph 8",
+   "references": [
+    "https://doi.org/10.1038/s41592-020-01051-w",
+    "https://doi.org/10.1101/2025.01.23.634578"
+   ]
+  },
+  {
+   "@id": "wf:c15",
+   "@type": [
+    "wf:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - WaterFlow can recover critical binding-site waters, including ligand-bridging waters",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "In a matched apo/ATP-bound pair, WaterFlow placed bridging waters and the water shifted by the adenine ring close to their deposited positions. The authors note further testing is needed."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: WaterFlow Inference on Predicted Structures and Protein-Ligand Interactions, Figure 5E; Discussion, paragraph 5",
+   "references": [
+    "https://doi.org/10.1371/journal.pbio.1002464"
+   ]
+  },
+  {
+   "@id": "wf:e1",
+   "@type": [
+    "wf:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Maximum precision/recall at 1.0 Å: 0.92/0.83 for WaterFlow vs 0.8/0.59 for SuperWater",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "At 0.5 Å, WaterFlow fell only to 0.88/0.64 while SuperWater fell to 0.73/0.33. Best checkpoints: LARGE for WaterFlow, SMALL for SuperWater."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: WaterFlow More Accurately Predicts Water Molecules, paragraph 2; Figure 1B",
+   "observationBase": [
+    "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F2.large.jpg"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.64898/2026.08.26.747373"
+   ],
+   "observationOriginActivity": "wf:s1"
+  },
+  {
+   "@id": "wf:e2",
+   "@type": [
+    "wf:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Parity F1 at 1.0 Å: 0.63 for WaterFlow vs 0.41 for SuperWater; at 0.5 Å: 0.54 vs 0.26",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "At parity and 1.0 Å, WaterFlow precision and recall were 0.64 and 0.63, against 0.42 and 0.41 for SuperWater."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: WaterFlow More Accurately Predicts Water Molecules, paragraph 3; Figure 1C",
+   "observationBase": [
+    "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F2.large.jpg"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.64898/2026.08.26.747373"
+   ],
+   "observationOriginActivity": "wf:s1"
+  },
+  {
+   "@id": "wf:e3",
+   "@type": [
+    "wf:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Consensus waters were 69.9% of HEWL, 86.5% of endothiapepsin and 78.5% of carbonic anhydrase waters",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Best clustering results. Ranges across hyperparameters were 63.2-70.4% (HEWL, n = 65), 83.6-86.5% (EAP, n = 907) and 77.8-79.1% (CA, n = 937)."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Crystallographic Water Placement Pareto Front, paragraph 3; Supplementary Table 5",
+   "references": [
+    "https://doi.org/10.2210/pdb7der/pdb"
+   ],
+   "observationBase": [
+    "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F3.large.jpg"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.64898/2026.08.26.747373"
+   ],
+   "observationOriginActivity": "wf:s2"
+  },
+  {
+   "@id": "wf:e4",
+   "@type": [
+    "wf:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Pareto knee F1 against consensus sites: 0.87 (HEWL), 0.94 (EAP), 0.87 (CA)",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Precision/recall at the knee were 0.97/0.78, 0.92/0.96 and 0.88/0.86 at a 1.0 Å cutoff. Values fall slightly at 0.5 Å."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Crystallographic Water Placement Pareto Front, paragraph 4; Figure 2B; Figure S3",
+   "observationBase": [
+    "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F3.large.jpg"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.64898/2026.08.26.747373"
+   ],
+   "observationOriginActivity": "wf:s2"
+  },
+  {
+   "@id": "wf:e5",
+   "@type": [
+    "wf:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - HEWL structures with fewest waters: precision 0.94, recall 0.36; with most waters: 0.47 and 0.85",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Ranges were 0.93/0.47 to 0.70/0.89 for EAP and 0.92/0.36 to 0.68/0.84 for CA. Modeling more waters trades precision for recall."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Crystallographic Water Placement Pareto Front, paragraph 4; Figure 2B; Supplementary Table 5",
+   "observationBase": [
+    "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F3.large.jpg"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.64898/2026.08.26.747373"
+   ],
+   "observationOriginActivity": "wf:s2"
+  },
+  {
+   "@id": "wf:e6",
+   "@type": [
+    "wf:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - An EDIA cutoff of 0.4 would remove 20-26% of non-consensus waters but only 1-8% of consensus waters",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Consensus waters also have lower within-structure B-factor z-scores, in all three datasets (500-fold structure-level bootstrap)."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Crystallographic Water Placement Pareto Front, paragraph 6; Figure 2D; Table 3",
+   "references": [
+    "https://doi.org/10.1021/acs.jcim.7b00391"
+   ],
+   "observationBase": [
+    "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F3.large.jpg"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.64898/2026.08.26.747373"
+   ],
+   "observationOriginActivity": "wf:s2"
+  },
+  {
+   "@id": "wf:e7",
+   "@type": [
+    "wf:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - The half of structures with higher consensus F1 had better resolution and lower R-free in all three datasets",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Datasets were split at the median F1 (HEWL 0.71, EAP 0.85, CA 0.74) and compared with Mann-Whitney U tests."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Crystallographic Water Placement Pareto Front, paragraph 5; Figure 2C; Table 2",
+   "observationBase": [
+    "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F3.large.jpg"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.64898/2026.08.26.747373"
+   ],
+   "observationOriginActivity": "wf:s2"
+  },
+  {
+   "@id": "wf:e8",
+   "@type": [
+    "wf:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - LARGE reached parity F1 63.4 at N = 60,116, against 61.0 for SMALL at its full 21,211",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Where training sizes overlap (601 to 21,211 structures), SMALL gives the better F1. LARGE has 15,573 clusters against 5,424 for SMALL."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Training data size affects prediction accuracy, paragraph 2; Figure 3A",
+   "observationBase": [
+    "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F4.large.jpg"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.64898/2026.08.26.747373"
+   ],
+   "observationOriginActivity": "wf:s3"
+  },
+  {
+   "@id": "wf:e9",
+   "@type": [
+    "wf:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Per-water filtering gave parity F1 63.4 against 63.8 without the filter",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The filter (EDIAm below 0.4 or B-factor z-score above 2.0) dropped 14.1% of LARGE waters. The unfiltered model was ahead by 0.50 F1 on average across the matched window."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Training data size affects prediction accuracy, paragraph 3; Figure 3B",
+   "observationBase": [
+    "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F4.large.jpg"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.64898/2026.08.26.747373"
+   ],
+   "observationOriginActivity": "wf:s4"
+  },
+  {
+   "@id": "wf:e10",
+   "@type": [
+    "wf:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Symmetry mates raised parity F1 at 1.0 Å from 0.57 to 0.63",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "F1/precision/recall were 0.63/0.64/0.63 with mates and 0.57/0.57/0.57 without. The two models differ only in whether mates are in the graph."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Encoding Symmetry Mates Improves Prediction Accuracy, paragraph 2; Figure 4B",
+   "observationBase": [
+    "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F5.large.jpg"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.64898/2026.08.26.747373"
+   ],
+   "observationOriginActivity": "wf:s5"
+  },
+  {
+   "@id": "wf:e11",
+   "@type": [
+    "wf:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - For waters within 3.4 Å of a symmetry mate, recall rose from 0.29 to 0.60",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "These are about 10% of all waters. For waters farther than 3.4 Å from a mate, recall moved only from 0.62 to 0.67."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Encoding Symmetry Mates Improves Prediction Accuracy, paragraph 3; Figure 4C",
+   "observationBase": [
+    "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F5.large.jpg"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.64898/2026.08.26.747373"
+   ],
+   "observationOriginActivity": "wf:s5"
+  },
+  {
+   "@id": "wf:e12",
+   "@type": [
+    "wf:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - One bridging water in 4RKW scored 0.004 without symmetry mates and 0.717 with them",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The mates add four potential hydrogen bonds (2.7-3.5 Å) to the single bond the water has within the asymmetric unit."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Encoding Symmetry Mates Improves Prediction Accuracy, paragraph 3; Figure S9",
+   "references": [
+    "https://doi.org/10.2210/pdb4rkw/pdb"
+   ],
+   "observationBase": [
+    "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F16.large.jpg"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.64898/2026.08.26.747373"
+   ],
+   "observationOriginActivity": "wf:s5"
+  },
+  {
+   "@id": "wf:e13",
+   "@type": [
+    "wf:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Median EDIAm of predicted waters rose from 0.40 at t = 0.10 to 0.85 at t = 0.90",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The deposited median is 0.78. Predicted waters match it at a confidence threshold of about 0.7."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Evaluating Water Prediction on Experimental Data, paragraph 2; Figure 6A",
+   "observationBase": [
+    "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F7.large.jpg"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.64898/2026.08.26.747373"
+   ],
+   "observationOriginActivity": "wf:s6"
+  },
+  {
+   "@id": "wf:e14",
+   "@type": [
+    "wf:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Novel waters above 3σ in mFo-DFc rose from 10.7% to 49.2% with increasing confidence threshold",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Median mFo-DFc of novel waters rose from 1.41σ to 2.97σ, and novel waters always had more density support than decoy positions."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Evaluating Water Prediction on Experimental Data, paragraph 3; Figure 6B",
+   "observationBase": [
+    "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F7.large.jpg"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.64898/2026.08.26.747373"
+   ],
+   "observationOriginActivity": "wf:s6"
+  },
+  {
+   "@id": "wf:e15",
+   "@type": [
+    "wf:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Three novel 4RKW waters sit on 9.1σ, 4.1σ and 4.1σ difference density",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The matched decoy positions sit at -2.3σ, -1.3σ and +1.7σ. Predictions at confidence threshold 0.5."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Evaluating Water Prediction on Experimental Data, paragraph 4; Figure 6C-E",
+   "references": [
+    "https://doi.org/10.2210/pdb4rkw/pdb"
+   ],
+   "observationBase": [
+    "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F7.large.jpg"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.64898/2026.08.26.747373"
+   ],
+   "observationOriginActivity": "wf:s7"
+  },
+  {
+   "@id": "wf:e16",
+   "@type": [
+    "wf:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Unrefined predicted waters gave 4RKW R-free 0.227 (t = 0.5) and 0.230 (ρ = 0.6) against 0.20 deposited",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "After full refinement with water picking off, R-free was 0.203 and 0.210 against 0.191 for the deposited model. The gap narrowed from 0.027 to 0.012 for t = 0.5."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Evaluating Water Prediction on Experimental Data, paragraphs 5-6; Figure 6F",
+   "references": [
+    "https://doi.org/10.2210/pdb4rkw/pdb"
+   ],
+   "observationBase": [
+    "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F7.large.jpg"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.64898/2026.08.26.747373"
+   ],
+   "observationOriginActivity": "wf:s8"
+  },
+  {
+   "@id": "wf:e17",
+   "@type": [
+    "wf:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Density thresholding reached parity F1 0.596 against 0.634 for confidence thresholding",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "With confidence t = 0.5, predicted water count correlated with resolution (R = -0.66), as deposited counts do (R = -0.61)."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: WaterFlow Inference on Predicted Structures, paragraphs 1-2; Figure 5A; Figure S5",
+   "observationBase": [
+    "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F6.large.jpg",
+    "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F12.large.jpg"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.64898/2026.08.26.747373"
+   ],
+   "observationOriginActivity": "wf:s1"
+  },
+  {
+   "@id": "wf:e18",
+   "@type": [
+    "wf:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - On an ESMFold model of 4RKW (Cα RMSD 0.31 Å), precision and recall were lower than on the crystal structure",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "MolProbity score was 1.69 against 1.24 (clashscore 14.1 against 4.65). Adding symmetry mates gave little to no improvement on the ESMFold model."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: WaterFlow Inference on Predicted Structures, paragraphs 4-6; Table 4; Figure 5D",
+   "references": [
+    "https://doi.org/10.1002/pro.3330",
+    "https://doi.org/10.2210/pdb4rkw/pdb"
+   ],
+   "observationBase": [
+    "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F6.large.jpg"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.64898/2026.08.26.747373"
+   ],
+   "observationOriginActivity": "wf:s9"
+  },
+  {
+   "@id": "wf:e19",
+   "@type": [
+    "wf:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - In ATP-bound LuxO, 3 of 4 ATP-contacting waters were recovered, with both bridging waters within 0.1 Å",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The water displaced by the adenine ring was predicted 0.1 Å from its bound position, with no water predicted within 2.1 Å of its apo position."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: WaterFlow Inference on Predicted Structures and Protein-Ligand Interactions, paragraphs 7-8; Figure 5E",
+   "references": [
+    "https://doi.org/10.2210/pdb5ep1/pdb",
+    "https://doi.org/10.2210/pdb5ep4/pdb"
+   ],
+   "observationBase": [
+    "https://www.biorxiv.org/content/biorxiv/early/2026/08/27/2026.08.26.747373/F6.large.jpg"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.64898/2026.08.26.747373"
+   ],
+   "observationOriginActivity": "wf:s10"
+  },
+  {
+   "@id": "wf:s1",
+   "@type": [
+    "wf:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - WaterFlow against re-trained SuperWater on a 698-structure holdout",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Both models trained on LARGE and SMALL and scored on the same cluster-disjoint holdout (median resolution 1.90 Å, median R-free 0.212). Precision/recall swept over confidence thresholds."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Evaluation Dataset; WaterFlow More Accurately Predicts Water Molecules",
+   "references": [
+    "https://doi.org/10.1101/2024.11.18.624208"
+   ]
+  },
+  {
+   "@id": "wf:s3",
+   "@type": [
+    "wf:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - Training-set size scaling on fractions of SMALL and LARGE",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The full pipeline was retrained on cluster-stratified fractions from 1% to 100% of each dataset. The three smallest fractions were repeated over three seeds."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Training data size affects prediction accuracy, paragraph 2; Figure 3A"
+  },
+  {
+   "@id": "wf:s4",
+   "@type": [
+    "wf:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - Per-water quality filter ablation on LARGE",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "WaterFlow retrained on LARGE with and without removing waters with EDIAm below 0.4 or B-factor z-score above 2.0."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Training data size affects prediction accuracy, paragraph 3; Figure 3B"
+  },
+  {
+   "@id": "wf:s5",
+   "@type": [
+    "wf:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - Symmetry mate ablation",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Two LARGE-trained models that differ only in whether symmetry mates are in the input graph, compared at parity and by distance to the nearest mate."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Encoding Symmetry Mates Improves Prediction Accuracy; Figure 4; Figures S8-S9",
+   "references": [
+    "https://doi.org/10.2210/pdb3mye/pdb",
+    "https://doi.org/10.2210/pdb4rkw/pdb"
+   ]
+  },
+  {
+   "@id": "wf:s2",
+   "@type": [
+    "wf:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - Consensus water clustering across isomorphous HEWL, endothiapepsin and carbonic anhydrase structures",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "65 HEWL, 907 endothiapepsin and 937 carbonic anhydrase structures with R-free better than 25%. HEWL reference was 7DER, and all HEWL structures were within 0.42 Å Cα RMSD of it."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Crystallographic Water Placement Pareto Front, paragraphs 2-3; Supplementary Tables 2-4",
+   "references": [
+    "https://doi.org/10.2210/pdb7der/pdb"
+   ]
+  },
+  {
+   "@id": "wf:s6",
+   "@type": [
+    "wf:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - Density support of predicted and novel waters across the holdout",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "EDIAm of all predicted waters, and 2mFo-DFc and mFo-DFc levels at novel waters against decoy positions, across confidence thresholds."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Evaluating Water Prediction on Experimental Data, paragraphs 2-3",
+   "references": [
+    "https://doi.org/10.1021/acs.jcim.7b00391"
+   ]
+  },
+  {
+   "@id": "wf:s7",
+   "@type": [
+    "wf:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - DJ-1 (4RKW) case study of inference settings and novel waters",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "WaterFlow on the 1.5 Å DJ-1 structure gave 157 waters at t = 0.5, 112 at ρ = 0.6 and 186 at ρ = 1.0."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: WaterFlow Inference on Predicted Structures, paragraph 3; Figure 5C; Figure 6C-E",
+   "references": [
+    "https://doi.org/10.1523/JNEUROSCI.4751-13.2014",
+    "https://doi.org/10.2210/pdb4rkw/pdb"
+   ]
+  },
+  {
+   "@id": "wf:s8",
+   "@type": [
+    "wf:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - Refinement of 4RKW with predicted waters",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Predicted water sets and the deposited control were refined three ways: bulk-solvent rescaling only, water B-factors only, and full refinement."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Evaluating Water Prediction on Experimental Data, paragraphs 5-6; Figure 6F",
+   "references": [
+    "https://doi.org/10.1107/S0907444912001308",
+    "https://doi.org/10.2210/pdb4rkw/pdb"
+   ]
+  },
+  {
+   "@id": "wf:s9",
+   "@type": [
+    "wf:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - WaterFlow on an ESMFold model of DJ-1 against the 4RKW crystal structure",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Confidence and density inference with and without symmetry mates on both models. Mates for the ESMFold model used the 4RKW space group and unit cell."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: WaterFlow Inference on Predicted Structures, paragraphs 4-6; Table 4",
+   "references": [
+    "https://doi.org/10.1126/science.ade2574",
+    "https://doi.org/10.1002/pro.3330",
+    "https://doi.org/10.2210/pdb4rkw/pdb"
+   ]
+  },
+  {
+   "@id": "wf:s10",
+   "@type": [
+    "wf:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - LuxO apo/ATP-bound binding-site waters (5EP1/5EP4)",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Both structures are 1.5 Å in space group P61. Waters within hydrogen-bonding range of binding-site residues and ATP were compared at t = 0.5 and ρ = 0.6."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: WaterFlow Inference on Predicted Structures, paragraphs 7-8; Figure 5E",
+   "references": [
+    "https://doi.org/10.1371/journal.pbio.1002464",
+    "https://doi.org/10.2210/pdb5ep1/pdb",
+    "https://doi.org/10.2210/pdb5ep4/pdb"
+   ]
+  },
+  {
+   "@id": "wf:p1",
+   "@type": [
+    "wf:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - WaterFlow two-stage model: flow-matching generator and confidence model",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "A GVP network on a protein-water graph with ESM3 residue embeddings. The generator learns a velocity field from prior samples to water positions; the confidence model, initialized from the generator, scores candidates against a target near 1 within 0.5 Å that decays to 0 by about 1.5 Å."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Encoder, Generator, and Confidence Model; Figure 1A; README: Training your own models",
+   "references": [
+    "https://doi.org/10.48550/arXiv.2106.03843",
+    "https://doi.org/10.1126/science.ads0018",
+    "https://doi.org/10.48550/arXiv.2210.02747",
+    "https://doi.org/10.48550/arXiv.2209.03003",
+    "https://doi.org/10.48550/arXiv.2209.15571"
+   ]
+  },
+  {
+   "@id": "wf:p2",
+   "@type": [
+    "wf:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - LARGE and SMALL datasets from PDB-REDO with cluster-based splits",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "X-ray structures with 50-500 residues. LARGE: resolution 3.0 Å or better and R-free 0.20 or lower (67,272). SMALL: 2.0 Å or better and R-free 0.25 or lower (22,318). Clustered with MMseqs2 and Foldseek, and whole clusters assigned to splits."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Dataset; Table 1; Figures S1 and S7",
+   "references": [
+    "https://doi.org/10.1093/bioinformatics/btr590",
+    "https://doi.org/10.1038/nbt.3988",
+    "https://doi.org/10.1038/s41587-023-01773-0",
+    "https://doi.org/10.1021/acs.jcim.7b00391"
+   ]
+  },
+  {
+   "@id": "wf:p3",
+   "@type": [
+    "wf:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - Inference and scoring by precision@d, recall@d and parity F1",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Sample several-fold more candidates than expected, keep those above a confidence or density threshold, and cluster greedily within 1.52 Å. Score at d = 0.5 and 1.0 Å, with F1 at the point where predicted and deposited counts match."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Inference; Evaluation Metrics; README: Selecting the final waters",
+   "references": [
+    "https://doi.org/10.1101/2024.11.18.624208"
+   ]
+  },
+  {
+   "@id": "wf:p5",
+   "@type": [
+    "wf:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - Symmetry mate expansion of the input graph",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Whole residues of symmetry-related copies, including ligands, ions and cofactors but not waters, with any atom within 8.0 Å of the asymmetric unit are added as protein nodes."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Encoding Symmetry Mates Improves Prediction Accuracy, paragraph 1; README: Step 2"
+  },
+  {
+   "@id": "wf:p4",
+   "@type": [
+    "wf:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - HDBSCAN clustering of deposited waters to define consensus sites",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Align structures, cluster all deposited waters with HDBSCAN (hyperparameters ranked by DBCV and stability), and call clusters consensus when at least 30% of structures have a water within 1.0 Å."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Crystallographic Water Placement Pareto Front, paragraph 2; Figure 2A",
+   "references": [
+    "https://doi.org/10.26434/chemrxiv-2025-8526g-v2"
+   ]
+  },
+  {
+   "@id": "wf:p6",
+   "@type": [
+    "wf:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - Decoy null comparison of density at novel waters",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "For each novel water, up to eight decoys are sampled on a 2.5 Å sphere around it, dropping any that overlap non-water heavy atoms. Density at novel waters and decoys is compared in 2mFo-DFc and mFo-DFc maps."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Evaluating Water Prediction on Experimental Data, paragraph 3"
+  },
+  {
+   "@id": "wf:p7",
+   "@type": [
+    "wf:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - phenix refinement with predicted waters and water picking off",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Predicted waters start at B = 32.5 Å², the mean deposited water B-factor. Refinement runs with only water B-factors free, then with all coordinates, occupancies and B-factors, so no waters can be added or removed."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Evaluating Water Prediction on Experimental Data, paragraphs 5-6",
+   "references": [
+    "https://doi.org/10.1107/S0907444912001308"
+   ]
+  },
+  {
+   "@id": "wf:r1",
+   "@type": [
+    "wf:schema-Request",
+    "mira:Request"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "REQ - Add more distinct, high-quality structures to the training data",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The authors name structural diversity of high-quality data as the most likely route to better water prediction."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Training data size affects prediction accuracy, last paragraph; Discussion, paragraph 4"
+  },
+  {
+   "@id": "wf:r2",
+   "@type": [
+    "wf:schema-Request",
+    "mira:Request"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "REQ - Compare WaterFlow with physics-based solvation methods and displacement free energies",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Future work will test whether WaterFlow and methods such as 3D-RISM, GIST and inhomogeneous solvation theory agree on occupied sites, and whether confidence correlates with displacement free energy."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Discussion, paragraph 6",
+   "references": [
+    "https://doi.org/10.1021/ct900460m",
+    "https://doi.org/10.1021/jp9723574"
+   ]
+  },
+  {
+   "@id": "wf:r3",
+   "@type": [
+    "wf:schema-Request",
+    "mira:Request"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "REQ - Recalibrate the confidence model for predicted input structures",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Predicted and crystallographic coordinates are not equivalent, so the confidence model likely needs recalibration by input source."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Discussion, paragraph 7"
+  },
+  {
+   "@id": "wf:r4",
+   "@type": [
+    "wf:schema-Request",
+    "mira:Request"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "REQ - Evaluate WaterFlow on cryo-EM and nucleic acid structures",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Named by the authors as the focus of future work."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Discussion, paragraph 8",
+   "references": [
+    "https://doi.org/10.1038/s41592-020-01051-w",
+    "https://doi.org/10.1101/2025.01.23.634578"
+   ]
+  },
+  {
+   "@id": "wf:r5",
+   "@type": [
+    "wf:schema-Request",
+    "mira:Request"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "REQ - Train water models with fluctuations, partial occupancy and joint protein-solvent ensembles",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The authors propose WaterFlow as a source of initial training data and suggest pairing it with experimental guidance such as sampleworks."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Discussion, paragraphs 9-10",
+   "references": [
+    "https://doi.org/10.64898/2026.01.19.699807",
+    "https://doi.org/10.82153/JKXJ-TW08"
+   ]
+  },
+  {
+   "@id": "wf:r6",
+   "@type": [
+    "wf:schema-Request",
+    "mira:Request"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "REQ - Test whether the binding-site and refinement results generalize beyond single examples",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The LuxO and 4RKW refinement results are each single demonstrations, and the authors state that further testing is needed."
+   },
+   "creator": "wf:creator",
+   "bibliographicCitation": "Srivastava et al. 2026, doi:10.64898/2026.08.26.747373. Results: Evaluating Water Prediction on Experimental Data, last paragraph; Discussion, paragraphs 5 and 10"
+  },
+  {
+   "@id": "wf:rel-addresses-c1-q1",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c1",
+   "destination": "wf:q1",
+   "title": "[[CLM - Water position prediction lags behind protein and protein-ligand structure prediction]] -addresses-> [[QUE - Can a flow-matching model predict ordered water positions more accurately than the current state of the art?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-addresses-c17-q1",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c17",
+   "destination": "wf:q1",
+   "title": "[[CLM - Simpler design choices may suit the data-limited water prediction task]] -addresses-> [[QUE - Can a flow-matching model predict ordered water positions more accurately than the current state of the art?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-addresses-c3-q1",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c3",
+   "destination": "wf:q1",
+   "title": "[[CLM - WaterFlow outperforms SuperWater at every precision level, most at sub-angstrom tolerance]] -addresses-> [[QUE - Can a flow-matching model predict ordered water positions more accurately than the current state of the art?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-addresses-c4-q1",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c4",
+   "destination": "wf:q1",
+   "title": "[[CLM - Random train/test splits overstate water prediction accuracy because homologs share water sites]] -addresses-> [[QUE - Can a flow-matching model predict ordered water positions more accurately than the current state of the art?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-addresses-c4-q2",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c4",
+   "destination": "wf:q2",
+   "title": "[[CLM - Random train/test splits overstate water prediction accuracy because homologs share water sites]] -addresses-> [[QUE - How reproducible are deposited water molecules across otherwise identical crystal structures?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-addresses-c2-q2",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c2",
+   "destination": "wf:q2",
+   "title": "[[CLM - Deposited ordered waters are a noisy target for training and evaluation]] -addresses-> [[QUE - How reproducible are deposited water molecules across otherwise identical crystal structures?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-addresses-c5-q2",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c5",
+   "destination": "wf:q2",
+   "title": "[[CLM - Consensus waters across isomorphous structures set an accuracy ceiling well above current predictions]] -addresses-> [[QUE - How reproducible are deposited water molecules across otherwise identical crystal structures?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-addresses-c6-q2",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c6",
+   "destination": "wf:q2",
+   "title": "[[CLM - Consensus waters are better supported by the experimental data than non-consensus waters]] -addresses-> [[QUE - How reproducible are deposited water molecules across otherwise identical crystal structures?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-addresses-c6-q3",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c6",
+   "destination": "wf:q3",
+   "title": "[[CLM - Consensus waters are better supported by the experimental data than non-consensus waters]] -addresses-> [[QUE - Is water prediction limited more by training data quantity or by data quality?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-addresses-c18-q3",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c18",
+   "destination": "wf:q3",
+   "title": "[[CLM - Training only on well-supported waters should give a more accurate model (tested hypothesis)]] -addresses-> [[QUE - Is water prediction limited more by training data quantity or by data quality?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-addresses-c7-q3",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c7",
+   "destination": "wf:q3",
+   "title": "[[CLM - Structural diversity of high-quality training data limits water prediction accuracy]] -addresses-> [[QUE - Is water prediction limited more by training data quantity or by data quality?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-addresses-c8-q3",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c8",
+   "destination": "wf:q3",
+   "title": "[[CLM - Filtering individual training waters by EDIA and B-factor did not improve accuracy]] -addresses-> [[QUE - Is water prediction limited more by training data quantity or by data quality?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-addresses-c20-q3",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c20",
+   "destination": "wf:q3",
+   "title": "[[CLM - Models trained on static coordinates cannot represent partially occupied, fluctuating waters]] -addresses-> [[QUE - Is water prediction limited more by training data quantity or by data quality?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-addresses-c9-q4",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c9",
+   "destination": "wf:q4",
+   "title": "[[CLM - Including symmetry mates in the input graph improves water prediction]] -addresses-> [[QUE - Does adding crystal lattice neighbors (symmetry mates) to the input improve water prediction?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-addresses-c10-q4",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c10",
+   "destination": "wf:q4",
+   "title": "[[CLM - Explicit crystal symmetry may benefit structure prediction more broadly]] -addresses-> [[QUE - Does adding crystal lattice neighbors (symmetry mates) to the input improve water prediction?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-addresses-c13-q5",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c13",
+   "destination": "wf:q5",
+   "title": "[[CLM - The confidence score tracks experimental density support of predicted waters]] -addresses-> [[QUE - Are predicted waters supported by the experimental X-ray data, not only by deposited models?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-addresses-c11-q5",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c11",
+   "destination": "wf:q5",
+   "title": "[[CLM - Many novel predictions are real waters that deposited models omit]] -addresses-> [[QUE - Are predicted waters supported by the experimental X-ray data, not only by deposited models?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-addresses-c12-q5",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c12",
+   "destination": "wf:q5",
+   "title": "[[CLM - WaterFlow-predicted waters fit the structure factors nearly as well as deposited waters]] -addresses-> [[QUE - Are predicted waters supported by the experimental X-ray data, not only by deposited models?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-addresses-c16-q6",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c16",
+   "destination": "wf:q6",
+   "title": "[[CLM - Density thresholding removes the resolution dependence of water count at a small accuracy cost]] -addresses-> [[QUE - How does WaterFlow behave across inference settings, on predicted structures and at ligand binding sites?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-addresses-c14-q6",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c14",
+   "destination": "wf:q6",
+   "title": "[[CLM - WaterFlow is less accurate on predicted structures than on crystal structures]] -addresses-> [[QUE - How does WaterFlow behave across inference settings, on predicted structures and at ligand binding sites?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-addresses-c19-q6",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c19",
+   "destination": "wf:q6",
+   "title": "[[CLM - WaterFlow is untested on cryo-EM structures and nucleic acids]] -addresses-> [[QUE - How does WaterFlow behave across inference settings, on predicted structures and at ligand binding sites?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-addresses-c15-q6",
+   "@type": [
+    "wf:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:c15",
+   "destination": "wf:q6",
+   "title": "[[CLM - WaterFlow can recover critical binding-site waters, including ligand-bridging waters]] -addresses-> [[QUE - How does WaterFlow behave across inference settings, on predicted structures and at ligand binding sites?]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e1-c3",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e1",
+   "destination": "wf:c3",
+   "title": "[[EVD - Maximum precision/recall at 1.0 Å: 0.92/0.83 for WaterFlow vs 0.8/0.59 for SuperWater]] -supports-> [[CLM - WaterFlow outperforms SuperWater at every precision level, most at sub-angstrom tolerance]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e2-c3",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e2",
+   "destination": "wf:c3",
+   "title": "[[EVD - Parity F1 at 1.0 Å: 0.63 for WaterFlow vs 0.41 for SuperWater; at 0.5 Å: 0.54 vs 0.26]] -supports-> [[CLM - WaterFlow outperforms SuperWater at every precision level, most at sub-angstrom tolerance]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e3-c4",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e3",
+   "destination": "wf:c4",
+   "title": "[[EVD - Consensus waters were 69.9% of HEWL, 86.5% of endothiapepsin and 78.5% of carbonic anhydrase waters]] -supports-> [[CLM - Random train/test splits overstate water prediction accuracy because homologs share water sites]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e3-c2",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e3",
+   "destination": "wf:c2",
+   "title": "[[EVD - Consensus waters were 69.9% of HEWL, 86.5% of endothiapepsin and 78.5% of carbonic anhydrase waters]] -supports-> [[CLM - Deposited ordered waters are a noisy target for training and evaluation]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e3-c5",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e3",
+   "destination": "wf:c5",
+   "title": "[[EVD - Consensus waters were 69.9% of HEWL, 86.5% of endothiapepsin and 78.5% of carbonic anhydrase waters]] -supports-> [[CLM - Consensus waters across isomorphous structures set an accuracy ceiling well above current predictions]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e4-c5",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e4",
+   "destination": "wf:c5",
+   "title": "[[EVD - Pareto knee F1 against consensus sites: 0.87 (HEWL), 0.94 (EAP), 0.87 (CA)]] -supports-> [[CLM - Consensus waters across isomorphous structures set an accuracy ceiling well above current predictions]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e5-c2",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e5",
+   "destination": "wf:c2",
+   "title": "[[EVD - HEWL structures with fewest waters: precision 0.94, recall 0.36; with most waters: 0.47 and 0.85]] -supports-> [[CLM - Deposited ordered waters are a noisy target for training and evaluation]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e6-c6",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e6",
+   "destination": "wf:c6",
+   "title": "[[EVD - An EDIA cutoff of 0.4 would remove 20-26% of non-consensus waters but only 1-8% of consensus waters]] -supports-> [[CLM - Consensus waters are better supported by the experimental data than non-consensus waters]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e7-c6",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e7",
+   "destination": "wf:c6",
+   "title": "[[EVD - The half of structures with higher consensus F1 had better resolution and lower R-free in all three datasets]] -supports-> [[CLM - Consensus waters are better supported by the experimental data than non-consensus waters]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e8-c7",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e8",
+   "destination": "wf:c7",
+   "title": "[[EVD - LARGE reached parity F1 63.4 at N = 60,116, against 61.0 for SMALL at its full 21,211]] -supports-> [[CLM - Structural diversity of high-quality training data limits water prediction accuracy]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e9-c8",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e9",
+   "destination": "wf:c8",
+   "title": "[[EVD - Per-water filtering gave parity F1 63.4 against 63.8 without the filter]] -supports-> [[CLM - Filtering individual training waters by EDIA and B-factor did not improve accuracy]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-opposes-e9-c18",
+   "@type": [
+    "wf:areldef-opposes",
+    "mira:opposes"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e9",
+   "destination": "wf:c18",
+   "title": "[[EVD - Per-water filtering gave parity F1 63.4 against 63.8 without the filter]] -opposes-> [[CLM - Training only on well-supported waters should give a more accurate model (tested hypothesis)]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e10-c9",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e10",
+   "destination": "wf:c9",
+   "title": "[[EVD - Symmetry mates raised parity F1 at 1.0 Å from 0.57 to 0.63]] -supports-> [[CLM - Including symmetry mates in the input graph improves water prediction]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e11-c9",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e11",
+   "destination": "wf:c9",
+   "title": "[[EVD - For waters within 3.4 Å of a symmetry mate, recall rose from 0.29 to 0.60]] -supports-> [[CLM - Including symmetry mates in the input graph improves water prediction]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e12-c9",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e12",
+   "destination": "wf:c9",
+   "title": "[[EVD - One bridging water in 4RKW scored 0.004 without symmetry mates and 0.717 with them]] -supports-> [[CLM - Including symmetry mates in the input graph improves water prediction]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e13-c13",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e13",
+   "destination": "wf:c13",
+   "title": "[[EVD - Median EDIAm of predicted waters rose from 0.40 at t = 0.10 to 0.85 at t = 0.90]] -supports-> [[CLM - The confidence score tracks experimental density support of predicted waters]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e14-c13",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e14",
+   "destination": "wf:c13",
+   "title": "[[EVD - Novel waters above 3σ in mFo-DFc rose from 10.7% to 49.2% with increasing confidence threshold]] -supports-> [[CLM - The confidence score tracks experimental density support of predicted waters]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e14-c11",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e14",
+   "destination": "wf:c11",
+   "title": "[[EVD - Novel waters above 3σ in mFo-DFc rose from 10.7% to 49.2% with increasing confidence threshold]] -supports-> [[CLM - Many novel predictions are real waters that deposited models omit]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e15-c11",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e15",
+   "destination": "wf:c11",
+   "title": "[[EVD - Three novel 4RKW waters sit on 9.1σ, 4.1σ and 4.1σ difference density]] -supports-> [[CLM - Many novel predictions are real waters that deposited models omit]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e16-c12",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e16",
+   "destination": "wf:c12",
+   "title": "[[EVD - Unrefined predicted waters gave 4RKW R-free 0.227 (t = 0.5) and 0.230 (ρ = 0.6) against 0.20 deposited]] -supports-> [[CLM - WaterFlow-predicted waters fit the structure factors nearly as well as deposited waters]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e17-c16",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e17",
+   "destination": "wf:c16",
+   "title": "[[EVD - Density thresholding reached parity F1 0.596 against 0.634 for confidence thresholding]] -supports-> [[CLM - Density thresholding removes the resolution dependence of water count at a small accuracy cost]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e18-c14",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e18",
+   "destination": "wf:c14",
+   "title": "[[EVD - On an ESMFold model of 4RKW (Cα RMSD 0.31 Å), precision and recall were lower than on the crystal structure]] -supports-> [[CLM - WaterFlow is less accurate on predicted structures than on crystal structures]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-supports-e19-c15",
+   "@type": [
+    "wf:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e19",
+   "destination": "wf:c15",
+   "title": "[[EVD - In ATP-bound LuxO, 3 of 4 ATP-contacting waters were recovered, with both bridging waters within 0.1 Å]] -supports-> [[CLM - WaterFlow can recover critical binding-site waters, including ligand-bridging waters]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-follows-s1-p1",
+   "@type": [
+    "wf:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:s1",
+   "destination": "wf:p1",
+   "title": "[[STU - WaterFlow against re-trained SuperWater on a 698-structure holdout]] -follows-> [[PRO - WaterFlow two-stage model: flow-matching generator and confidence model]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-follows-s1-p2",
+   "@type": [
+    "wf:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:s1",
+   "destination": "wf:p2",
+   "title": "[[STU - WaterFlow against re-trained SuperWater on a 698-structure holdout]] -follows-> [[PRO - LARGE and SMALL datasets from PDB-REDO with cluster-based splits]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-follows-s1-p3",
+   "@type": [
+    "wf:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:s1",
+   "destination": "wf:p3",
+   "title": "[[STU - WaterFlow against re-trained SuperWater on a 698-structure holdout]] -follows-> [[PRO - Inference and scoring by precision@d, recall@d and parity F1]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-follows-s3-p2",
+   "@type": [
+    "wf:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:s3",
+   "destination": "wf:p2",
+   "title": "[[STU - Training-set size scaling on fractions of SMALL and LARGE]] -follows-> [[PRO - LARGE and SMALL datasets from PDB-REDO with cluster-based splits]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-follows-s3-p3",
+   "@type": [
+    "wf:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:s3",
+   "destination": "wf:p3",
+   "title": "[[STU - Training-set size scaling on fractions of SMALL and LARGE]] -follows-> [[PRO - Inference and scoring by precision@d, recall@d and parity F1]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-follows-s4-p2",
+   "@type": [
+    "wf:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:s4",
+   "destination": "wf:p2",
+   "title": "[[STU - Per-water quality filter ablation on LARGE]] -follows-> [[PRO - LARGE and SMALL datasets from PDB-REDO with cluster-based splits]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-follows-s4-p3",
+   "@type": [
+    "wf:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:s4",
+   "destination": "wf:p3",
+   "title": "[[STU - Per-water quality filter ablation on LARGE]] -follows-> [[PRO - Inference and scoring by precision@d, recall@d and parity F1]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-follows-s5-p5",
+   "@type": [
+    "wf:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:s5",
+   "destination": "wf:p5",
+   "title": "[[STU - Symmetry mate ablation]] -follows-> [[PRO - Symmetry mate expansion of the input graph]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-follows-s5-p3",
+   "@type": [
+    "wf:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:s5",
+   "destination": "wf:p3",
+   "title": "[[STU - Symmetry mate ablation]] -follows-> [[PRO - Inference and scoring by precision@d, recall@d and parity F1]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-follows-s2-p4",
+   "@type": [
+    "wf:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:s2",
+   "destination": "wf:p4",
+   "title": "[[STU - Consensus water clustering across isomorphous HEWL, endothiapepsin and carbonic anhydrase structures]] -follows-> [[PRO - HDBSCAN clustering of deposited waters to define consensus sites]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-follows-s6-p6",
+   "@type": [
+    "wf:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:s6",
+   "destination": "wf:p6",
+   "title": "[[STU - Density support of predicted and novel waters across the holdout]] -follows-> [[PRO - Decoy null comparison of density at novel waters]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-follows-s6-p3",
+   "@type": [
+    "wf:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:s6",
+   "destination": "wf:p3",
+   "title": "[[STU - Density support of predicted and novel waters across the holdout]] -follows-> [[PRO - Inference and scoring by precision@d, recall@d and parity F1]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-follows-s7-p6",
+   "@type": [
+    "wf:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:s7",
+   "destination": "wf:p6",
+   "title": "[[STU - DJ-1 (4RKW) case study of inference settings and novel waters]] -follows-> [[PRO - Decoy null comparison of density at novel waters]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-follows-s7-p3",
+   "@type": [
+    "wf:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:s7",
+   "destination": "wf:p3",
+   "title": "[[STU - DJ-1 (4RKW) case study of inference settings and novel waters]] -follows-> [[PRO - Inference and scoring by precision@d, recall@d and parity F1]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-follows-s8-p7",
+   "@type": [
+    "wf:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:s8",
+   "destination": "wf:p7",
+   "title": "[[STU - Refinement of 4RKW with predicted waters]] -follows-> [[PRO - phenix refinement with predicted waters and water picking off]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-follows-s9-p3",
+   "@type": [
+    "wf:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:s9",
+   "destination": "wf:p3",
+   "title": "[[STU - WaterFlow on an ESMFold model of DJ-1 against the 4RKW crystal structure]] -follows-> [[PRO - Inference and scoring by precision@d, recall@d and parity F1]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-follows-s10-p3",
+   "@type": [
+    "wf:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:s10",
+   "destination": "wf:p3",
+   "title": "[[STU - LuxO apo/ATP-bound binding-site waters (5EP1/5EP4)]] -follows-> [[PRO - Inference and scoring by precision@d, recall@d and parity F1]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-request_target-r1-c7",
+   "@type": [
+    "wf:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:r1",
+   "destination": "wf:c7",
+   "title": "[[REQ - Add more distinct, high-quality structures to the training data]] -request_target-> [[CLM - Structural diversity of high-quality training data limits water prediction accuracy]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-request_target-r2-c13",
+   "@type": [
+    "wf:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:r2",
+   "destination": "wf:c13",
+   "title": "[[REQ - Compare WaterFlow with physics-based solvation methods and displacement free energies]] -request_target-> [[CLM - The confidence score tracks experimental density support of predicted waters]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-request_target-r2-c15",
+   "@type": [
+    "wf:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:r2",
+   "destination": "wf:c15",
+   "title": "[[REQ - Compare WaterFlow with physics-based solvation methods and displacement free energies]] -request_target-> [[CLM - WaterFlow can recover critical binding-site waters, including ligand-bridging waters]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-request_target-r3-c14",
+   "@type": [
+    "wf:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:r3",
+   "destination": "wf:c14",
+   "title": "[[REQ - Recalibrate the confidence model for predicted input structures]] -request_target-> [[CLM - WaterFlow is less accurate on predicted structures than on crystal structures]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-request_target-r4-c19",
+   "@type": [
+    "wf:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:r4",
+   "destination": "wf:c19",
+   "title": "[[REQ - Evaluate WaterFlow on cryo-EM and nucleic acid structures]] -request_target-> [[CLM - WaterFlow is untested on cryo-EM structures and nucleic acids]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-request_target-r5-c20",
+   "@type": [
+    "wf:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:r5",
+   "destination": "wf:c20",
+   "title": "[[REQ - Train water models with fluctuations, partial occupancy and joint protein-solvent ensembles]] -request_target-> [[CLM - Models trained on static coordinates cannot represent partially occupied, fluctuating waters]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-request_target-r5-c12",
+   "@type": [
+    "wf:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:r5",
+   "destination": "wf:c12",
+   "title": "[[REQ - Train water models with fluctuations, partial occupancy and joint protein-solvent ensembles]] -request_target-> [[CLM - WaterFlow-predicted waters fit the structure factors nearly as well as deposited waters]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-request_target-r6-c15",
+   "@type": [
+    "wf:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:r6",
+   "destination": "wf:c15",
+   "title": "[[REQ - Test whether the binding-site and refinement results generalize beyond single examples]] -request_target-> [[CLM - WaterFlow can recover critical binding-site waters, including ligand-bridging waters]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-request_target-r6-c12",
+   "@type": [
+    "wf:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:r6",
+   "destination": "wf:c12",
+   "title": "[[REQ - Test whether the binding-site and refinement results generalize beyond single examples]] -request_target-> [[CLM - WaterFlow-predicted waters fit the structure factors nearly as well as deposited waters]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-is_grounded_in-e1-s1",
+   "@type": [
+    "wf:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e1",
+   "destination": "wf:s1",
+   "title": "[[EVD - Maximum precision/recall at 1.0 Å: 0.92/0.83 for WaterFlow vs 0.8/0.59 for SuperWater]] -is_grounded_in-> [[STU - WaterFlow against re-trained SuperWater on a 698-structure holdout]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-is_grounded_in-e2-s1",
+   "@type": [
+    "wf:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e2",
+   "destination": "wf:s1",
+   "title": "[[EVD - Parity F1 at 1.0 Å: 0.63 for WaterFlow vs 0.41 for SuperWater; at 0.5 Å: 0.54 vs 0.26]] -is_grounded_in-> [[STU - WaterFlow against re-trained SuperWater on a 698-structure holdout]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-is_grounded_in-e3-s2",
+   "@type": [
+    "wf:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e3",
+   "destination": "wf:s2",
+   "title": "[[EVD - Consensus waters were 69.9% of HEWL, 86.5% of endothiapepsin and 78.5% of carbonic anhydrase waters]] -is_grounded_in-> [[STU - Consensus water clustering across isomorphous HEWL, endothiapepsin and carbonic anhydrase structures]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-is_grounded_in-e4-s2",
+   "@type": [
+    "wf:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e4",
+   "destination": "wf:s2",
+   "title": "[[EVD - Pareto knee F1 against consensus sites: 0.87 (HEWL), 0.94 (EAP), 0.87 (CA)]] -is_grounded_in-> [[STU - Consensus water clustering across isomorphous HEWL, endothiapepsin and carbonic anhydrase structures]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-is_grounded_in-e5-s2",
+   "@type": [
+    "wf:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e5",
+   "destination": "wf:s2",
+   "title": "[[EVD - HEWL structures with fewest waters: precision 0.94, recall 0.36; with most waters: 0.47 and 0.85]] -is_grounded_in-> [[STU - Consensus water clustering across isomorphous HEWL, endothiapepsin and carbonic anhydrase structures]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-is_grounded_in-e6-s2",
+   "@type": [
+    "wf:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e6",
+   "destination": "wf:s2",
+   "title": "[[EVD - An EDIA cutoff of 0.4 would remove 20-26% of non-consensus waters but only 1-8% of consensus waters]] -is_grounded_in-> [[STU - Consensus water clustering across isomorphous HEWL, endothiapepsin and carbonic anhydrase structures]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-is_grounded_in-e7-s2",
+   "@type": [
+    "wf:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e7",
+   "destination": "wf:s2",
+   "title": "[[EVD - The half of structures with higher consensus F1 had better resolution and lower R-free in all three datasets]] -is_grounded_in-> [[STU - Consensus water clustering across isomorphous HEWL, endothiapepsin and carbonic anhydrase structures]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-is_grounded_in-e8-s3",
+   "@type": [
+    "wf:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e8",
+   "destination": "wf:s3",
+   "title": "[[EVD - LARGE reached parity F1 63.4 at N = 60,116, against 61.0 for SMALL at its full 21,211]] -is_grounded_in-> [[STU - Training-set size scaling on fractions of SMALL and LARGE]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-is_grounded_in-e9-s4",
+   "@type": [
+    "wf:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e9",
+   "destination": "wf:s4",
+   "title": "[[EVD - Per-water filtering gave parity F1 63.4 against 63.8 without the filter]] -is_grounded_in-> [[STU - Per-water quality filter ablation on LARGE]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-is_grounded_in-e10-s5",
+   "@type": [
+    "wf:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e10",
+   "destination": "wf:s5",
+   "title": "[[EVD - Symmetry mates raised parity F1 at 1.0 Å from 0.57 to 0.63]] -is_grounded_in-> [[STU - Symmetry mate ablation]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-is_grounded_in-e11-s5",
+   "@type": [
+    "wf:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e11",
+   "destination": "wf:s5",
+   "title": "[[EVD - For waters within 3.4 Å of a symmetry mate, recall rose from 0.29 to 0.60]] -is_grounded_in-> [[STU - Symmetry mate ablation]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-is_grounded_in-e12-s5",
+   "@type": [
+    "wf:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e12",
+   "destination": "wf:s5",
+   "title": "[[EVD - One bridging water in 4RKW scored 0.004 without symmetry mates and 0.717 with them]] -is_grounded_in-> [[STU - Symmetry mate ablation]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-is_grounded_in-e13-s6",
+   "@type": [
+    "wf:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e13",
+   "destination": "wf:s6",
+   "title": "[[EVD - Median EDIAm of predicted waters rose from 0.40 at t = 0.10 to 0.85 at t = 0.90]] -is_grounded_in-> [[STU - Density support of predicted and novel waters across the holdout]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-is_grounded_in-e14-s6",
+   "@type": [
+    "wf:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e14",
+   "destination": "wf:s6",
+   "title": "[[EVD - Novel waters above 3σ in mFo-DFc rose from 10.7% to 49.2% with increasing confidence threshold]] -is_grounded_in-> [[STU - Density support of predicted and novel waters across the holdout]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-is_grounded_in-e15-s7",
+   "@type": [
+    "wf:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e15",
+   "destination": "wf:s7",
+   "title": "[[EVD - Three novel 4RKW waters sit on 9.1σ, 4.1σ and 4.1σ difference density]] -is_grounded_in-> [[STU - DJ-1 (4RKW) case study of inference settings and novel waters]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-is_grounded_in-e16-s8",
+   "@type": [
+    "wf:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e16",
+   "destination": "wf:s8",
+   "title": "[[EVD - Unrefined predicted waters gave 4RKW R-free 0.227 (t = 0.5) and 0.230 (ρ = 0.6) against 0.20 deposited]] -is_grounded_in-> [[STU - Refinement of 4RKW with predicted waters]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-is_grounded_in-e17-s1",
+   "@type": [
+    "wf:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e17",
+   "destination": "wf:s1",
+   "title": "[[EVD - Density thresholding reached parity F1 0.596 against 0.634 for confidence thresholding]] -is_grounded_in-> [[STU - WaterFlow against re-trained SuperWater on a 698-structure holdout]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-is_grounded_in-e18-s9",
+   "@type": [
+    "wf:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e18",
+   "destination": "wf:s9",
+   "title": "[[EVD - On an ESMFold model of 4RKW (Cα RMSD 0.31 Å), precision and recall were lower than on the crystal structure]] -is_grounded_in-> [[STU - WaterFlow on an ESMFold model of DJ-1 against the 4RKW crystal structure]]",
+   "creator": "wf:creator"
+  },
+  {
+   "@id": "wf:rel-is_grounded_in-e19-s10",
+   "@type": [
+    "wf:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "wf:e19",
+   "destination": "wf:s10",
+   "title": "[[EVD - In ATP-bound LuxO, 3 of 4 ATP-contacting waters were recovered, with both bridging waters within 0.1 Å]] -is_grounded_in-> [[STU - LuxO apo/ATP-bound binding-site waters (5EP1/5EP4)]]",
+   "creator": "wf:creator"
+  }
+ ]
+}

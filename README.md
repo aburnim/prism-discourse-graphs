@@ -6,6 +6,7 @@ Prism research papers mapped as [MIRA](https://mira.science) discourse graphs. E
 
 | Paper | Graph | JSON-LD |
 |---|---|---|
+| Srivastava et al. 2026, *WaterFlow* ([doi:10.64898/2026.08.26.747373](https://doi.org/10.64898/2026.08.26.747373)) | [graphs/waterflow/](https://aburnim.github.io/prism-discourse-graphs/graphs/waterflow/) | [waterflow-mira-graph.jsonld](graphs/waterflow/waterflow-mira-graph.jsonld) |
 | Holton and Wankowicz 2026, *User-defined bulk solvent map* ([doi:10.82153/2me0-hd96](https://doi.org/10.82153/2me0-hd96)) | [graphs/bulk-solvent-map/](https://aburnim.github.io/prism-discourse-graphs/graphs/bulk-solvent-map/) | [bulk-solvent-map-mira-graph.jsonld](graphs/bulk-solvent-map/bulk-solvent-map-mira-graph.jsonld) |
 | Wankowicz 2026, *qFit at scale* ([doi:10.82153/pff0-ck46](https://doi.org/10.82153/pff0-ck46)) | [graphs/qfit-at-scale/](https://aburnim.github.io/prism-discourse-graphs/graphs/qfit-at-scale/) | [qfit-at-scale-mira-graph.jsonld](graphs/qfit-at-scale/qfit-at-scale-mira-graph.jsonld) |
 | Zielinski et al. 2026, *Mac1 diffuse scattering East-West* ([doi:10.82153/hrpy-t681](https://doi.org/10.82153/hrpy-t681)) | [graphs/diffuse-east-west/](https://aburnim.github.io/prism-discourse-graphs/graphs/diffuse-east-west/) | [diffuse-east-west-mira-graph.jsonld](graphs/diffuse-east-west/diffuse-east-west-mira-graph.jsonld) |
