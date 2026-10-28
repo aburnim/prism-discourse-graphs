@@ -1,0 +1,2109 @@
+{
+ "@context": [
+  "https://mira-science.github.io/schema/mira.jsonld",
+  {
+   "bsm": "https://prismscience.org/mira/bulk-solvent-map#",
+   "Study": "mira:Study",
+   "Item": "sioc:Item",
+   "dct": "http://purl.org/dc/terms/",
+   "references": {
+    "@id": "dct:references",
+    "@type": "@id"
+   },
+   "bibliographicCitation": "dct:bibliographicCitation",
+   "identifier": "dct:identifier"
+  }
+ ],
+ "@graph": [
+  {
+   "@id": "bsm:creator",
+   "@type": "UserAccount",
+   "accountName": "Andy Burnim"
+  },
+  {
+   "@id": "bsm:schema-Question",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Question"
+   ],
+   "label": "Question",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:schema-Claim",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Claim"
+   ],
+   "label": "Claim",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:schema-Evidence",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Evidence"
+   ],
+   "label": "Evidence",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:schema-Study",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Study"
+   ],
+   "label": "Study",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:schema-Protocol",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Protocol"
+   ],
+   "label": "Protocol",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:schema-Request",
+   "@type": "NodeSchema",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "mira:Request"
+   ],
+   "label": "Request",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:areldef-addresses",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:addresses",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "bsm:areldef-addresses"
+    }
+   ],
+   "label": "addresses",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:reldef-addresses",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "bsm:schema-Claim",
+   "range": "bsm:schema-Question",
+   "subClassOf": [
+    "bsm:areldef-addresses"
+   ],
+   "label": "addresses",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:areldef-supports",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:supports",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "bsm:areldef-supports"
+    }
+   ],
+   "label": "supports",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:reldef-supports",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "bsm:schema-Evidence",
+   "range": "bsm:schema-Claim",
+   "subClassOf": [
+    "bsm:areldef-supports"
+   ],
+   "label": "supports",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:areldef-opposes",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:opposes",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "bsm:areldef-opposes"
+    }
+   ],
+   "label": "opposes",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:reldef-opposes",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "bsm:schema-Evidence",
+   "range": "bsm:schema-Claim",
+   "subClassOf": [
+    "bsm:areldef-opposes"
+   ],
+   "label": "opposes",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:areldef-is_grounded_in",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:is_grounded_in",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "bsm:areldef-is_grounded_in"
+    }
+   ],
+   "label": "is_grounded_in",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:reldef-is_grounded_in",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "bsm:schema-Evidence",
+   "range": "bsm:schema-Study",
+   "subClassOf": [
+    "bsm:areldef-is_grounded_in"
+   ],
+   "label": "is_grounded_in",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:areldef-follows",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:follows",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "bsm:areldef-follows"
+    }
+   ],
+   "label": "follows",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:reldef-follows",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "bsm:schema-Study",
+   "range": "bsm:schema-Protocol",
+   "subClassOf": [
+    "bsm:areldef-follows"
+   ],
+   "label": "follows",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:areldef-request_target",
+   "@type": "AbstractRelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "subClassOf": [
+    "dgb:RelationInstance",
+    "mira:request_target",
+    {
+     "@type": "owl:Restriction",
+     "onProperty": "rdf:predicate",
+     "hasValue": "bsm:areldef-request_target"
+    }
+   ],
+   "label": "request_target",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:reldef-request_target",
+   "@type": "RelationDef",
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "domain": "bsm:schema-Request",
+   "range": "bsm:schema-Claim",
+   "subClassOf": [
+    "bsm:areldef-request_target"
+   ],
+   "label": "request_target",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "https://doi.org/10.82153/2me0-hd96",
+   "@type": "SourceDocument",
+   "title": "Supplying a user-defined bulk solvent map for refinement",
+   "bibliographicCitation": "Holton J, Wankowicz SA (2026). The Stacks.",
+   "identifier": "doi:10.82153/2me0-hd96",
+   "describesActivity": [
+    "bsm:s1",
+    "bsm:s2",
+    "bsm:s3",
+    "bsm:s4",
+    "bsm:s5"
+   ]
+  },
+  {
+   "@id": "https://github.com/jmholton/phenix_user_solvent",
+   "@type": "SourceDocument",
+   "title": "jmholton/phenix_user_solvent (GitHub)"
+  },
+  {
+   "@id": "https://doi.org/10.1016/0022-2836%2868%2990205-2",
+   "@type": "SourceDocument",
+   "title": "Matthews B (1968) Solvent content of protein crystals",
+   "identifier": "doi:10.1016/0022-2836(68)90205-2",
+   "bibliographicCitation": "Reference 1 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1021/ci500662d",
+   "@type": "SourceDocument",
+   "title": "Nittinger E et al. (2015) Evidence of Water Molecules: A Statistical Evaluation of Water Molecules Based on Electron Density",
+   "identifier": "doi:10.1021/ci500662d",
+   "bibliographicCitation": "Reference 2 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s2053273324000299",
+   "@type": "SourceDocument",
+   "title": "Urzhumtsev A, Adams P, Afonine P (2024) Universal parameters of bulk-solvent masks",
+   "identifier": "doi:10.1107/s2053273324000299",
+   "bibliographicCitation": "Reference 3 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1006/jmbi.1994.1633",
+   "@type": "SourceDocument",
+   "title": "Jiang J-S, Brunger AT (1994) Protein Hydration Observed by X-ray Diffraction",
+   "identifier": "doi:10.1006/jmbi.1994.1633",
+   "bibliographicCitation": "Reference 4 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1002/pro.4909",
+   "@type": "SourceDocument",
+   "title": "Afonine PV et al. (2024) Accounting for nonuniformity of bulk-solvent: A mosaic model",
+   "identifier": "doi:10.1002/pro.4909",
+   "bibliographicCitation": "Reference 5 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s0907444900014608",
+   "@type": "SourceDocument",
+   "title": "Lunin VY et al. (2001) Low-resolution data analysis for low-density lipoprotein particle",
+   "identifier": "doi:10.1107/s0907444900014608",
+   "bibliographicCitation": "Reference 6 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.7554/elife.103797",
+   "@type": "SourceDocument",
+   "title": "Flowers J et al. (2025) Expanding automated multiconformer ligand modeling to macrocycles and fragments",
+   "identifier": "doi:10.7554/elife.103797",
+   "bibliographicCitation": "Reference 7 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.7554/elife.90606",
+   "@type": "SourceDocument",
+   "title": "Wankowicz SA et al. (2024) Automated multiconformer model building for X-ray crystallography and cryo-EM",
+   "identifier": "doi:10.7554/elife.90606",
+   "bibliographicCitation": "Reference 8 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s2059798323002498",
+   "@type": "SourceDocument",
+   "title": "Stachowski TR, Fischer M (2023) FLEXR: automated multi-conformer model building using electron-density map sampling",
+   "identifier": "doi:10.1107/s2059798323002498",
+   "bibliographicCitation": "Reference 9 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1016/bs.mie.2023.06.009",
+   "@type": "SourceDocument",
+   "title": "(2023) Refinement of multiconformer ensemble models from multi-temperature X-ray diffraction data",
+   "identifier": "doi:10.1016/bs.mie.2023.06.009",
+   "bibliographicCitation": "Reference 10 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s2059798316018210",
+   "@type": "SourceDocument",
+   "title": "Liebschner D et al. (2017) Polder maps: improving OMIT maps by excluding bulk solvent",
+   "identifier": "doi:10.1107/s2059798316018210",
+   "bibliographicCitation": "Reference 11 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s0907444910031045",
+   "@type": "SourceDocument",
+   "title": "Fenn TD, Schnieders MJ, Brunger AT (2010) A smooth and differentiable bulk-solvent model for macromolecular diffraction",
+   "identifier": "doi:10.1107/s0907444910031045",
+   "bibliographicCitation": "Reference 12 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1111/febs.12922",
+   "@type": "SourceDocument",
+   "title": "Holton JM et al. (2014) The R-factor gap in macromolecular crystallography: an untapped potential for insights on accurate structures",
+   "identifier": "doi:10.1111/febs.12922",
+   "bibliographicCitation": "Reference 13 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1063/5.0070869",
+   "@type": "SourceDocument",
+   "title": "Gray JG et al. (2022) Integral equation models for solvent in macromolecular crystals",
+   "identifier": "doi:10.1063/5.0070869",
+   "bibliographicCitation": "Reference 14 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1021/acs.jcim.5c01063",
+   "@type": "SourceDocument",
+   "title": "Case DA et al. (2025) Recent Developments in Amber Biomolecular Simulations",
+   "identifier": "doi:10.1021/acs.jcim.5c01063",
+   "bibliographicCitation": "Reference 15 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s0907444912001308",
+   "@type": "SourceDocument",
+   "title": "Afonine PV et al. (2012) Towards automated crystallographic structure refinement with phenix.refine",
+   "identifier": "doi:10.1107/s0907444912001308",
+   "bibliographicCitation": "Reference 16 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s0907444913000462",
+   "@type": "SourceDocument",
+   "title": "Afonine PV et al. (2013) Bulk-solvent and overall scaling revisited: faster calculations, improved results",
+   "identifier": "doi:10.1107/s0907444913000462",
+   "bibliographicCitation": "Reference 17 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s2059798323004825",
+   "@type": "SourceDocument",
+   "title": "Afonine PV et al. (2023) Bulk-solvent and overall scaling revisited: faster calculations, improved results. Corrigendum",
+   "identifier": "doi:10.1107/s2059798323004825",
+   "bibliographicCitation": "Reference 18 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s2059798319011471",
+   "@type": "SourceDocument",
+   "title": "Liebschner D et al. (2019) Macromolecular structure determination using X-rays, neutrons and electrons: recent developments in Phenix",
+   "identifier": "doi:10.1107/s2059798319011471",
+   "bibliographicCitation": "Reference 19 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s0907444904016427",
+   "@type": "SourceDocument",
+   "title": "Blanc E et al. (2004) Refinement of severely incomplete structures with maximum likelihood in BUSTER-TNT",
+   "identifier": "doi:10.1107/s0907444904016427",
+   "bibliographicCitation": "Reference 20 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s0907444911001314",
+   "@type": "SourceDocument",
+   "title": "Murshudov GN et al. (2011) REFMAC5 for the refinement of macromolecular crystal structures",
+   "identifier": "doi:10.1107/s0907444911001314",
+   "bibliographicCitation": "Reference 21 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s2053229614024218",
+   "@type": "SourceDocument",
+   "title": "Sheldrick GM (2015) Crystal structure refinement with SHELXL",
+   "identifier": "doi:10.1107/s2053229614024218",
+   "bibliographicCitation": "Reference 22 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s2053229614024929",
+   "@type": "SourceDocument",
+   "title": "Spek AL (2015) PLATON SQUEEZE: a tool for the calculation of the disordered solvent contribution to the calculated structure factors",
+   "identifier": "doi:10.1107/s2053229614024929",
+   "bibliographicCitation": "Reference 23 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1021/acs.jcim.3c01531",
+   "@type": "SourceDocument",
+   "title": "Mikhailovskii O et al. (2023) X-ray Crystallography Module in MD Simulation Program Amber 2023. Refining the Models of Protein Crystals",
+   "identifier": "doi:10.1021/acs.jcim.3c01531",
+   "bibliographicCitation": "Reference 24 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s090744491102258x",
+   "@type": "SourceDocument",
+   "title": "Glykos NM (2011) On the application of structure-specific bulk-solvent models",
+   "identifier": "doi:10.1107/s090744491102258x",
+   "bibliographicCitation": "Reference 25 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s2059798322011871",
+   "@type": "SourceDocument",
+   "title": "Wych DC et al. (2023) Molecular-dynamics simulation methods for macromolecular crystallography",
+   "identifier": "doi:10.1107/s2059798322011871",
+   "bibliographicCitation": "Reference 26 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1002/wcms.1402",
+   "@type": "SourceDocument",
+   "title": "Cerutti DS, Case DA (2018) Molecular dynamics simulations of macromolecular crystals",
+   "identifier": "doi:10.1002/wcms.1402",
+   "bibliographicCitation": "Reference 27 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s010876739601584x",
+   "@type": "SourceDocument",
+   "title": "Szoke A, Szoke H, Somoza JR (1997) Holographic Methods in X-ray Crystallography. V. Multiple Isomorphous Replacement, Multiple Anomalous Dispersion and Non-crystallographic Symmetry",
+   "identifier": "doi:10.1107/s010876739601584x",
+   "bibliographicCitation": "Reference 28 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1107/s0907444997005386",
+   "@type": "SourceDocument",
+   "title": "Smith GD et al. (1997) Ab Initio Structure Determination and Refinement of a Scorpion Protein Toxin",
+   "identifier": "doi:10.1107/s0907444997005386",
+   "bibliographicCitation": "Reference 29 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1038/355472a0",
+   "@type": "SourceDocument",
+   "title": "Brunger AT (1992) Free R value: a novel statistical quantity for assessing the accuracy of crystal structures",
+   "identifier": "doi:10.1038/355472a0",
+   "bibliographicCitation": "Reference 30 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.1002/pro.3330",
+   "@type": "SourceDocument",
+   "title": "Williams CJ et al. (2017) MolProbity: More and better reference data for improved all-atom structure validation",
+   "identifier": "doi:10.1002/pro.3330",
+   "bibliographicCitation": "Reference 31 in Holton and Wankowicz 2026"
+  },
+  {
+   "@id": "https://doi.org/10.2210/pdb1aho/pdb",
+   "@type": "Item",
+   "format": "chemical/x-mmcif",
+   "title": "PDB entry 1AHO",
+   "identifier": "doi:10.2210/pdb1aho/pdb"
+  },
+  {
+   "@id": "https://doi.org/10.82153/2me0-hd96#quote-c1",
+   "@type": "Item",
+   "format": "text/plain",
+   "content": "The inability to accurately model solvent remains one of the central unsolved challenges",
+   "isContainedBy": "https://doi.org/10.82153/2me0-hd96",
+   "title": "Holton and Wankowicz 2026, Purpose"
+  },
+  {
+   "@id": "https://github.com/jmholton/phenix_user_solvent#quote-c15",
+   "@type": "Item",
+   "format": "text/plain",
+   "content": "The flat mask contributes nothing above 3 Å.",
+   "isContainedBy": "https://github.com/jmholton/phenix_user_solvent",
+   "title": "phenix_user_solvent README, Iterative workflow"
+  },
+  {
+   "@id": "bsm:q3",
+   "@type": [
+    "bsm:schema-Question",
+    "mira:Question"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "QUE - Where does the flat binary bulk-solvent mask fail to describe crystal solvent?",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Most refinement programs fill the region outside the atomic model with constant electron density. The paper lists the ways this assumption departs from real solvent."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Purpose; Background, paragraphs 2-4",
+   "references": [
+    "https://doi.org/10.1107/s2053273324000299",
+    "https://doi.org/10.1006/jmbi.1994.1633"
+   ]
+  },
+  {
+   "@id": "bsm:q1",
+   "@type": [
+    "bsm:schema-Question",
+    "mira:Question"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "QUE - Can phenix.refine use an externally computed bulk-solvent map in place of the flat mask?",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Physically richer solvent models exist, but Phenix had no way to take them as input. The paper asks whether a small local change can add this."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Purpose; Background, paragraph 4",
+   "references": [
+    "https://doi.org/10.1107/s0907444912001308"
+   ]
+  },
+  {
+   "@id": "bsm:q2",
+   "@type": [
+    "bsm:schema-Question",
+    "mira:Question"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "QUE - Does a user-supplied solvent map improve fit to the X-ray data compared with the flat mask?",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Fit is measured by R-work and cross-validated R-free on a high-resolution test structure."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Example of AMBER bulk solvent: Effect on refinement"
+  },
+  {
+   "@id": "bsm:q4",
+   "@type": [
+    "bsm:schema-Question",
+    "mira:Question"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "QUE - How can a 48-member protein ensemble be refined and validated with a structured solvent model?",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The test case uses a large multiconformer ensemble, which strains standard validation tools."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Example of AMBER bulk solvent: Effect on refinement; Table 1",
+   "references": [
+    "https://doi.org/10.1002/pro.3330"
+   ]
+  },
+  {
+   "@id": "bsm:c1",
+   "@type": [
+    "bsm:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Inaccurate solvent modeling is a major driver of the gap between refinement R values and data quality",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Crystals are 20-90% solvent by volume, about 50% on average, and all of it scatters X-rays. Solvent is still modeled with crude approximations, which leaves a large R-factor gap."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Purpose; Background, paragraphs 1 and 3",
+   "references": [
+    "https://doi.org/10.82153/2me0-hd96#quote-c1",
+    "https://doi.org/10.1016/0022-2836%2868%2990205-2",
+    "https://doi.org/10.1021/ci500662d",
+    "https://doi.org/10.1111/febs.12922"
+   ]
+  },
+  {
+   "@id": "bsm:c2",
+   "@type": [
+    "bsm:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - A flat mask cannot represent structured density from waters, ions, lipids and buffer components",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The flat model assumes disordered solvent is spread evenly through the non-masked part of the asymmetric unit. Real solvent has structure that this ignores."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Background, paragraphs 2-3",
+   "references": [
+    "https://doi.org/10.1002/pro.4909",
+    "https://doi.org/10.1107/s0907444900014608"
+   ]
+  },
+  {
+   "@id": "bsm:c3",
+   "@type": [
+    "bsm:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - The binary mask treats the unoccupied fraction of partially occupied atoms as vacuum",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Any atom with occupancy below 1 is fully excluded from the solvent mask. This affects multiconformer models and partially occupied waters, and adding many low-occupancy waters to compensate inflates parameters and destabilizes refinement."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Background, paragraph 3",
+   "references": [
+    "https://doi.org/10.7554/elife.103797",
+    "https://doi.org/10.7554/elife.90606",
+    "https://doi.org/10.1107/s2059798323002498",
+    "https://doi.org/10.1016/bs.mie.2023.06.009"
+   ]
+  },
+  {
+   "@id": "bsm:c4",
+   "@type": [
+    "bsm:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Sharp mask edges and solvent assigned to unmodeled regions leave systematic errors in difference maps",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Fourier ripples from the mask boundary appear at high resolution. Solvent density placed over unmodeled parts of the model smears density and lowers peak heights, which Polder maps can correct but refinement programs rarely use."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Background, paragraph 3",
+   "references": [
+    "https://doi.org/10.1107/s2059798316018210",
+    "https://doi.org/10.1107/s0907444910031045"
+   ]
+  },
+  {
+   "@id": "bsm:c5",
+   "@type": [
+    "bsm:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - The mosaic bulk-solvent model improves on the flat mask but keeps the binary-boundary approximation",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The mosaic model gives each isolated solvent region its own occupancy. It still treats solvent as a structureless continuum and does not fix the partial-occupancy problem."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Background, paragraph 4",
+   "references": [
+    "https://doi.org/10.1002/pro.4909"
+   ]
+  },
+  {
+   "@id": "bsm:c6",
+   "@type": [
+    "bsm:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Physically based solvent models exist but have been hard to integrate into Phenix",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "MD simulations, 3D-RISM, holographic methods such as EDEN and neural networks can all predict solvent density. Getting their output into standard refinement has been the practical barrier."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Purpose; Background, paragraph 4; 'A user-supplied bulk solvent map can replace the flat mask', paragraph 1",
+   "references": [
+    "https://doi.org/10.1063/5.0070869",
+    "https://doi.org/10.1021/acs.jcim.5c01063",
+    "https://doi.org/10.1107/s0907444912001308",
+    "https://doi.org/10.1107/s2059798322011871",
+    "https://doi.org/10.1002/wcms.1402",
+    "https://doi.org/10.1107/s010876739601584x"
+   ]
+  },
+  {
+   "@id": "bsm:c7",
+   "@type": [
+    "bsm:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Other refinement programs already accept a precomputed solvent or partial-structure contribution",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Buster, Refmac5, SHELXL, PLATON, AMBER and X-PLOR/CNS allow this. Refmac5 accepts up to five partial structures through FPART/PHIPART columns."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. 'The flat-mask bulk-solvent model is an approximation of structured solvent', paragraph 3",
+   "references": [
+    "https://doi.org/10.1006/jmbi.1994.1633",
+    "https://doi.org/10.1107/s0907444904016427",
+    "https://doi.org/10.1107/s0907444911001314",
+    "https://doi.org/10.1107/s2053229614024218",
+    "https://doi.org/10.1107/s2053229614024929",
+    "https://doi.org/10.1021/acs.jcim.3c01531"
+   ]
+  },
+  {
+   "@id": "bsm:c8",
+   "@type": [
+    "bsm:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - A compact local patch lets phenix.refine use user-supplied solvent structure factors as F_mask",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The user's amplitude and phase columns replace the flat-mask F_mask, and k_mask is still fit analytically per resolution bin, so the map can be on any scale. The map is held fixed during refinement and fully replaces the mask."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. 'A user-supplied bulk solvent map can replace the flat mask'; Scaling and treatment during refinement",
+   "references": [
+    "https://doi.org/10.1107/s0907444912001308",
+    "https://doi.org/10.1107/s0907444913000462",
+    "https://doi.org/10.1107/s2059798323004825",
+    "https://doi.org/10.1107/s2059798319011471",
+    "https://doi.org/10.1107/s090744491102258x"
+   ]
+  },
+  {
+   "@id": "bsm:c10",
+   "@type": [
+    "bsm:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Solvent MTZ files prepared for Refmac can be used in Phenix without relabeling",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The default column labels are FPART and PHIPART, following the Refmac convention. If the experimental MTZ already holds these columns, no separate file is needed."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. 'A user-supplied bulk solvent map can replace the flat mask', paragraph 2; Input specification",
+   "references": [
+    "https://doi.org/10.1107/s0907444911001314"
+   ]
+  },
+  {
+   "@id": "bsm:c9",
+   "@type": [
+    "bsm:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - The supplied map must be carried through outlier rejection or it is silently discarded",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Each outlier-rejection step rebuilds the f_model manager. Without propagating the map through select(), Phenix recomputes the flat mask and the supplied map has no effect on the result."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Reflection outlier rejection"
+  },
+  {
+   "@id": "bsm:c16",
+   "@type": [
+    "bsm:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - The patch does not support joint X-ray/neutron refinement, and twin refinement is untested",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "These are the two limitations the authors state for the current patch."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. 'A user-supplied bulk solvent map can replace the flat mask', paragraph 2"
+  },
+  {
+   "@id": "bsm:c11",
+   "@type": [
+    "bsm:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Replacing the flat mask with a physically based solvent map lowers cross-validated R-free",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "For the 1AHO test case, both an MD-derived map in Phenix and 3D-RISM solvent in Table 1 gave lower R-free than flat bulk solvent."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Example of AMBER bulk solvent: Effect on refinement; Table 1"
+  },
+  {
+   "@id": "bsm:c12",
+   "@type": [
+    "bsm:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - The R-free gain reflects a better solvent model rather than overfitting",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Free-flagged reflections were excluded from all map editing, so the R-free change is cross-validated. Model geometry did not change and the R-free/R-work gap stayed small."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Example of AMBER bulk solvent: Effect on refinement, paragraph 2",
+   "references": [
+    "https://doi.org/10.1038/355472a0"
+   ]
+  },
+  {
+   "@id": "bsm:c13",
+   "@type": [
+    "bsm:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - The size of the improvement will depend on resolution, solvent content and map quality",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The authors present 1AHO as a single test case, not a general benchmark. Its high-resolution, ambient-temperature data and nearly pure-water solvent make it a favorable system."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Example of AMBER bulk solvent, paragraph 1; text after Table 1"
+  },
+  {
+   "@id": "bsm:c14",
+   "@type": [
+    "bsm:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Ensemble modeling gave larger R-free gains than solvent map editing",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "In the 1AHO series, density editing of the solvent map contributed small R-free gains compared with moving to a multiconformer ensemble."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Text after Table 1; Table 1"
+  },
+  {
+   "@id": "bsm:c15",
+   "@type": [
+    "bsm:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Per-bin k_mask in Phenix corrects resolution-dependent miscalibration of MD solvent maps",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "A single global B-factor applied to the MD map blurs it and suppresses its high-resolution content. Fitting k_mask per resolution bin restores that content, so fewer explicit waters are needed to patch the deficit."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "phenix_user_solvent README, github.com/jmholton/phenix_user_solvent. README: Iterative workflow",
+   "references": [
+    "https://github.com/jmholton/phenix_user_solvent#quote-c15"
+   ]
+  },
+  {
+   "@id": "bsm:c17",
+   "@type": [
+    "bsm:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Iterating refinement and solvent density editing further lowers R-free",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "After refinement with the supplied map, remaining Fo-Fc features in the solvent are treated as missing structure and added back to the map. The README describes repeating this until solvent peaks fall below about 3 sigma."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "phenix_user_solvent README, github.com/jmholton/phenix_user_solvent. README: Example; Iterative workflow"
+  },
+  {
+   "@id": "bsm:c18",
+   "@type": [
+    "bsm:schema-Claim",
+    "mira:Claim"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "CLM - Supercell ensembles refine as stably as single-ASU models and resolve non-bonded ambiguities",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The 48-member ensemble was refined as a 2x2x3 supercell with full-occupancy copies. It was condensed to one ASU with 48 altlocs only for this demonstration, because supercell refinement is not widely adopted."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Example of AMBER bulk solvent: Effect on refinement, paragraph 2",
+   "references": [
+    "https://doi.org/10.1002/pro.3330"
+   ]
+  },
+  {
+   "@id": "bsm:e1",
+   "@type": [
+    "bsm:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - MD-derived map lowered R-free from 0.1473 to 0.1092 and R-work from 0.1278 to 0.0928",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Same starting ensemble, data and three macro-cycles in phenix.refine; only the solvent source differed. Part of the R-work gain is expected because the map was edited against working-set difference density."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Example of AMBER bulk solvent: Effect on refinement, results table",
+   "references": [
+    "https://doi.org/10.2210/pdb1aho/pdb"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/2me0-hd96"
+   ],
+   "observationOriginActivity": "bsm:s1"
+  },
+  {
+   "@id": "bsm:e2",
+   "@type": [
+    "bsm:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Bond r.m.s.d. was 0.007 Å in both the flat-mask and MD-map runs",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Model geometry was essentially unchanged by the switch in solvent source, and the R-free/R-work gap remained small."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Example of AMBER bulk solvent: Effect on refinement, paragraph 2",
+   "references": [
+    "https://doi.org/10.2210/pdb1aho/pdb"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/2me0-hd96"
+   ],
+   "observationOriginActivity": "bsm:s1"
+  },
+  {
+   "@id": "bsm:e3",
+   "@type": [
+    "bsm:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Flat bulk solvent gave R-free 0.1664; 3D-RISM solvent gave 0.1302",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Both runs used occupancy-refined waters. MolProbity scores were 2.94 for both."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Table 1, rows 2-3",
+   "references": [
+    "https://doi.org/10.2210/pdb1aho/pdb"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/2me0-hd96"
+   ],
+   "observationOriginActivity": "bsm:s2"
+  },
+  {
+   "@id": "bsm:e4",
+   "@type": [
+    "bsm:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - map_touchup density editing lowered R-free only from 0.1181 to 0.1161",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "This step followed the 48-copy supercell refinement with MD average solvent, ordered waters and watershed, which itself reached R-free 0.1181 from 0.1239 for the 2-8 conformer model."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Table 1, rows 4-6",
+   "references": [
+    "https://doi.org/10.2210/pdb1aho/pdb"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/2me0-hd96"
+   ],
+   "observationOriginActivity": "bsm:s2"
+  },
+  {
+   "@id": "bsm:e5",
+   "@type": [
+    "bsm:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - msander plus Refmac5 supercell refinement reached R-free 0.1107 with MolProbity 1.06",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The single-ASU phenix.refine run with 48 altlocs reached R-free 0.1089, but MolProbity crashed on it."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Table 1, rows 7-8",
+   "references": [
+    "https://doi.org/10.1002/pro.3330",
+    "https://doi.org/10.2210/pdb1aho/pdb"
+   ],
+   "sourceDocument": [
+    "https://doi.org/10.82153/2me0-hd96"
+   ],
+   "observationOriginActivity": "bsm:s2"
+  },
+  {
+   "@id": "bsm:e6",
+   "@type": [
+    "bsm:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Flat-mask k_mask was 0.00 above 3 Å; MD-map k_mask was 1.12 to 1.45 there",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "At low resolution (14-6.7 Å) k_mask was 0.33 for the flat mask and 1.05 for the MD map. Values above 1 at high resolution indicate the global B-factor had undersold the map amplitude."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "phenix_user_solvent README, github.com/jmholton/phenix_user_solvent. README: Iterative workflow, k_mask table",
+   "sourceDocument": [
+    "https://github.com/jmholton/phenix_user_solvent"
+   ],
+   "observationOriginActivity": "bsm:s3"
+  },
+  {
+   "@id": "bsm:e7",
+   "@type": [
+    "bsm:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Iterated density editing reached R-work 0.084 and R-free 0.105",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Compared with 0.093 and 0.109 after the first cycle with the ensemble Fpart/PHIpart map, and 0.128 and 0.147 with the flat mask."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "phenix_user_solvent README, github.com/jmholton/phenix_user_solvent. README: Example, results table",
+   "sourceDocument": [
+    "https://github.com/jmholton/phenix_user_solvent"
+   ],
+   "observationOriginActivity": "bsm:s4"
+  },
+  {
+   "@id": "bsm:e8",
+   "@type": [
+    "bsm:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - Without propagation through select(), k_mask was fit to a recomputed flat mask",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Outlier removal rebuilt the f_model manager, which dropped the stored map, so the supplied map had no effect until the patch carried it through the in-place selection path."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Reflection outlier rejection; README: Implementation notes",
+   "sourceDocument": [
+    "https://doi.org/10.82153/2me0-hd96",
+    "https://github.com/jmholton/phenix_user_solvent"
+   ],
+   "observationOriginActivity": "bsm:s5"
+  },
+  {
+   "@id": "bsm:e9",
+   "@type": [
+    "bsm:schema-Evidence",
+    "mira:Evidence"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "EVD - The patch changes three files: +23, +46 and +25/-12 lines",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "A new PHIL scope in __init__.params, an injection helper in phenix_refine.py, and set_user_f_masks() plus propagation in f_model.py."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Modified source files table; README: Files changed",
+   "sourceDocument": [
+    "https://doi.org/10.82153/2me0-hd96",
+    "https://github.com/jmholton/phenix_user_solvent"
+   ],
+   "observationOriginActivity": "bsm:s5"
+  },
+  {
+   "@id": "bsm:s1",
+   "@type": [
+    "bsm:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - phenix.refine of 1AHO with the default flat mask versus an MD-derived solvent map",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Scorpion toxin II at 0.96 Å, 29,557 reflections over 0.96-15.8 Å with 1,444 (5%) in the free set. Two otherwise identical protocols from the repository."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Example of AMBER bulk solvent",
+   "references": [
+    "https://doi.org/10.1107/s0907444997005386",
+    "https://doi.org/10.2210/pdb1aho/pdb"
+   ]
+  },
+  {
+   "@id": "bsm:s2",
+   "@type": [
+    "bsm:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - Series of solvent and ensemble models refined against 1AHO data (Table 1)",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Refmac5, 3D-RISM, MD-average solvent, supercell, density editing and msander refinements compared by R-work, R-free and MolProbity score."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Table 1",
+   "references": [
+    "https://doi.org/10.2210/pdb1aho/pdb"
+   ]
+  },
+  {
+   "@id": "bsm:s3",
+   "@type": [
+    "bsm:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - Per-resolution-bin k_mask comparison of flat mask and MD map",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "k_mask values from phenix.refine for each resolution bin, with the flat mask and with the MD-derived Fpart map."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "phenix_user_solvent README, github.com/jmholton/phenix_user_solvent. README: Iterative workflow"
+  },
+  {
+   "@id": "bsm:s4",
+   "@type": [
+    "bsm:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - Iterated refinement and density editing of the 1AHO solvent map",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Repeated cycles of refinement with the supplied map, Fo-Fc inspection and density editing."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "phenix_user_solvent README, github.com/jmholton/phenix_user_solvent. README: Example; Iterative workflow"
+  },
+  {
+   "@id": "bsm:s5",
+   "@type": [
+    "bsm:schema-Study",
+    "mira:Study"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "STU - Development and debugging of the patch against prior Refmac5 results",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The feature was added to a nightly Phenix build with an AI coding agent, using earlier Refmac5 results as the validation target. Several debugging rounds isolated the minimal set of edits."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. LLM Disclosure Statement; Reflection outlier rejection"
+  },
+  {
+   "@id": "bsm:p1",
+   "@type": [
+    "bsm:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - Apply the three phenix_user_solvent patches to a Phenix installation",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Patch f_model.py, phenix/programs/phenix_refine.py and __init__.params under site-packages (Phenix 2.x) or modules/ (Phenix 1.21 and earlier). Other files named phenix_refine.py must not be patched."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Installation; Modified source files"
+  },
+  {
+   "@id": "bsm:p2",
+   "@type": [
+    "bsm:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - phenix.refine with refinement.input.bulk_solvent_map",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Pass file_name, amplitudes_label and phases_label. The 1AHO runs used three macro-cycles refining individual sites and ADPs."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Input specification; Map ingestion and indexing; Effect on refinement",
+   "references": [
+    "https://doi.org/10.1107/s0907444912001308"
+   ]
+  },
+  {
+   "@id": "bsm:p3",
+   "@type": [
+    "bsm:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - MD-derived solvent map with density editing",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Average solvent density from an AMBER trajectory with crystal packing, then add Fo-Fc difference features back into the map with free-flagged reflections excluded. The ensemble was optimized with msander, ramping the X-ray term while lowering temperature."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Generating the solvent map",
+   "references": [
+    "https://doi.org/10.1021/acs.jcim.5c01063",
+    "https://doi.org/10.1021/acs.jcim.3c01531",
+    "https://doi.org/10.1107/s2059798322011871",
+    "https://doi.org/10.1002/wcms.1402",
+    "https://doi.org/10.1038/355472a0"
+   ]
+  },
+  {
+   "@id": "bsm:p4",
+   "@type": [
+    "bsm:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - Iterative refine, inspect and density-edit cycle",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Refine with the user map for 3-10 cycles, export FMASK and K_MASK, add positive solvent blobs to the solvent MTZ and repeat. Stop when the k_mask profile stabilizes and solvent Fo-Fc peaks fall below about 3 sigma."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "phenix_user_solvent README, github.com/jmholton/phenix_user_solvent. README: Iterative workflow"
+  },
+  {
+   "@id": "bsm:p5",
+   "@type": [
+    "bsm:schema-Protocol",
+    "mira:Protocol"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "PRO - 48-copy supercell ensemble refinement",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Data and solvent structure factors re-indexed by 2h,2k,3l, the cell enlarged 2x2x3 in P212121, and filled with 48 full-occupancy copies of the monomer."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Example of AMBER bulk solvent: Effect on refinement, paragraph 2"
+  },
+  {
+   "@id": "bsm:r1",
+   "@type": [
+    "bsm:schema-Request",
+    "mira:Request"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "REQ - Benchmark user-supplied solvent maps on a larger set of structures",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The authors state that future analysis will test the approach beyond the single 1AHO case."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. Text after Table 1"
+  },
+  {
+   "@id": "bsm:r2",
+   "@type": [
+    "bsm:schema-Request",
+    "mira:Request"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "REQ - Adopt the bulk-solvent map feature in Phenix itself",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "The patch is intended as a feature request to the Phenix developers."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. LLM Disclosure Statement"
+  },
+  {
+   "@id": "bsm:r3",
+   "@type": [
+    "bsm:schema-Request",
+    "mira:Request"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "REQ - Support joint X-ray/neutron refinement and test twin refinement with a supplied map",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Listed as the current limitations of the patch."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. 'A user-supplied bulk solvent map can replace the flat mask', paragraph 2; README: Known limitations"
+  },
+  {
+   "@id": "bsm:r4",
+   "@type": [
+    "bsm:schema-Request",
+    "mira:Request"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "title": "REQ - Neural network prediction of solvent density from protein structure alone",
+   "description": {
+    "@type": "Item",
+    "format": "text/plain",
+    "content": "Named as a future method whose output map could be Fourier-transformed and supplied in the same way (cowcat repository)."
+   },
+   "creator": "bsm:creator",
+   "bibliographicCitation": "Holton and Wankowicz 2026, doi:10.82153/2me0-hd96. 'A user-supplied bulk solvent map can replace the flat mask', paragraph 1"
+  },
+  {
+   "@id": "bsm:rel-addresses-c1-q3",
+   "@type": [
+    "bsm:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:c1",
+   "destination": "bsm:q3",
+   "title": "[[CLM - Inaccurate solvent modeling is a major driver of the gap between refinement R values and data quality]] -addresses-> [[QUE - Where does the flat binary bulk-solvent mask fail to describe crystal solvent?]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-addresses-c2-q3",
+   "@type": [
+    "bsm:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:c2",
+   "destination": "bsm:q3",
+   "title": "[[CLM - A flat mask cannot represent structured density from waters, ions, lipids and buffer components]] -addresses-> [[QUE - Where does the flat binary bulk-solvent mask fail to describe crystal solvent?]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-addresses-c3-q3",
+   "@type": [
+    "bsm:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:c3",
+   "destination": "bsm:q3",
+   "title": "[[CLM - The binary mask treats the unoccupied fraction of partially occupied atoms as vacuum]] -addresses-> [[QUE - Where does the flat binary bulk-solvent mask fail to describe crystal solvent?]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-addresses-c4-q3",
+   "@type": [
+    "bsm:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:c4",
+   "destination": "bsm:q3",
+   "title": "[[CLM - Sharp mask edges and solvent assigned to unmodeled regions leave systematic errors in difference maps]] -addresses-> [[QUE - Where does the flat binary bulk-solvent mask fail to describe crystal solvent?]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-addresses-c5-q3",
+   "@type": [
+    "bsm:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:c5",
+   "destination": "bsm:q3",
+   "title": "[[CLM - The mosaic bulk-solvent model improves on the flat mask but keeps the binary-boundary approximation]] -addresses-> [[QUE - Where does the flat binary bulk-solvent mask fail to describe crystal solvent?]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-addresses-c6-q1",
+   "@type": [
+    "bsm:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:c6",
+   "destination": "bsm:q1",
+   "title": "[[CLM - Physically based solvent models exist but have been hard to integrate into Phenix]] -addresses-> [[QUE - Can phenix.refine use an externally computed bulk-solvent map in place of the flat mask?]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-addresses-c7-q1",
+   "@type": [
+    "bsm:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:c7",
+   "destination": "bsm:q1",
+   "title": "[[CLM - Other refinement programs already accept a precomputed solvent or partial-structure contribution]] -addresses-> [[QUE - Can phenix.refine use an externally computed bulk-solvent map in place of the flat mask?]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-addresses-c8-q1",
+   "@type": [
+    "bsm:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:c8",
+   "destination": "bsm:q1",
+   "title": "[[CLM - A compact local patch lets phenix.refine use user-supplied solvent structure factors as F_mask]] -addresses-> [[QUE - Can phenix.refine use an externally computed bulk-solvent map in place of the flat mask?]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-addresses-c10-q1",
+   "@type": [
+    "bsm:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:c10",
+   "destination": "bsm:q1",
+   "title": "[[CLM - Solvent MTZ files prepared for Refmac can be used in Phenix without relabeling]] -addresses-> [[QUE - Can phenix.refine use an externally computed bulk-solvent map in place of the flat mask?]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-addresses-c9-q1",
+   "@type": [
+    "bsm:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:c9",
+   "destination": "bsm:q1",
+   "title": "[[CLM - The supplied map must be carried through outlier rejection or it is silently discarded]] -addresses-> [[QUE - Can phenix.refine use an externally computed bulk-solvent map in place of the flat mask?]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-addresses-c16-q1",
+   "@type": [
+    "bsm:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:c16",
+   "destination": "bsm:q1",
+   "title": "[[CLM - The patch does not support joint X-ray/neutron refinement, and twin refinement is untested]] -addresses-> [[QUE - Can phenix.refine use an externally computed bulk-solvent map in place of the flat mask?]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-addresses-c11-q2",
+   "@type": [
+    "bsm:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:c11",
+   "destination": "bsm:q2",
+   "title": "[[CLM - Replacing the flat mask with a physically based solvent map lowers cross-validated R-free]] -addresses-> [[QUE - Does a user-supplied solvent map improve fit to the X-ray data compared with the flat mask?]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-addresses-c12-q2",
+   "@type": [
+    "bsm:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:c12",
+   "destination": "bsm:q2",
+   "title": "[[CLM - The R-free gain reflects a better solvent model rather than overfitting]] -addresses-> [[QUE - Does a user-supplied solvent map improve fit to the X-ray data compared with the flat mask?]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-addresses-c13-q2",
+   "@type": [
+    "bsm:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:c13",
+   "destination": "bsm:q2",
+   "title": "[[CLM - The size of the improvement will depend on resolution, solvent content and map quality]] -addresses-> [[QUE - Does a user-supplied solvent map improve fit to the X-ray data compared with the flat mask?]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-addresses-c14-q2",
+   "@type": [
+    "bsm:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:c14",
+   "destination": "bsm:q2",
+   "title": "[[CLM - Ensemble modeling gave larger R-free gains than solvent map editing]] -addresses-> [[QUE - Does a user-supplied solvent map improve fit to the X-ray data compared with the flat mask?]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-addresses-c14-q4",
+   "@type": [
+    "bsm:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:c14",
+   "destination": "bsm:q4",
+   "title": "[[CLM - Ensemble modeling gave larger R-free gains than solvent map editing]] -addresses-> [[QUE - How can a 48-member protein ensemble be refined and validated with a structured solvent model?]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-addresses-c15-q2",
+   "@type": [
+    "bsm:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:c15",
+   "destination": "bsm:q2",
+   "title": "[[CLM - Per-bin k_mask in Phenix corrects resolution-dependent miscalibration of MD solvent maps]] -addresses-> [[QUE - Does a user-supplied solvent map improve fit to the X-ray data compared with the flat mask?]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-addresses-c17-q2",
+   "@type": [
+    "bsm:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:c17",
+   "destination": "bsm:q2",
+   "title": "[[CLM - Iterating refinement and solvent density editing further lowers R-free]] -addresses-> [[QUE - Does a user-supplied solvent map improve fit to the X-ray data compared with the flat mask?]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-addresses-c18-q4",
+   "@type": [
+    "bsm:areldef-addresses",
+    "mira:addresses"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:c18",
+   "destination": "bsm:q4",
+   "title": "[[CLM - Supercell ensembles refine as stably as single-ASU models and resolve non-bonded ambiguities]] -addresses-> [[QUE - How can a 48-member protein ensemble be refined and validated with a structured solvent model?]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-supports-e1-c11",
+   "@type": [
+    "bsm:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:e1",
+   "destination": "bsm:c11",
+   "title": "[[EVD - MD-derived map lowered R-free from 0.1473 to 0.1092 and R-work from 0.1278 to 0.0928]] -supports-> [[CLM - Replacing the flat mask with a physically based solvent map lowers cross-validated R-free]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-supports-e1-c8",
+   "@type": [
+    "bsm:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:e1",
+   "destination": "bsm:c8",
+   "title": "[[EVD - MD-derived map lowered R-free from 0.1473 to 0.1092 and R-work from 0.1278 to 0.0928]] -supports-> [[CLM - A compact local patch lets phenix.refine use user-supplied solvent structure factors as F_mask]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-supports-e2-c12",
+   "@type": [
+    "bsm:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:e2",
+   "destination": "bsm:c12",
+   "title": "[[EVD - Bond r.m.s.d. was 0.007 Å in both the flat-mask and MD-map runs]] -supports-> [[CLM - The R-free gain reflects a better solvent model rather than overfitting]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-supports-e3-c11",
+   "@type": [
+    "bsm:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:e3",
+   "destination": "bsm:c11",
+   "title": "[[EVD - Flat bulk solvent gave R-free 0.1664; 3D-RISM solvent gave 0.1302]] -supports-> [[CLM - Replacing the flat mask with a physically based solvent map lowers cross-validated R-free]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-supports-e3-c2",
+   "@type": [
+    "bsm:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:e3",
+   "destination": "bsm:c2",
+   "title": "[[EVD - Flat bulk solvent gave R-free 0.1664; 3D-RISM solvent gave 0.1302]] -supports-> [[CLM - A flat mask cannot represent structured density from waters, ions, lipids and buffer components]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-supports-e4-c14",
+   "@type": [
+    "bsm:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:e4",
+   "destination": "bsm:c14",
+   "title": "[[EVD - map_touchup density editing lowered R-free only from 0.1181 to 0.1161]] -supports-> [[CLM - Ensemble modeling gave larger R-free gains than solvent map editing]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-supports-e5-c18",
+   "@type": [
+    "bsm:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:e5",
+   "destination": "bsm:c18",
+   "title": "[[EVD - msander plus Refmac5 supercell refinement reached R-free 0.1107 with MolProbity 1.06]] -supports-> [[CLM - Supercell ensembles refine as stably as single-ASU models and resolve non-bonded ambiguities]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-supports-e6-c15",
+   "@type": [
+    "bsm:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:e6",
+   "destination": "bsm:c15",
+   "title": "[[EVD - Flat-mask k_mask was 0.00 above 3 Å; MD-map k_mask was 1.12 to 1.45 there]] -supports-> [[CLM - Per-bin k_mask in Phenix corrects resolution-dependent miscalibration of MD solvent maps]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-supports-e7-c17",
+   "@type": [
+    "bsm:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:e7",
+   "destination": "bsm:c17",
+   "title": "[[EVD - Iterated density editing reached R-work 0.084 and R-free 0.105]] -supports-> [[CLM - Iterating refinement and solvent density editing further lowers R-free]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-supports-e8-c9",
+   "@type": [
+    "bsm:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:e8",
+   "destination": "bsm:c9",
+   "title": "[[EVD - Without propagation through select(), k_mask was fit to a recomputed flat mask]] -supports-> [[CLM - The supplied map must be carried through outlier rejection or it is silently discarded]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-supports-e9-c8",
+   "@type": [
+    "bsm:areldef-supports",
+    "mira:supports"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:e9",
+   "destination": "bsm:c8",
+   "title": "[[EVD - The patch changes three files: +23, +46 and +25/-12 lines]] -supports-> [[CLM - A compact local patch lets phenix.refine use user-supplied solvent structure factors as F_mask]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-follows-s1-p1",
+   "@type": [
+    "bsm:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:s1",
+   "destination": "bsm:p1",
+   "title": "[[STU - phenix.refine of 1AHO with the default flat mask versus an MD-derived solvent map]] -follows-> [[PRO - Apply the three phenix_user_solvent patches to a Phenix installation]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-follows-s1-p2",
+   "@type": [
+    "bsm:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:s1",
+   "destination": "bsm:p2",
+   "title": "[[STU - phenix.refine of 1AHO with the default flat mask versus an MD-derived solvent map]] -follows-> [[PRO - phenix.refine with refinement.input.bulk_solvent_map]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-follows-s1-p3",
+   "@type": [
+    "bsm:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:s1",
+   "destination": "bsm:p3",
+   "title": "[[STU - phenix.refine of 1AHO with the default flat mask versus an MD-derived solvent map]] -follows-> [[PRO - MD-derived solvent map with density editing]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-follows-s2-p3",
+   "@type": [
+    "bsm:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:s2",
+   "destination": "bsm:p3",
+   "title": "[[STU - Series of solvent and ensemble models refined against 1AHO data (Table 1)]] -follows-> [[PRO - MD-derived solvent map with density editing]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-follows-s2-p5",
+   "@type": [
+    "bsm:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:s2",
+   "destination": "bsm:p5",
+   "title": "[[STU - Series of solvent and ensemble models refined against 1AHO data (Table 1)]] -follows-> [[PRO - 48-copy supercell ensemble refinement]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-follows-s3-p2",
+   "@type": [
+    "bsm:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:s3",
+   "destination": "bsm:p2",
+   "title": "[[STU - Per-resolution-bin k_mask comparison of flat mask and MD map]] -follows-> [[PRO - phenix.refine with refinement.input.bulk_solvent_map]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-follows-s4-p4",
+   "@type": [
+    "bsm:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:s4",
+   "destination": "bsm:p4",
+   "title": "[[STU - Iterated refinement and density editing of the 1AHO solvent map]] -follows-> [[PRO - Iterative refine, inspect and density-edit cycle]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-follows-s5-p1",
+   "@type": [
+    "bsm:areldef-follows",
+    "mira:follows"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:s5",
+   "destination": "bsm:p1",
+   "title": "[[STU - Development and debugging of the patch against prior Refmac5 results]] -follows-> [[PRO - Apply the three phenix_user_solvent patches to a Phenix installation]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-request_target-r1-c13",
+   "@type": [
+    "bsm:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:r1",
+   "destination": "bsm:c13",
+   "title": "[[REQ - Benchmark user-supplied solvent maps on a larger set of structures]] -request_target-> [[CLM - The size of the improvement will depend on resolution, solvent content and map quality]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-request_target-r1-c11",
+   "@type": [
+    "bsm:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:r1",
+   "destination": "bsm:c11",
+   "title": "[[REQ - Benchmark user-supplied solvent maps on a larger set of structures]] -request_target-> [[CLM - Replacing the flat mask with a physically based solvent map lowers cross-validated R-free]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-request_target-r2-c8",
+   "@type": [
+    "bsm:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:r2",
+   "destination": "bsm:c8",
+   "title": "[[REQ - Adopt the bulk-solvent map feature in Phenix itself]] -request_target-> [[CLM - A compact local patch lets phenix.refine use user-supplied solvent structure factors as F_mask]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-request_target-r3-c16",
+   "@type": [
+    "bsm:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:r3",
+   "destination": "bsm:c16",
+   "title": "[[REQ - Support joint X-ray/neutron refinement and test twin refinement with a supplied map]] -request_target-> [[CLM - The patch does not support joint X-ray/neutron refinement, and twin refinement is untested]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-request_target-r4-c6",
+   "@type": [
+    "bsm:areldef-request_target",
+    "mira:request_target"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:r4",
+   "destination": "bsm:c6",
+   "title": "[[REQ - Neural network prediction of solvent density from protein structure alone]] -request_target-> [[CLM - Physically based solvent models exist but have been hard to integrate into Phenix]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-is_grounded_in-e1-s1",
+   "@type": [
+    "bsm:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:e1",
+   "destination": "bsm:s1",
+   "title": "[[EVD - MD-derived map lowered R-free from 0.1473 to 0.1092 and R-work from 0.1278 to 0.0928]] -is_grounded_in-> [[STU - phenix.refine of 1AHO with the default flat mask versus an MD-derived solvent map]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-is_grounded_in-e2-s1",
+   "@type": [
+    "bsm:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:e2",
+   "destination": "bsm:s1",
+   "title": "[[EVD - Bond r.m.s.d. was 0.007 Å in both the flat-mask and MD-map runs]] -is_grounded_in-> [[STU - phenix.refine of 1AHO with the default flat mask versus an MD-derived solvent map]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-is_grounded_in-e3-s2",
+   "@type": [
+    "bsm:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:e3",
+   "destination": "bsm:s2",
+   "title": "[[EVD - Flat bulk solvent gave R-free 0.1664; 3D-RISM solvent gave 0.1302]] -is_grounded_in-> [[STU - Series of solvent and ensemble models refined against 1AHO data (Table 1)]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-is_grounded_in-e4-s2",
+   "@type": [
+    "bsm:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:e4",
+   "destination": "bsm:s2",
+   "title": "[[EVD - map_touchup density editing lowered R-free only from 0.1181 to 0.1161]] -is_grounded_in-> [[STU - Series of solvent and ensemble models refined against 1AHO data (Table 1)]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-is_grounded_in-e5-s2",
+   "@type": [
+    "bsm:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:e5",
+   "destination": "bsm:s2",
+   "title": "[[EVD - msander plus Refmac5 supercell refinement reached R-free 0.1107 with MolProbity 1.06]] -is_grounded_in-> [[STU - Series of solvent and ensemble models refined against 1AHO data (Table 1)]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-is_grounded_in-e6-s3",
+   "@type": [
+    "bsm:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:e6",
+   "destination": "bsm:s3",
+   "title": "[[EVD - Flat-mask k_mask was 0.00 above 3 Å; MD-map k_mask was 1.12 to 1.45 there]] -is_grounded_in-> [[STU - Per-resolution-bin k_mask comparison of flat mask and MD map]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-is_grounded_in-e7-s4",
+   "@type": [
+    "bsm:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:e7",
+   "destination": "bsm:s4",
+   "title": "[[EVD - Iterated density editing reached R-work 0.084 and R-free 0.105]] -is_grounded_in-> [[STU - Iterated refinement and density editing of the 1AHO solvent map]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-is_grounded_in-e8-s5",
+   "@type": [
+    "bsm:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:e8",
+   "destination": "bsm:s5",
+   "title": "[[EVD - Without propagation through select(), k_mask was fit to a recomputed flat mask]] -is_grounded_in-> [[STU - Development and debugging of the patch against prior Refmac5 results]]",
+   "creator": "bsm:creator"
+  },
+  {
+   "@id": "bsm:rel-is_grounded_in-e9-s5",
+   "@type": [
+    "bsm:areldef-is_grounded_in",
+    "mira:is_grounded_in"
+   ],
+   "created": "2026-10-27T00:00:00Z",
+   "modified": "2026-10-27T00:00:00Z",
+   "source": "bsm:e9",
+   "destination": "bsm:s5",
+   "title": "[[EVD - The patch changes three files: +23, +46 and +25/-12 lines]] -is_grounded_in-> [[STU - Development and debugging of the patch against prior Refmac5 results]]",
+   "creator": "bsm:creator"
+  }
+ ]
+}
